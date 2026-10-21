@@ -3,6 +3,7 @@
 <meta name="theme-color" content="#0c1513"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Дежурство"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon.svg">
 <style>[hidden]{display:none!important}body{margin:0}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 </head><body>
+<script>window.DJ_API="https://79-174-78-227.sslip.io/"</script>
 <title>Дежурство</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -4274,7 +4275,10 @@ const Store = (()=>{
  const hash=str=>{ let h=2166136261; for(const ch of str){ h^=ch.charCodeAt(0); h=Math.imul(h,16777619); } return (h>>>0).toString(36); };
  const API=(()=>{ let a=null; try{ a=new URLSearchParams(location.search).get('api'); }catch(e){}
   if(a&&(/^https:\/\/[^\s]+$/.test(a)||/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(a))){ a=a.replace(/\/?$/,'/'); LS.set('dj-api',a); return a; }
+  // Адрес сервера, вшитый в файл игры при сборке (для игры на GitHub Pages)
+  const d=window.DJ_API; if(d&&(/^https:\/\//.test(d)||/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(d))){ try{ if(new URL(d).host!==location.host&&/^https?:/.test(location.protocol)) return LS.get('dj-api','')||d; }catch(e){} }
   return LS.get('dj-api','')||''; })();
+ let lastErr='';
  let offline=false, retryT=null, bot=null, tgOn=false, initDone=false, mode='none', user=null, prog=empty(), db=null, uapi=null, dl=null, listeners=[], server=false, token=LS.get('dj-token',null);
 
  function summary(p){
@@ -4328,7 +4332,7 @@ const Store = (()=>{
    const tu=TGA.user();
    if(API||/^https?:/.test(location.protocol)){
     try{ await tgConnect(tu); emit(); return; }
-    catch(e){ console.warn('tg server',e);
+    catch(e){ console.warn('tg server',e); lastErr=e.status?'сервер рейтинга ответил ошибкой '+e.status:e.net?'нет связи с сервером рейтинга':'сервер рейтинга не найден';
      const cache=LS.get('dj-srv:'+tu.id,null);
      // Сервер известен, но связи нет — играем с локальной копией, результаты отправятся позже
      if(e.net&&(API||cache)){ server=true; offline=true; mode='server'; const nm=(cache&&cache.name)||tu.name;
@@ -4423,7 +4427,7 @@ const Store = (()=>{
   try{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([data],{type:'application/json'})); a.download=filename; a.click(); return true; }catch(e){ return false; }
  }
  return {init,login,register,guest,logout,saveRun,board,summary,exportText,importText,download,profiles,
-  get mode(){return mode}, get offline(){return offline}, get pending(){ return user?LS.get(pendK(),[]).length:0; }, boardCached, get bot(){return bot}, get tgOn(){return tgOn}, get ready(){return initDone}, tgWidget, get server(){return server}, get user(){return user}, get prog(){return prog}, onChange(f){listeners.push(f)}};
+  get mode(){return mode}, get lastErr(){return lastErr}, get api(){return API}, get offline(){return offline}, get pending(){ return user?LS.get(pendK(),[]).length:0; }, boardCached, get bot(){return bot}, get tgOn(){return tgOn}, get ready(){return initDone}, tgWidget, get server(){return server}, get user(){return user}, get prog(){return prog}, onChange(f){listeners.push(f)}};
 })();
 
 </script>
@@ -4766,7 +4770,7 @@ function netNote(stale){
 }
 function tgTop(){
  const box=$('tgtop'); if(!box) return;
- if(!Store.server){ box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b></div><p class="muted" style="margin:0">Общий рейтинг включится, когда игра будет открываться с сервера бота. Ваш прогресс уже сохраняется в облаке Telegram.</p>`; return; }
+ if(!Store.server){ box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b></div><p class="muted" style="margin:0">Не удалось подключиться к серверу рейтинга${Store.lastErr?' — '+esc(Store.lastErr):''}. Ваш прогресс сохраняется в облаке Telegram, в рейтинг он попадёт, когда связь появится.</p>`; return; }
  const draw=rows=>{
   const stale=rows.stale; rows=rows.slice(); rows.sort((a,b)=>b.r-a.r||b.a-a.a); const mi=rows.findIndex(r=>r.me);
   const pl=$('tg-place'); if(pl&&mi>=0) pl.textContent='Место в рейтинге: '+(mi+1)+' из '+rows.length;
@@ -5235,7 +5239,7 @@ function renderProgress(mp){
  $('p-load').onclick=()=>{ if(Store.mode==='guest'){ $('p-err').textContent='Гостю импорт недоступен — войдите в профиль.'; return; } const er=Store.importText($('p-imp').value); $('p-err').textContent=er||'Готово.'; if(!er) renderMenu(); };
 }
 function renderRank(mp){
- const note={cloud:'Общий рейтинг всех, кому вы дали доступ к игре в claude.ai.',server:Store.user&&Store.user.tg?'Общий рейтинг всех, кто играет через бота в Telegram.':'Общий рейтинг всех игроков этого сайта.',local:'Без сервера рейтинг видит только профили на этом устройстве. Для общего рейтинга выложите игру на сервер (см. «Как играть»).',guest:'Гость в рейтинг не попадает.',tg:'Прогресс хранится в вашем облаке Telegram. Общий рейтинг друзей появится, когда игра будет открываться с вашего сервера (см. README «Телеграм»).'}[Store.mode]||'';
+ const note={cloud:'Общий рейтинг всех, кому вы дали доступ к игре в claude.ai.',server:Store.user&&Store.user.tg?'Общий рейтинг всех, кто играет через бота в Telegram.':'Общий рейтинг всех игроков этого сайта.',local:'Без сервера рейтинг видит только профили на этом устройстве. Для общего рейтинга выложите игру на сервер (см. «Как играть»).',guest:'Гость в рейтинг не попадает.',tg:'Прогресс хранится в вашем облаке Telegram. Общий рейтинг появится, когда игра подключится к серверу рейтинга'+(Store.lastErr?' (сейчас: '+Store.lastErr+')':'')+'.'}[Store.mode]||'';
  mp.innerHTML=`<p class="muted" style="margin:0">${note} Очки рейтинга — сумма лучших результатов по каждому кейсу с множителем сложности: лёгкий ×0,5, обычный ×1, сложный ×1,5.</p><div id="rk" class="muted">Загружаю…</div>`;
  const drawRk=rows=>{ const stale=rows.stale; rows=rows.slice();
   rows.sort((a,b)=>b.r-a.r||b.a-a.a);
