@@ -52,6 +52,23 @@ select,input[type=text],input[type=password],textarea{background:var(--panel2);b
 .mtabs{display:flex;gap:4px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .mtabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;color:var(--muted)}
 .mtabs button[aria-selected=true]{color:var(--fg);border-bottom-color:var(--accent)}
+.tghero{display:flex;flex-direction:column;gap:12px;background:linear-gradient(160deg,#12302a,#0f1d1a 60%);border:1px solid var(--line);border-radius:14px;padding:16px}
+.tgme{display:flex;align-items:center;gap:12px}
+.ava{position:relative;flex:none;width:52px;height:52px;border-radius:50%;background:#1d4a40;color:#bdf0d4;display:grid;place-items:center;overflow:hidden;font-weight:700;font-size:18px}
+.ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.ava i{font-style:normal}
+.ava.sm{width:30px;height:30px;font-size:11px}
+.tgme .who{display:flex;flex-direction:column;min-width:0;flex:1}.tgme .who small{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.tgme .who b{font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.tgme .who span{font-size:12px}
+.tgme .pts{display:flex;flex-direction:column;align-items:flex-end}.tgme .pts b{font-family:var(--f-mono);font-size:26px;color:var(--accent);line-height:1}.tgme .pts small{color:var(--muted);font-size:11px}
+.tgstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.tgstats span{background:#0c1513;border:1px solid var(--line);border-radius:10px;padding:8px;display:flex;flex-direction:column;font-size:11px;color:var(--muted)}
+.tgstats b{font-family:var(--f-mono);font-size:17px;color:var(--fg)}
+.tgcta{display:grid;grid-template-columns:2fr 1fr;gap:8px}.btn.big{padding:14px;font-size:16px;font-weight:700}
+.tgtop{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.tth{display:flex;justify-content:space-between;align-items:center}.lnk{background:none;border:0;color:var(--accent);font-size:13px;padding:0;cursor:pointer}
+.trow{display:flex;align-items:center;gap:10px;padding:6px 4px;border-radius:8px}.trow.me{background:#163a32}
+.trow .pl{width:24px;text-align:center;font-family:var(--f-mono)}.trow .nm{flex:1;min-width:0;display:flex;flex-direction:column;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.trow .nm small{color:var(--muted);font-size:11px}.trow b{font-family:var(--f-mono);color:var(--accent)}.tgap{text-align:center;color:var(--muted);line-height:.6}
+.rkname{display:flex;align-items:center;gap:8px}.rkname>span{display:flex;flex-direction:column}.rkname small{font-size:11px}
 .locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
 .loc{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;text-align:left;display:flex;flex-direction:column;gap:8px;transition:border-color .15s,transform .15s}
 .loc:hover{border-color:var(--accent);transform:translateY(-2px)}
@@ -80,6 +97,25 @@ select,input[type=text],input[type=password],textarea{background:var(--panel2);b
 .topbar .where{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .topbar .who{font-weight:600}
 .topbar .sp{flex:1}
+#b-more{display:none}.topbar .sn{display:none}
+.splash{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+.spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+.tglogin{border-color:#2a6f9e;background:linear-gradient(160deg,#10263a,var(--panel));margin-bottom:12px}.tglogin #tgw{min-height:44px}
+.tgfail{border-color:#7a2b26;margin-bottom:12px}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:#0c1513;border:1px solid var(--line);border-radius:10px;padding:3px;margin-bottom:10px}
+.seg button{background:none;border:0;border-radius:7px;padding:9px 6px;color:var(--muted);font-weight:600;font-size:14px}
+.seg button[aria-selected=true]{background:var(--panel2);color:var(--fg);box-shadow:inset 0 0 0 1px var(--line)}
+.grid-btn button.done{border-color:#2d5a4c}.grid-btn button.done .sub{color:var(--ok)}
+.grid-btn button.wait{border-color:#6b5420}.grid-btn button.wait .sub{color:var(--accent);font-family:var(--f-mono)}
+.qbtn button.used{opacity:.55}
+.acc{display:flex;justify-content:space-between;align-items:center;width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;margin:6px 0;font-weight:600;font-size:14px;text-align:left}
+.acc small{color:var(--muted);font-family:var(--f-mono)}.acc::after{content:'▾';margin-left:8px;color:var(--muted);transition:transform .15s}.acc.open::after{transform:rotate(180deg)}
+.acc+.grid-btn{margin-bottom:6px}
+.toast{position:fixed;left:8px;right:8px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:60;background:#0f2a24;border:1px solid #2d5a4c;color:#dbe7e2;border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.35;text-align:left;
+ box-shadow:0 8px 24px rgba(0,0,0,.45);transform:translateY(140%);opacity:0;transition:transform .2s,opacity .2s;max-height:40vh;overflow:hidden;pointer-events:none}
+.toast.show{transform:none;opacity:1;pointer-events:auto}.toast.warn{background:#2f1513;border-color:#7a2b26}.toast.cons{background:#1d1833;border-color:#4b3f80}.toast.good{background:#123024}
+.sheet .opts{display:flex;flex-direction:column;gap:8px}.sheet .opts button{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:left;font-size:15px;min-height:52px}
+.sheet .opts button.dng b{color:var(--danger)}
 .clock{font-family:var(--f-mono);font-size:18px}
 .left{display:flex;flex-direction:column;gap:12px;min-width:0}
 #scene{width:100%;aspect-ratio:16/7;max-width:100%;display:block;border-radius:10px;border:1px solid var(--line);background:#0a100f}
@@ -134,6 +170,9 @@ select,input[type=text],input[type=password],textarea{background:var(--panel2);b
 .trust{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-bottom:8px}
 .trust .bar{flex:1;max-width:200px}
 .trust .bar i{background:var(--ok)}
+.pend{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:13px;color:#cfe9ff}.pend i{font-style:normal;color:var(--muted)}.pend b{font-family:var(--f-mono);color:var(--accent);font-weight:600}
+.pendbar{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px}.pend .btn.sm{padding:3px 10px;font-size:12px;margin-left:auto}
+.mini .pend.m{grid-column:1/-1;font-size:11.5px;gap:4px 8px}.mini .pend.m .btn.sm{padding:2px 8px;font-size:11px}
 .log{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;max-height:200px;overflow:auto;font-size:13px}
 .log div{padding:2px 0;border-bottom:1px dashed #1e332e}
 .log time{font-family:var(--f-mono);color:var(--muted);margin-right:8px;font-size:12px}
@@ -182,6 +221,29 @@ select,input[type=text],input[type=password],textarea{background:var(--panel2);b
 .acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .tbl.rank tr.me td{background:rgba(232,163,58,.1)}
 @media (max-width:760px){
+ .topbar{position:sticky;top:0;z-index:30;flex-wrap:nowrap;gap:6px;padding:6px 8px;border-radius:0 0 10px 10px;margin:0 -2px}
+ .topbar>div:first-child{min-width:0;flex:1}.topbar .where{display:none}.topbar .who{font-size:13.5px;line-height:1.2;white-space:normal!important;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+ .clock{font-size:14px!important}.topbar .fn{display:none}.topbar .sn{display:inline}.topbar .who{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .topbar .sp{display:none}
+ .topbar .acts{width:auto;flex:none;overflow:visible;gap:4px}
+ #b-cons,#b-hint,#b-talk,#b-quit{display:none!important}
+ #b-more{display:inline-flex}
+ .topbar .acts .btn{min-height:38px;padding:6px 10px}
+ #b-pause,#b-ff{font-size:0!important;width:40px;justify-content:center}
+ #b-pause::before{content:'❚❚';font-size:13px}#b-pause[aria-pressed=true]::before{content:'▶';font-size:15px}#b-pause[aria-pressed=true]{background:var(--accent);color:#111}
+ #b-ff::before{content:'⏩';font-size:16px}#b-ff[aria-pressed=true]{background:var(--accent)}
+ #b-dispo{font-size:0!important}#b-dispo::before{content:'Решение';font-size:14px}
+ #b-more{font-size:20px;width:40px;justify-content:center;line-height:1}
+ .mini{top:52px!important}
+ .mini .feed{display:flex;flex-direction:column;gap:1px;white-space:normal}
+ .mini .feed span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .mini .feed time{color:var(--muted);margin-right:6px;font-family:var(--f-mono);font-size:11px}
+ .mini .feed .act{color:var(--accent)}.mini .feed .warn{color:#ffb3ae}.mini .feed .good{color:#bdf0d4}.mini .feed .cons{color:#ddd3ff}
+ .mnav{grid-template-columns:repeat(5,1fr)!important}
+ .mnav button{font-size:11.5px!important}
+ .qbtn{grid-template-columns:repeat(2,1fr)}
+ .qbtn button{min-height:40px!important;font-size:13px!important;padding:6px 8px}
+ .pendbar{display:none!important}
  body{padding-block:8px}
  #game{display:flex;flex-direction:column;gap:8px;padding-bottom:calc(68px + env(safe-area-inset-bottom,0px))}
  .topbar{padding:8px 10px;gap:6px}
@@ -255,13 +317,14 @@ select,input[type=text],input[type=password],textarea{background:var(--panel2);b
       <div class="sp"></div>
       <div class="clock" id="g-clock">00:00</div>
       <div class="acts">
-      <button class="btn" id="b-pause">Пауза</button>
+      <button class="btn" id="b-pause" aria-pressed="false">Пауза</button>
       <button class="btn" id="b-ff" aria-pressed="false" title="Время идёт в 10 раз быстрее до следующего события">Перемотка ×10</button>
       <button class="btn cons" id="b-cons">Консультант</button>
       <button class="btn" id="b-hint">Спросить старшего</button>
       <button class="btn" id="b-talk" hidden>Поговорить</button>
       <button class="btn pri" id="b-dispo">Решение и оформление</button>
       <button class="btn dng" id="b-quit">Выйти</button>
+      <button class="btn" id="b-more" aria-label="Ещё действия">⋯</button>
       </div>
     </div>
     <div class="mini" id="mini"></div>
@@ -278,6 +341,7 @@ select,input[type=text],input[type=password],textarea{background:var(--panel2);b
       <div class="tabs" role="tablist" id="tabs"></div>
       <div class="pane" id="pane"></div>
     </div>
+    <div class="pendbar" id="pendbar" style="grid-column:1/-1" hidden></div>
     <div class="log" id="log" style="grid-column:1/-1" aria-live="polite"></div>
     <nav class="mnav" id="mnav" aria-label="Разделы"></nav>
   </section>
@@ -663,7 +727,7 @@ CASES.push({
   'p:bvm':{fx:{spo2:12},msg:'Грудная клетка экскурсирует, сатурация растёт.',flag:'vent',dr:{spo2:0.5,hr:0.2}},
   'p:recov':{fx:{spo2:2},msg:'Храп уменьшился.'},
   'p:o2':{fx:{spo2:4},msg:'Сатурация немного выросла, но дыхание по-прежнему редкое.'},
-  'd:nal':{fx:{spo2:6,rr:8,gcs:6,hr:20,sbp:15},msg:'Через минуту пациент закашлялся, открыл глаза, пытается встать.',flag:'naloxone',dr:{spo2:0.8,rr:0}},
+  'd:nal':{fx:{spo2:6,rr:8,gcs:8,hr:20,sbp:15},msg:'Через минуту пациент закашлялся, открыл глаза, пытается встать.',flag:'naloxone',dr:{spo2:0.8,rr:0}},
   'p:eti':{fx:{spo2:15},msg:'Интубирован, ИВЛ.',flag:'vent',dr:{spo2:1,hr:0.3}},
   'd:dzp':{fx:{rr:-2,spo2:-6},msg:'Дыхание стало ещё реже.'},
  },
@@ -1273,7 +1337,7 @@ CASES.push({
   'd:mgs':{msg:'Магнезия введена.',flag:'mg'},
   'd:kcl':{msg:'Калий в инфузию.',flag:'k'},
  },
- rosc:{rh:'sinus',hr:96,sbp:104,dbp:62,spo2:94,rr:14,gcs:6},
+ rosc:{rh:'sinus',hr:96,sbp:104,dbp:62,spo2:94,rr:14},
  need:[
   {k:'p:cpr',by:1,w:20,t:'Немедленная СЛР'},
   {k:'p:def',by:2,w:25,t:'Дефибрилляция максимально рано'},
@@ -1284,7 +1348,7 @@ CASES.push({
  ],
  bad:[
   {k:'d:atr',w:15,t:'Атропин не применяется при ФЖ/асистолии.'},
-  {k:'d:adr#1',w:10,c:s=>(s.cnt['p:def']||0)<2,t:'Адреналин до 3-го разряда при ФЖ.'},
+  {k:'d:adr#1',w:10,c:s=>(s.cnt['p:def']||0)<3,t:'Адреналин до 3-го разряда при ФЖ.'},
   {k:'p:cvs',w:10,t:'Синхронизированная кардиоверсия при ФЖ невозможна — нужна дефибрилляция.'},
  ],
  deb:[
@@ -2170,7 +2234,7 @@ CASES.push({
   ecg:'Синусовая брадикардия 38, волна Осборна (J), удлинение QT.',neuro:'Сопор, зрачки вялые.',glu:s=>'Глюкоза '+s.v.glu.toFixed(1),alco:'Алкоголь 1,1 мг/л.',pulse:'Пульс на сонной слабый, редкий — определять минуту.'
  },
  tx:{
-  'p:activewarm':{msg:'Тёплое помещение, грелки к груди и паху, тёплый воздух.',flag:'warmA',dr:{t:0.06,hr:0.2}},
+  'p:activewarm':{msg:'Тёплое помещение, грелки к груди и паху, тёплый воздух.',flag:'warmA',dr:{t:0.06,hr:0.2,rr:0.1}},
   'p:warm':{msg:'Мокрая одежда снята, укутан.',flag:'warmP',dr:{t:0.02}},
   'd:warmfl':{fx:{t:0.2,sbp:8},msg:'Тёплая инфузия.'},
   'p:snowrub':{fx:{t:-0.4},msg:'Растирание снегом: кожа краснеет, температура падает.',flag:'rough'},
@@ -2326,7 +2390,7 @@ CASES.push({
  hx:{c:'*без сознания, не дышит*',on:'(свидетель) Нырнул с мостков и не вынырнул. Минуты три-четыре искали.',chr:'(друг) Здоров.',med:'(друг) Ничего.',all:'—',took:'(друг) Пиво пили...',hab:'(друг) Ну, выпили немного.',fam:'—',trauma:'(друг) С мостков нырнул, там мелко у берега.'},
  ex:{look:'Цианоз, пена у рта, кожа холодная и влажная.',airway:'Дыхания нет, в ротоглотке пена и немного воды.',neuro:'Кома, зрачки широкие.'},
  tx:{},
- rosc:{rh:'stach',hr:120,sbp:96,dbp:58,spo2:86,rr:8,gcs:5},
+ rosc:{rh:'stach',hr:120,sbp:96,dbp:58,spo2:86,rr:8},
  need:[
   {k:'p:bvm',by:1,w:20,t:'5 спасательных вдохов до компрессий'},
   {k:'p:cpr',by:1.5,w:15,t:'Компрессии сразу после вдохов'},
@@ -2625,6 +2689,50 @@ const INTRO_LOC={
  dka:{orit:'Перевод из приёмного: студент(ка) с ДКА. Приёмное успело только поставить катетер. «Дальше вы».'},
 };
 for(const id in INTRO_LOC){ const c=CASES.find(x=>x.id===id); if(c) c.introByLoc={...(c.introByLoc||{}),...INTRO_LOC[id]}; }
+
+// Пробуждение: что пациент говорит сам, когда пришёл в себя (GCS ≥9), и как быстро возвращается сознание,
+// когда причина устранена (if — флаги лечения, rate — баллов GCS в минуту).
+const WAKE={
+ hypo:{if:'glucose',rate:0.5,
+  c:'Ой... что случилось? Голова чугунная... вся мокрая, трясёт.',
+  on:'Утром укололась, как обычно... позавтракать не успела, пошла с собакой. Дальше не помню.',
+  took:{d:'Инсулин утром, и короткий тоже... а поесть забыла.',e:'Инсулин, как всегда.'},
+  med:'Инсулин — длинный утром и короткий к еде. И от давления таблетка.',
+  chr:'Диабет у меня, двадцать лет уже. Давление.'},
+ opioid:{if:'naloxone',rate:0.3,
+  c:'А?! Чё такое... Вы кто? Зачем разбудили... Ломает всего, тошнит.',
+  on:'Не помню. Сидели у Сани... и всё.',
+  took:{d:'Ну... метадон. Немного. Как обычно.',e:'Ничего я не принимал(а)!'},
+  med:{d:'Метадон... с рук. Только не в полицию.',e:'Ничего не принимаю.'},
+  hab:{d:'Ну употребляю... Только матери не говорите.',e:'Не употребляю я.'},
+  chr:'Гепатит вроде... Больше ничего.'},
+ vf:{if:'rosc',rate:0.2,
+  c:'Что... что было? Грудь болит... как будто ударили.',
+  on:'Пить попросил(а)... потом темно.',
+  pain:'Грудь болит — там, где вы давили. Как вчера, до операции, — нет, не так.'},
+ status:{if:'stop',rate:0.3,
+  c:'*медленно, растерянно* Где я?.. Голова раскалывается... язык прикусил(а).',
+  on:'Не помню... ехал(а) на работу — и всё.',
+  chr:'Эпилепсия у меня, с детства.',
+  med:{d:'Вальпроат... пропускал(а) последнюю неделю, кончился, а рецепт не выписали.',e:'Пью, всё как надо.'},
+  hab:{d:'Вчера выпил(а) немного, день рождения был... и не спал(а) почти.',e:'Не пью.'}},
+ febseiz:{if:'stop',rate:0.4,
+  c:'(мама) Проснулся! Плачет, ко мне тянется — узнаёт!'},
+ hypo_t:{if:'warmA|warmP',rate:0.25,
+  c:'Х-холодно... г-где я?.. Ног не чувствую...',
+  on:'Шёл... с работы. Присел на остановке... отдохнуть. Дальше не помню.',
+  hab:{d:'Ну выпил... бутылку, с мужиками после смены.',e:'Не пил я.'},
+  chr:'Да ничем не болею.'},
+ tca:{if:'',rate:0,
+  c:'*сонно* Сухо во рту... Сердце колотится... Сколько времени?',
+  med:{d:'Амитриптилин на ночь... я не помню, пила или нет — может, ещё раз выпила.',e:'Пью, как врач сказал.'}},
+ drown:{if:'rosc',rate:0.15,downtime:4,
+  c:'*кашляет* Кх... что... я тонул?.. Грудь жжёт, дышать тяжело.',
+  on:'Нырнул с мостков... головой обо что-то... и всё.',
+  took:'Пиво... пару банок.',
+  trauma:'Голова побаливает. Шея — нет, шею чувствую, руками-ногами шевелю.'},
+};
+for(const id in WAKE){ const c=CASES.find(x=>x.id===id); if(c) c.wake=WAKE[id]; }
 
 </script>
 <script>
@@ -3135,7 +3243,7 @@ function act(key){
   if(dose.kd) label=d.n+' — '+doseLabel(dose,s);
  } else if(type==='p'){
   const p=PROCS.find(x=>x.id===id); label=p.n;
-  if(id==='iv'&&locked(s,'iv')){ log('Все медсёстры заняты, катетер придётся ставить самому — займёт время.','warn'); s.pend.push({at:s.t+3,text:'Катетер установлен.',cls:'res',set:'iv'}); record(s,key); return; }
+  if(id==='iv'&&locked(s,'iv')){ log('Все медсёстры заняты, катетер придётся ставить самому — займёт время.','warn'); s.pend.push({at:s.t+3,wait:'Катетер',text:'Катетер установлен.',cls:'res',set:'iv'}); record(s,key); return; }
   if((id==='o2'||id==='o2n')&&locked(s,'o2')){ log('Кислорода нет — баллон пуст.','warn'); return; }
   if(!procPre(s,id)) return;
  }
@@ -3146,15 +3254,15 @@ function act(key){
  const tx=(s.c.tx[key])||(s.c.tx[type+':'+id]);
  const fx=(tx&&tx.fx)?(type==='d'?{...generic,...tx.fx}:tx.fx):generic; // препарат: общая фармакология + особенности кейса
  if(!inArrest(s)){ if(type==='d') giveDrug(s,id,fx,!!(tx&&tx.fx)); else applyFx(s,fx); }
- if(tx){ if(tx.flag) s.f[tx.flag]=true; if(tx.dr){ markTxDrift(s,tx.dr); Object.assign(s.dr,tx.dr); } if(tx.msg&&!inArrest(s)) s.pend.push({at:s.t+0.6,text:tx.msg,cls:'res'}); }
- else if(type==='d'&&Object.keys(generic).length&&!inArrest(s)) s.pend.push({at:s.t+0.8,text:'Введено. Явной динамики нет.',cls:'res'});
+ if(tx){ if(tx.flag) s.f[tx.flag]=true; if(tx.dr){ markTxDrift(s,tx.dr); Object.assign(s.dr,tx.dr); } if(tx.msg&&!inArrest(s)) s.pend.push({at:s.t+0.25,text:tx.msg,cls:'res'}); }
+ else if(type==='d'&&Object.keys(generic).length&&!inArrest(s)) s.pend.push({at:s.t+0.3,text:'Введено. Явной динамики нет.',cls:'res'});
  if(type==='p') procPost(s,id,!!tx);
  checkBad(s,key);
  G.ui&&G.ui.render();
 }
 function record(s,key){
  const [type,rest]=key.split(':'), base=type+':'+rest.split('#')[0];
- [key,base].forEach(k=>{ if(s.done[k]===undefined) s.done[k]=s.t; s.cnt[k]=(s.cnt[k]||0)+1; });
+ [...new Set([key,base])].forEach(k=>{ if(s.done[k]===undefined) s.done[k]=s.t; s.cnt[k]=(s.cnt[k]||0)+1; });
  s.acts.push({t:s.t,key});
 }
 // Лечебный тренд (из ответа на лечение) останавливается, когда показатель дошёл до нормы, — организм не «перелечивается» бесконечно.
@@ -3192,7 +3300,7 @@ function procPost(s,id,hasTx){
   case 'sga': s.f.vent=true; log(v.gcs>8?'Пациент в сознании — воздуховод вызывает рвотный рефлекс, удалён.':'Надгортанный воздуховод установлен.','res'); break;
   case 'io': s.iv=true; log('Внутрикостный доступ установлен.','res'); break;
   case 'mon': s.mon=true; log('Монитор подключён.','res'); break;
-  case 'iv': s.iv=true; s.pend.push({at:s.t+1,text:'Периферический катетер 18G установлен.',cls:'res'}); break;
+  case 'iv': s.iv=true; s.pend.push({at:s.t+0.5,text:'Периферический катетер 18G установлен.',cls:'res'}); break;
   case 'o2': case 'o2n': s.o2=true; s.o2type=id; if(!hasTx&&!inArrest(s)) applyFx(s,{spo2:v.spo2<94?(id==='o2'?4:2):0}); break;
   case 'bvm': if(!hasTx&&!inArrest(s)) applyFx(s,{spo2:v.rr<10?8:1}); s.f.vent=true; log('Вспомогательная вентиляция мешком продолжается (помощник ведёт вентиляцию).','res'); break;
   case 'eti': s.f.vent=true; s.f.intub=true; if(!hasTx&&!inArrest(s)) applyFx(s,{spo2:6,sbp:-12}); break;
@@ -3202,8 +3310,8 @@ function procPost(s,id,hasTx){
   case 'legsup': s.f.legs=true; s.f.sit=false; break;
   case 'warm': applyFx(s,{t:0.3}); break; case 'cool': applyFx(s,{t:-0.4}); break;
   case 'fix': s.f.fix=true; break;
-  case 'call103': s.f.called=true; s.pend.push({at:s.t+ri(12,18),text:'Бригада СМП прибыла. Оформите передачу пациента через «Решение».',cls:'good',flag:'smpHere'}); log('СМП вызвана, ожидаемое время доезда — 15 минут.','res'); break;
-  case 'surg': s.pend.push({at:s.t+15,text:'Консультант на месте.',cls:'res'}); if(s.c.ex.egd){ s.pend.push({at:s.t+35,text:'Результат: '+exText(s,'egd'),cls:'res',flag:'endoDone'}); if(s.done['x:egd']===undefined) s.done['x:egd']=s.t+35; } break;
+  case 'call103': s.f.called=true; s.pend.push({at:s.t+ri(12,18),wait:'Бригада СМП',text:'Бригада СМП прибыла. Оформите передачу пациента через «Решение».',cls:'good',flag:'smpHere'}); log('СМП вызвана, ожидаемое время доезда — 15 минут.','res'); break;
+  case 'surg': s.pend.push({at:s.t+15,wait:'Хирург',text:'Консультант на месте.',cls:'res'}); if(s.c.ex.egd){ s.pend.push({at:s.t+35,wait:'ЭГДС',text:'Результат: '+exText(s,'egd'),cls:'res',flag:'endoDone'}); if(s.done['x:egd']===undefined) s.done['x:egd']=s.t+35; } break;
  }
 }
 function roscFixed(s){
@@ -3212,6 +3320,7 @@ function roscFixed(s){
  return legacy[s.c.id]!==undefined?!!legacy[s.c.id]:true;
 }
 
+function waitTxt(m){ return m<1?Math.max(10,Math.round(m*60/5)*5)+' с':Math.round(m)+' мин'; }
 function exText(s,id){ const e=(s.c.ex[id]!==undefined)?s.c.ex[id]:DEF_EX[id]; return gendered(typeof e==='function'?e(s):e,s.sex); }
 function exam(id){
  const s=G.s; if(!s||s.over) return;
@@ -3220,7 +3329,7 @@ function exam(id){
  if(inArrest(s)&&x.g!=='Физикальное'&&!['abg','bio','ecg','glu'].includes(id)){ log('Не время — пациент в остановке кровообращения.','warn'); return; }
  record(s,'x:'+id); log(x.n,'act');
  const delay=x.tm*(0.8+Math.random()*0.4);
- if(delay<0.05) log(exText(s,id),'res'); else s.pend.push({at:s.t+delay,cls:'res',lazy:id});
+ if(delay<0.05) log(exText(s,id),'res'); else { s.pend.push({at:s.t+delay,cls:'res',lazy:id,wait:x.n.replace(/\s*\(.*\)/,'')}); log('Результат: '+x.n.toLowerCase().replace(/\s*\(.*\)/,'')+' — примерно через '+waitTxt(delay)+'.','muted'); }
  checkBad(s,'x:'+id); G.ui&&G.ui.render();
 }
 
@@ -3242,7 +3351,12 @@ function tick(dt){
   pharmTick(s);
   for(const k in s.dr){ if(txDriftDone(s,k)) continue; v[k]+=s.dr[k]*dt*s.D.drift; }
   if(v.spo2<80) v.gcs-=0.3*dt; if(v.sbp<65) v.gcs-=0.25*dt; if(v.glu<2.5) v.gcs-=0.2*dt;
-  if(v.spo2>90&&v.sbp>85&&v.glu>3.5&&!(s.dr.gcs<0)&&v.gcs<15&&!s.f.det&&!s.f.stroke) v.gcs+=0.05*dt;
+  // Восстановление сознания: медленно само, быстрее — когда причина устранена (s.c.wake); не под седацией
+  const W=s.c.wake, sed=(s.fxSum&&(s.fxSum.gcs||0)<-1), wk=W&&W.rate&&(!W.if||W.if.split('|').some(f=>s.f[f]));
+  // Гипотермия: сознание ограничено температурой (34 °C — ясное, 28 °C — сопор/кома)
+  const gcap=v.t<34?15-(34-v.t)*1.4:15;
+  if(v.gcs>gcap+0.5) v.gcs-=0.3*dt;
+  if(v.spo2>90&&v.sbp>85&&v.glu>3.5&&!(s.dr.gcs<0)&&v.gcs<Math.min(15,gcap)&&!s.f.det&&!s.f.stroke) v.gcs+=(wk&&!sed?W.rate:0.05)*dt;
   physiology(s,dt);
   normalize(s);
   s.low.sbp=v.sbp<=45?s.low.sbp+dt:0; s.low.spo2=v.spo2<62?s.low.spo2+dt:0;
@@ -3375,7 +3489,8 @@ function physiology(s,dt){
  // Барорефлекс: при падении давления растёт ЧСС (если ритм синусовый и не заблокирован)
  if(sinus&&!blocked&&v.sbp<95){ const target=Math.min(mx,Math.max(v.hr,(s.v0.hr||80)+(95-v.sbp)*0.9)); if(v.hr<target) v.hr+=(target-v.hr)*Math.min(1,0.5*dt); }
  // Гиповентиляция → гипоксия
- if(v.rr<10&&!s.f.vent){ v.spo2-=(10-v.rr)*(s.o2?0.35:0.75)*dt; if(v.rr<=2) v.spo2-=4*dt; }
+ // при гипотермии потребность в O₂ снижена — редкое дыхание переносится легче
+ if(v.rr<10&&!s.f.vent){ v.spo2-=(10-v.rr)*(s.o2?0.35:0.75)*(v.t<33?0.35:1)*dt; if(v.rr<=2) v.spo2-=4*dt; }
  if(v.rr<6) v.gcs-=0.4*dt;
  // Гипогликемия → адренергический ответ (тахикардия)
  if(v.glu<3.2&&sinus&&!blocked&&v.hr<125) v.hr+=3*dt;
@@ -3520,7 +3635,11 @@ function answer(s,topic,q){
  if(topic==='greet') return say(s,pick(['Здравствуйте...','Здрасьте. Наконец-то.','Добрый... какой он добрый...']));
  if(topic==='name') return say(s,'Я '+s.name+', '+s.age+' '+plural(s.age,'год','года','лет')+'.');
  let raw=hx[topic], mode='direct';
- if(topic==='pain'){ const c0=typeof hx.c==='string'?hx.c:''; raw=hx.pain?(c0&&!c0.startsWith('*')&&!c0.startsWith('(')?c0.split(/(?<=[.!])\s/).slice(0,2).join(' ')+' ':'')+hx.pain:hx.c; }
+ // Пришёл в себя: отвечает сам, а не «*не отвечает*» из сценария поступления
+ const W=s.c.wake, woke=s.v0&&s.v0.gcs<13&&v.gcs>=9;
+ if(woke&&W&&W[topic]!==undefined) raw=W[topic];
+ else if(woke&&typeof raw==='string'&&raw.startsWith('*')) raw=s.c.child?'*плачет, тянется к маме*':pick(['Что... что случилось? Где я?','Голова тяжёлая... Ничего не помню.','Доктор?.. Мне плохо было?']);
+ if(topic==='pain'&&!(woke&&W&&W.pain)){ const c0=typeof hx.c==='string'?hx.c:''; raw=hx.pain?(c0&&!c0.startsWith('*')&&!c0.startsWith('(')?c0.split(/(?<=[.!])\s/).slice(0,2).join(' ')+' ':'')+hx.pain:hx.c; }
  const insist=INSIST.test(q)&&s.lastTopic===topic;
  if(raw&&typeof raw==='object'){
   const chance=SENSITIVE.includes(topic)?clamp((75-s.trust)/75,0,0.95)*T.ev*s.D.ev:0;
@@ -3616,7 +3735,7 @@ function consult(id){
  const d=(c.d&&c.d[s.loc])||10, txt=s.c.cons&&s.c.cons[id];
  s.cons.push({id,t:s.t,rel:!!txt}); record(s,'c:'+id);
  log('Вызов: '+consName(c,s.loc)+(d?` — будет через ~${d} мин.`:'.'),'act');
- s.pend.push({at:s.t+Math.max(0.3,d*(0.8+Math.random()*0.4)),cls:'cons',text:consName(c,s.loc)+': «'+(txt||pick(CONS_OFF))+'»'});
+ s.pend.push({at:s.t+Math.max(0.3,d*(0.8+Math.random()*0.4)),cls:'cons',wait:consName(c,s.loc).split(' ')[0],text:consName(c,s.loc)+': «'+(txt||pick(CONS_OFF))+'»'});
  if(!txt&&s.D.cons) s.badHits.push({t:'Консультация не по профилю: '+consName(c,s.loc)+'.',w:s.D.cons});
  G.ui&&G.ui.render();
 }
@@ -3820,8 +3939,10 @@ function roscFixed(s){
 function rosc(s){
  const a=s.arrest, r=s.c.rosc||{rh:'sinus',hr:100,sbp:90,dbp:55};
  const airway=s.f.intub||(a&&a.sga), cid=a?a.ep.cause:causeId(s);
+ const down=(a?s.t-a.ep.since:0)+((s.c.wake&&s.c.wake.downtime)||0)*(s.arrests&&s.arrests.length<=1?1:0);
  closeEp(s,'rosc');
- s.arrest=null; Object.assign(s.v,{spo2:90,rr:12,gcs:5},r); if(ARREST.includes(s.v.rh)) s.v.rh='stach'; s.low={sbp:0,spo2:0};
+ // Сознание после ROSC зависит от длительности остановки: короткая — быстро приходит в себя
+ s.arrest=null; Object.assign(s.v,{spo2:90,rr:12},r,{gcs:r.gcs||(down<2?12:down<5?8:down<10?6:4)}); if(ARREST.includes(s.v.rh)) s.v.rh='stach'; s.low={sbp:0,spo2:0};
  s.f.rosc=true; s.roscAt=s.t;
  log((airway?'EtCO₂ резко вырос до 40 мм рт. ст. ':'')+'На сонной артерии определяется пульс — восстановление спонтанного кровообращения! Дальше: ABCDE, SpO₂ 94–98%, САД >100, ЭКГ в 12 отведениях, поиск и устранение причины.','good');
  G.ui&&G.ui.flash('ok');
@@ -4027,9 +4148,120 @@ function evalArrest(s,ep){
 
 </script>
 <script>
+// Telegram Mini App. Включается, только если игру открыли внутри Telegram (в адресе есть tgWebAppData).
+// Вне Telegram ничего не загружает и ничего не меняет.
+const TGA=(()=>{
+ const inTg=/tgWebAppData=|tgWebAppPlatform=/.test(location.hash+location.search);
+ // Данные входа Telegram передаёт в адресе (#tgWebAppData=...). Читаем их сами — не зависим от загрузки telegram.org.
+ const RAW=(()=>{ try{ const h=new URLSearchParams((location.hash||'').slice(1)); let d=h.get('tgWebAppData');
+  if(!d){ d=new URLSearchParams(location.search).get('tgWebAppData'); }
+  if(d){ try{ sessionStorage.setItem('dj-tgraw',d); }catch(e){} return d; }
+  try{ return inTg?sessionStorage.getItem('dj-tgraw')||'':''; }catch(e){ return ''; } }catch(e){ return ''; } })();
+ const RAWUSER=(()=>{ try{ return JSON.parse(new URLSearchParams(RAW).get('user')||'null'); }catch(e){ return null; } })();
+ let W=null, loaded=null;
+ function load(){
+  if(!inTg) return Promise.resolve(null);
+  if(loaded) return loaded;
+  loaded=new Promise(res=>{
+   if(window.Telegram&&Telegram.WebApp) return res(Telegram.WebApp);
+   const sc=document.createElement('script'); sc.src='https://telegram.org/js/telegram-web-app.js';
+   const t=setTimeout(()=>res(null),RAWUSER?2500:6000);
+   sc.onload=()=>{ clearTimeout(t); res(window.Telegram&&Telegram.WebApp||null); };
+   sc.onerror=()=>{ clearTimeout(t); res(null); };
+   document.head.appendChild(sc);
+  }).then(w=>{ W=w&&(w.initData||RAW)?w:null; if(W) setup(); else if(RAWUSER) document.documentElement.classList.add('tg'); return W||(RAWUSER?{}:null); });
+  return loaded;
+ }
+ const ver=v=>W&&W.isVersionAtLeast&&W.isVersionAtLeast(v);
+ function setup(){
+  document.documentElement.classList.add('tg');
+  try{ W.ready(); W.expand(); }catch(e){}
+  try{ if(ver('7.7')) W.disableVerticalSwipes(); }catch(e){}           // свайп вниз не закрывает игру посреди СЛР
+  try{ if(ver('6.1')){ W.setHeaderColor('#0c1513'); W.setBackgroundColor('#0c1513'); } if(ver('7.10')) W.setBottomBarColor('#0c1513'); }catch(e){}
+  const vh=()=>document.documentElement.style.setProperty('--tg-vh',(W.viewportStableHeight||innerHeight)+'px');
+  vh(); try{ W.onEvent('viewportChanged',vh); }catch(e){}
+  // Кнопка «Назад» Telegram: закрывает окно → выход из вызова → в меню
+  try{ W.BackButton.onClick(back); }catch(e){}
+  setInterval(sync,300);
+  // Вибрация вместо/вместе со звуком
+  if(typeof Sfx!=='undefined'){
+   const H=W.HapticFeedback, wrap=(n,fn)=>{ const o=Sfx[n]; if(typeof o!=='function') return; Sfx[n]=function(){ try{ fn(); }catch(e){} return o.apply(this,arguments); }; };
+   if(H&&ver('6.1')){
+    wrap('click',()=>H.selectionChanged());
+    wrap('good',()=>H.notificationOccurred('success'));
+    wrap('bad',()=>H.notificationOccurred('error'));
+    wrap('alert',()=>H.notificationOccurred('warning'));
+    wrap('alarm',()=>H.impactOccurred('heavy'));
+   }
+  }
+  // Внешние ссылки — через Telegram, иначе они откроются внутри мини-приложения
+  document.addEventListener('click',e=>{ const a=e.target.closest('a[href^="http"]'); if(a&&ver('6.1')){ e.preventDefault(); W.openLink(a.href); } },true);
+ }
+ const $=id=>document.getElementById(id);
+ const gs=()=>typeof G!=='undefined'&&G.s;
+ const inGame=()=>gs()&&!G.s.over&&$('game')&&!$('game').hidden;
+ const modal=()=>$('overlay')&&!$('overlay').hidden;
+ const onMenu=()=>$('menu')&&!$('menu').hidden&&!modal();
+ let lastBack=null, lastConf=null;
+ function sync(){
+  const b=!onMenu()&&!($('auth')&&!$('auth').hidden);
+  if(b!==lastBack){ lastBack=b; try{ b?W.BackButton.show():W.BackButton.hide(); }catch(e){} }
+  const c=!!inGame();
+  if(c!==lastConf){ lastConf=c; try{ if(ver('6.2')) c?W.enableClosingConfirmation():W.disableClosingConfirmation(); }catch(e){} }
+ }
+ function back(){
+  if(modal()){ const no=$('q-no'); if(no){ no.click(); return; } if(typeof closeModal==='function') closeModal(); return; }
+  if(gs()&&$('game')&&!$('game').hidden){ $('b-quit').click(); return; }
+  if(typeof renderMenu==='function') renderMenu();
+ }
+ // Облачное хранилище Telegram: у каждого пользователя своё, синхронизируется между его устройствами.
+ // Значение ≤4096 символов — длинный прогресс режем на части.
+ const CS={
+  ok:()=>W&&W.CloudStorage&&ver('6.9'),
+  get(keys){ return new Promise(r=>{ try{ W.CloudStorage.getItems(keys,(e,v)=>r(e?null:v)); }catch(x){ r(null); } }); },
+  set(k,v){ return new Promise(r=>{ try{ W.CloudStorage.setItem(k,v,(e,ok)=>r(!e&&ok)); }catch(x){ r(false); } }); },
+  del(keys){ return new Promise(r=>{ try{ W.CloudStorage.removeItems(keys,()=>r()); }catch(x){ r(); } }); },
+ };
+ async function loadProg(){
+  if(!CS.ok()) return null;
+  const h=await CS.get(['pn']); const n=h&&+h.pn; if(!n) return null;
+  const keys=[...Array(n)].map((_,i)=>'p'+i); const v=await CS.get(keys); if(!v) return null;
+  try{ return JSON.parse(keys.map(k=>v[k]||'').join('')); }catch(e){ return null; }
+ }
+ let saving=Promise.resolve();
+ function saveProg(p){
+  if(!CS.ok()) return Promise.resolve(false);
+  saving=saving.then(async()=>{
+   const s=JSON.stringify(p), parts=[]; for(let i=0;i<s.length;i+=4000) parts.push(s.slice(i,i+4000));
+   for(let i=0;i<parts.length;i++) await CS.set('p'+i,parts[i]);
+   const old=await CS.get(['pn']); await CS.set('pn',String(parts.length));
+   const was=old&&+old.pn; if(was>parts.length) await CS.del([...Array(was-parts.length)].map((_,i)=>'p'+(parts.length+i)));
+   return true;
+  });
+  return saving;
+ }
+ function user(){
+  const u=(W&&W.initDataUnsafe&&W.initDataUnsafe.user)||RAWUSER; if(!u) return null;
+  const name=[u.first_name,u.last_name].filter(Boolean).join(' ').trim()||u.username||'Доктор';
+  return {id:'tg'+u.id,name:name.slice(0,24),photo:u.photo_url||null};
+ }
+ // Пригласить друга: системное окно «Поделиться» Telegram со ссылкой на бота
+ function invite(botName,pts){
+  const link=botName?'https://t.me/'+botName:location.href.split('#')[0];
+  const text='Дежурство — симулятор неотложки: СМП, приёмное, ОРИТ, реанимация. У меня '+pts+' очков рейтинга — попробуй обогнать.';
+  const url='https://t.me/share/url?url='+encodeURIComponent(link)+'&text='+encodeURIComponent(text);
+  try{ if(W&&ver('6.1')) return W.openTelegramLink(url); }catch(e){}
+  window.open(url,'_blank');
+ }
+ return {inTg,load,user,invite,loadProg,saveProg,get W(){return W},get initData(){return (W&&W.initData)||RAW}, get hasUser(){return !!RAWUSER||!!(W&&W.initDataUnsafe&&W.initDataUnsafe.user)}};
+})();
+
+</script>
+<script>
 // Профили, прогресс и рейтинг. Три режима:
 //  cloud  — в claude.ai: вход через аккаунт Claude, прогресс приватно, рейтинг в общей таблице артефакта;
 //  server — на своём сайте с server.js: аккаунт по паролю, вход с любого устройства, общий рейтинг;
+//  tg     — мини-приложение Telegram без сервера: вход по Telegram, прогресс в облаке Telegram;
 //  local  — файл без сервера: профили с PIN в браузере, рейтинг среди профилей этого устройства.
 const DIFF_MULT={easy:0.5,normal:1,hard:1.5};
 const Store = (()=>{
@@ -4037,7 +4269,7 @@ const Store = (()=>{
            set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }};
  const empty=()=>({cases:{},runs:[],total:{n:0,sum:0}});
  const hash=str=>{ let h=2166136261; for(const ch of str){ h^=ch.charCodeAt(0); h=Math.imul(h,16777619); } return (h>>>0).toString(36); };
- let mode='none', user=null, prog=empty(), db=null, uapi=null, dl=null, listeners=[], server=false, token=LS.get('dj-token',null);
+ let bot=null, tgOn=false, initDone=false, mode='none', user=null, prog=empty(), db=null, uapi=null, dl=null, listeners=[], server=false, token=LS.get('dj-token',null);
 
  function summary(p){
   const cs=Object.values(p.cases);
@@ -4047,7 +4279,8 @@ const Store = (()=>{
   const r=await fetch('api/'+path,{...opt,headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})}});
   const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||('Ошибка '+r.status)); return j;
  }
- async function init(){
+ async function init(){ try{ await init0(); } finally{ initDone=true; emit(); } }
+ async function init0(){
   const C=window.claude;
   if(C&&C.use){
    try{
@@ -4058,14 +4291,31 @@ const Store = (()=>{
       emit(); return; } }
    }catch(e){}
   }
+  // Telegram: вход по аккаунту Telegram, без PIN
+  const tw=await TGA.load();
+  if(tw&&TGA.user()){
+   if(/^https?:/.test(location.protocol)){
+    try{ const r=await fetch('api/ping'); const pj=r.ok?await r.json():{}; if(pj.ok){ server=true; bot=pj.bot||null;
+     const j=await api('tg',{method:'POST',body:JSON.stringify({initData:TGA.initData})});
+     token=j.token; LS.set('dj-token',token); mode='server'; user={id:j.name,name:j.name,tg:true}; prog={...empty(),...(j.prog||{})}; emit(); return; } }catch(e){ console.warn('tg server',e); server=false; }
+   }
+   const tu=TGA.user(); mode='tg'; user={...tu,tg:true};
+   const cloud=await TGA.loadProg(); prog={...empty(),...(cloud||LS.get('dj-prog:'+tu.id,empty()))};
+   emit(); return;
+  }
   if(/^https?:/.test(location.protocol)){
-   try{ const r=await fetch('api/ping'); if(r.ok&&(await r.json()).ok){ server=true;
+   try{ const r=await fetch('api/ping'); const pj=r.ok?await r.json():{}; if(pj.ok){ server=true; bot=pj.bot||null; tgOn=!!pj.tg;
     if(token){ try{ const j=await api('me'); mode='server'; user={id:j.name,name:j.name}; prog={...empty(),...(j.prog||{})}; emit(); return; }catch(e){ token=null; LS.set('dj-token',null); } }
     emit(); return; } }catch(e){}
   }
   const cur=LS.get('dj-current',null);
   if(cur&&LS.get('dj-profiles',{})[cur]){ mode='local'; user={id:cur,name:cur}; prog=LS.get('dj-prog:'+cur,empty()); }
   emit();
+ }
+ // Вход в браузере через виджет «Войти через Telegram» (тот же аккаунт и прогресс, что в боте)
+ async function tgWidget(data){
+  try{ const j=await api('tglogin',{method:'POST',body:JSON.stringify(data)}); token=j.token; LS.set('dj-token',token); mode='server'; user={id:j.name,name:j.name,tg:true,photo:data.photo_url||null}; prog={...empty(),...(j.prog||{})}; emit(); return null; }
+  catch(e){ return e.message; }
  }
  function emit(){ listeners.forEach(f=>f()); }
  function profiles(){ return server?[]:Object.keys(LS.get('dj-profiles',{})); }
@@ -4087,7 +4337,7 @@ const Store = (()=>{
   return login(name,pin);
  }
  function guest(){ mode='guest'; user={id:'guest',name:'Гость'}; prog=empty(); emit(); }
- function logout(){ if(mode==='cloud') return; if(mode==='server'){ token=null; LS.set('dj-token',null); } try{ localStorage.removeItem('dj-current'); }catch(e){} mode='none'; user=null; prog=empty(); emit(); }
+ function logout(){ if(mode==='cloud'||mode==='tg'||(user&&user.tg)) return; if(mode==='server'){ token=null; LS.set('dj-token',null); } try{ localStorage.removeItem('dj-current'); }catch(e){} mode='none'; user=null; prog=empty(); emit(); }
  async function persist(){
   const sm=summary(prog);
   if(mode==='cloud'&&db){
@@ -4095,6 +4345,7 @@ const Store = (()=>{
    try{ await db.doc('board/'+user.id).set({...sm,at:Date.now()}); }catch(e){ console.warn('board failed',e); }
   } else if(mode==='server'){ try{ await api('progress',{method:'PUT',body:JSON.stringify({prog})}); }catch(e){ console.warn(e); } }
   else if(mode==='local'){ LS.set('dj-prog:'+user.id,prog); }
+  else if(mode==='tg'){ LS.set('dj-prog:'+user.id,prog); try{ await TGA.saveProg(prog); }catch(e){ console.warn(e); } }
  }
  function saveRun(s){
   if(!user) return;
@@ -4111,7 +4362,8 @@ const Store = (()=>{
    let names={}; try{ names=await uapi.profiles(rows.map(r=>r.id)); }catch(e){}
    return rows.map(r=>({name:(names[r.id]&&names[r.id].name)||'Коллега',r:r.r||0,c:r.c||0,a:r.a||0,n:r.n||0,me:r.id===user.id}));
   }
-  if(server){ const j=await api('board'); return j.rows.map(r=>({...r,me:user&&r.name===user.name})); }
+  if(mode==='tg') return [{name:user.name,...summary(prog),me:true}];
+  if(server){ const j=await api('board'); return j.rows.map(r=>({...r,me:r.me!==undefined?r.me:(user&&r.name===user.name)})); }
   return Object.keys(LS.get('dj-profiles',{})).map(n=>{ const p=LS.get('dj-prog:'+n,empty()); return {name:n,...summary(p),me:user&&user.name===n}; });
  }
  function exportText(){ return JSON.stringify({v:3,name:user&&user.name,prog}); }
@@ -4128,7 +4380,7 @@ const Store = (()=>{
   try{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([data],{type:'application/json'})); a.download=filename; a.click(); return true; }catch(e){ return false; }
  }
  return {init,login,register,guest,logout,saveRun,board,summary,exportText,importText,download,profiles,
-  get mode(){return mode}, get server(){return server}, get user(){return user}, get prog(){return prog}, onChange(f){listeners.push(f)}};
+  get mode(){return mode}, get bot(){return bot}, get tgOn(){return tgOn}, get ready(){return initDone}, tgWidget, get server(){return server}, get user(){return user}, get prog(){return prog}, onChange(f){listeners.push(f)}};
 })();
 
 </script>
@@ -4403,6 +4655,8 @@ function renderAuth(){
  const profs=Store.profiles(), srv=Store.server;
  const pinIn=(id,ph,ac)=>srv?`<input type="password" id="${id}" placeholder="${ph.replace('PIN, 4 цифры','Пароль').replace('Придумайте PIN, 4 цифры','Придумайте пароль, от 6 символов')}" autocomplete="${ac}">`:`<input type="password" id="${id}" inputmode="numeric" maxlength="4" placeholder="${ph}" autocomplete="${ac}">`;
  $('auth').innerHTML=`<div class="brand"><h1>Дежу<span>р</span>ство</h1><p>Симулятор неотложных состояний для своих. Войдите, чтобы прогресс и рейтинг сохранялись.</p></div>
+ ${TGA.inTg&&Store.ready?`<div class="card tgfail"><h3>Не получилось войти через Telegram</h3><p class="muted" style="margin:0">Откройте игру кнопкой «Играть» в боте. Можно сыграть как гость или войти ниже.</p></div>`:''}
+ ${srv&&Store.tgOn&&Store.bot?`<div class="card tglogin"><h3>Войти через Telegram</h3><p class="muted" style="margin:0">Тот же профиль и рейтинг, что в боте @${esc(Store.bot)}. Пароль не нужен.</p><div id="tgw"></div><div class="err" id="tg-err"></div></div>`:''}
  <div class="authbox">
   <form class="card" id="f-login"><h3>Вход</h3>
    ${profs.length?`<select id="l-name">${profs.map(p=>`<option>${esc(p)}</option>`).join('')}</select>`:'<input type="text" id="l-name" placeholder="Имя" autocomplete="username">'}
@@ -4418,28 +4672,67 @@ function renderAuth(){
  $('f-login').onsubmit=async e=>{ e.preventDefault(); $('l-err').textContent='…'; const er=await Store.login($('l-name').value,$('l-pin').value); $('l-err').textContent=er||''; };
  $('f-reg').onsubmit=async e=>{ e.preventDefault(); $('r-err').textContent='…'; const er=await Store.register($('r-name').value,$('r-pin').value); $('r-err').textContent=er||''; };
  $('b-guest').onclick=()=>Store.guest();
+ const tw=$('tgw'); if(tw){ window.TGLogin=async u=>{ $('tg-err').textContent='…'; const er=await Store.tgWidget(u); $('tg-err').textContent=er||''; };
+  const sc=document.createElement('script'); sc.async=true; sc.src='https://telegram.org/js/telegram-widget.js?22';
+  sc.setAttribute('data-telegram-login',Store.bot); sc.setAttribute('data-size','large'); sc.setAttribute('data-radius','10');
+  sc.setAttribute('data-onauth','TGLogin(user)'); sc.setAttribute('data-request-access','write'); tw.appendChild(sc); }
  show('auth');
 }
 function renderMenu(){
  const u=Store.user, P=Store.prog;
  const avg=P.total.n?Math.round(P.total.sum/P.total.n):0;
- $('menu').innerHTML=`<div class="brand"><h1>Дежу<span>р</span>ство</h1><p>Пациент, анамнез и характер каждый раз новые. Что делать — решаете вы; алгоритм откроется в разборе.</p></div>
- <div class="who-bar">Профиль: <b>${esc(u.name)}</b>${Store.mode==='cloud'?' · аккаунт Claude':Store.mode==='server'?' · аккаунт на сайте':Store.mode==='guest'?' · без сохранения':' · локальный'} · рейтинг ${Store.summary(P).r} · сыграно ${P.total.n} · средний балл ${avg}
-  ${Store.mode!=='cloud'?'<button class="btn" id="b-logout">Выйти из профиля</button>':''}</div>
+ const head=u.tg?tgHero(u,P):`<div class="brand"><h1>Дежу<span>р</span>ство</h1><p>Пациент, анамнез и характер каждый раз новые. Что делать — решаете вы; алгоритм откроется в разборе.</p></div>
+ <div class="who-bar">Профиль: <b>${esc(u.name)}</b>${Store.mode==='cloud'?' · аккаунт Claude':u.tg?' · Telegram':Store.mode==='server'?' · аккаунт на сайте':Store.mode==='guest'?' · без сохранения':' · локальный'} · рейтинг ${Store.summary(P).r} · сыграно ${P.total.n} · средний балл ${avg}
+  ${Store.mode!=='cloud'&&!u.tg?'<button class="btn" id="b-logout">Выйти из профиля</button>':''}</div>`;
+ $('menu').innerHTML=head+`
  <div class="mtabs" role="tablist">${[['play','Смена'],['rank','Рейтинг'],['prog','Прогресс'],['gloss','Справочник'],['help','Как играть']].map(([k,n])=>`<button role="tab" data-m="${k}" aria-selected="${UI.mtab===k}">${n}</button>`).join('')}</div>
  <div id="mpane"></div>`;
  $('menu').querySelector('.mtabs').onclick=e=>{ const b=e.target.closest('[data-m]'); if(b){ UI.mtab=b.dataset.m; renderMenu(); } };
  const lo=$('b-logout'); if(lo) lo.onclick=()=>Store.logout();
  const mp=$('mpane');
+ if(u.tg) tgHeroWire();
  if(UI.mtab==='play') renderPlay(mp); else if(UI.mtab==='rank') renderRank(mp); else if(UI.mtab==='prog') renderProgress(mp); else if(UI.mtab==='gloss') renderGloss(mp); else renderHelp(mp);
  show('menu');
+}
+// ── Стартовый экран в Telegram: карточка врача, топ игроков, «Начать смену», «Позвать друга»
+const TITLES=[[0,'Студент'],[60,'Интерн'],[250,'Ординатор'],[700,'Врач'],[1500,'Старший врач'],[2600,'Заведующий'],[3800,'Главврач']];
+function titleOf(r){ let t=TITLES[0][1]; for(const [m,n] of TITLES) if(r>=m) t=n; return t; }
+function nextTitle(r){ const n=TITLES.find(([m])=>m>r); return n?{left:n[0]-r,n:n[1]}:null; }
+function avatar(name,photo,cls){ const ini=String(name||'?').split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();
+ return `<span class="ava ${cls||''}">${photo?`<img src="${esc(photo)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">`:''}<i>${esc(ini)}</i></span>`; }
+function tgHero(u,P){
+ const sm=Store.summary(P), nt=nextTitle(sm.r), seen=Object.keys(P.cases).length, all=CASES.filter(c=>!c.tutorial).length;
+ const tu=TGA.user()||{};
+ return `<div class="tghero">
+  <div class="tgme">${avatar(u.name,tu.photo)}<div class="who"><small>${titleOf(sm.r)}</small><b>${esc(u.name)}</b><span id="tg-place" class="muted">${nt?'До звания «'+nt.n+'» — '+nt.left+' '+plural(nt.left,'очко','очка','очков'):'Высшее звание'}</span></div>
+   <div class="pts"><b>${sm.r}</b><small>${plural(sm.r,'очко','очка','очков')}</small></div></div>
+  <div class="tgstats"><span><b>${P.total.n}</b>вызовов</span><span><b>${sm.a}%</b>средний балл</span><span><b>${seen}/${all}</b>кейсов</span></div>
+  <div class="tgcta"><button class="btn pri big" id="tg-go">Начать смену</button><button class="btn" id="tg-inv">Позвать друга</button></div>
+ </div>`;
+}
+function tgHeroWire(){
+ const go=$('tg-go'); if(go) go.onclick=()=>{ let tut=false; try{ tut=localStorage.getItem('dj-tut')==='1'; }catch(e){}
+  if(!tut&&!Store.prog.total.n){ Coach.start(); return; } start(pick(Object.keys(LOCS))); };
+ const inv=$('tg-inv'); if(inv) inv.onclick=()=>TGA.invite(Store.bot,Store.summary(Store.prog).r);
+}
+function tgTop(){
+ const box=$('tgtop'); if(!box) return;
+ if(!Store.server){ box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b></div><p class="muted" style="margin:0">Общий рейтинг включится, когда игра будет открываться с сервера бота. Ваш прогресс уже сохраняется в облаке Telegram.</p>`; return; }
+ Store.board().then(rows=>{
+  rows.sort((a,b)=>b.r-a.r||b.a-a.a); const mi=rows.findIndex(r=>r.me);
+  const pl=$('tg-place'); if(pl&&mi>=0) pl.textContent='Место в рейтинге: '+(mi+1)+' из '+rows.length;
+  const show=rows.slice(0,5); if(mi>=5) show.push(rows[mi]);
+  const row=(r)=>{ const i=rows.indexOf(r); return `<div class="trow${r.me?' me':''}"><span class="pl">${i<3?['🥇','🥈','🥉'][i]:i+1}</span>${avatar(r.name,r.photo,'sm')}<span class="nm">${esc(r.name)}<small>${r.me?'это вы · ':''}${titleOf(r.r)} · ${r.c} ${plural(r.c,'кейс','кейса','кейсов')}</small></span><b>${r.r}</b></div>`; };
+  box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b><button class="lnk" id="tg-all">Весь рейтинг →</button></div>`+(rows.length?show.map((r,k)=>(k===5?'<div class="tgap">…</div>':'')+row(r)).join(''):'<p class="muted" style="margin:0">Пока никто не сыграл — будьте первым.</p>');
+  const a=$('tg-all'); if(a) a.onclick=()=>{ UI.mtab='rank'; renderMenu(); };
+ }).catch(e=>{ box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b></div><p class="muted" style="margin:0">Не удалось загрузить: ${esc(e.message)}</p>`; });
 }
 function renderPlay(mp){
  const P=Store.prog, SP=Sfx.prefs;
  const played=CASES.filter(c=>P.cases[c.id]&&!c.tutorial);
  const real=CASES.filter(c=>!c.tutorial);
  let tutDone=false; try{ tutDone=localStorage.getItem('dj-tut')==='1'; }catch(e){}
- mp.innerHTML=`<div class="locs">
+ mp.innerHTML=(Store.user&&Store.user.tg?`<div class="tgtop" id="tgtop"><div class="muted">Загружаю рейтинг…</div></div>`:'')+`<div class="grp">${Store.user&&Store.user.tg?'Где дежурим':''}</div><div class="locs">
   <button class="loc tut" data-loc="tutorial"><span class="tag">${tutDone?'Пройдено · можно повторить':'Начните отсюда'}</span><h3>Обучение</h3><p>Простой пациент и пошаговые подсказки: опрос, осмотр, назначения, оформление.</p></button>
   ${Object.entries(LOCS).map(([k,l])=>{ const n=real.filter(c=>c.loc.includes(k)).length;
   return `<button class="loc" data-loc="${k}"><span class="tag">${l.tag} · ${n} ${plural(n,'сценарий','сценария','сценариев')}</span><h3>${l.n}</h3><p>${l.d}</p></button>`; }).join('')}
@@ -4459,6 +4752,7 @@ function renderPlay(mp){
  $('snd-ui').onchange=e=>Sfx.set('ui',e.target.checked); $('snd-mon').onchange=e=>Sfx.set('mon',e.target.checked); $('snd-vol').oninput=e=>Sfx.set('vol',+e.target.value);
  mp.querySelector('.locs').onclick=e=>{ const b=e.target.closest('[data-loc]'); if(!b) return; opts(); let loc=b.dataset.loc;
   if(loc==='tutorial'){ Coach.start(); return; } if(loc==='any') loc=pick(Object.keys(LOCS)); start(loc); };
+ if(Store.user&&Store.user.tg) tgTop();
  const rp=$('replay'); if(rp){ const fill=()=>{ const c=CASES.find(x=>x.id===rp.value); $('replayLoc').innerHTML=c.loc.map(l=>`<option value="${l}">${LOCS[l].n}</option>`).join(''); }; rp.onchange=fill; fill();
   $('b-replay').onclick=()=>{ opts(); start($('replayLoc').value,rp.value); }; }
 }
@@ -4471,10 +4765,11 @@ function start(loc,forceId){
  const s=newGame(loc,forceId);
  show('game'); $('log').innerHTML=''; UI.tab='ask'; UI.doseFor=null; UI.query=''; UI.paused=false; G.paused=false; $('b-pause').textContent='Пауза';
  $('g-where').textContent=LOCS[loc].tag;
- $('g-who').textContent=`${s.name}, ${s.age} ${plural(s.age,'год','года','лет')}`;
+ { const nm=String(s.name).split(' '), short=nm.length>1?nm[0]+' '+nm.slice(1).map(w=>w[0]+'.').join(''):s.name;
+ $('g-who').innerHTML=`<span class="fn">${esc(s.name)}, ${s.age} ${plural(s.age,'год','года','лет')}</span><span class="sn">${esc(short)}, ${s.age}</span>`; }
  G.ui.log('00:00',intro(s),'res');
  if(!s.mon) G.ui.log('00:00','Монитор не подключён.','muted');
- UI.unread=0; UI.lastLog=''; renderTabs(); $('game').dataset.mv=isMobile()?'pt':'ask'; renderNav(); G.ui.render();
+ UI.unread=0; UI.lastLog=''; UI.feed=[]; UI.openG={}; UI.lastEx='phys'; UI.lastTx='drug'; renderTabs(); $('game').dataset.mv=isMobile()?'pt':'ask'; renderNav(); G.ui.render();
  setFF(false); clearInterval(UI.timer); UI.timer=setInterval(()=>{ if(!UI.paused&&!document.hidden) tick(0.25/60*(UI.tutorial?1:G.opts.speed)*(UI.ff?10:1)); },250);
  setTimeout(()=>worldTick(s),400);
 }
@@ -4483,32 +4778,47 @@ function start(loc,forceId){
 const TABS=[['ask','Опрос'],['phys','Осмотр'],['inv','Обследования'],['drug','Препараты'],['proc','Манипуляции']];
 const isMobile=()=>matchMedia('(max-width:760px)').matches;
 const IC={pt:'<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm-7 9a7 7 0 0 1 14 0"/>',ask:'<path d="M4 5h16v11H9l-5 4z"/>',phys:'<path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/>',inv:'<path d="M9 3h6M10 3v6L5 19a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2l-5-10V3"/>',drug:'<rect x="3" y="9" width="18" height="7" rx="3.5" transform="rotate(-35 12 12)"/><path d="M10 7l5 7"/>',proc:'<path d="M14 4l6 6M4 20l9-9M12 6l6 6-7 7H5v-6z"/>',log:'<path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/>'};
-const MNAV=[['pt','Пациент'],['ask','Опрос'],['phys','Осмотр'],['inv','Анализы'],['drug','Лекарства'],['proc','Действия'],['log','Журнал']];
-function renderNav(){ $('mnav').innerHTML=MNAV.map(([k,n])=>`<button data-mv="${k}" ${['ask','phys','inv','drug','proc'].includes(k)?`data-tab="${k}"`:''} aria-current="${$('game').dataset.mv===k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>${n}${k==='log'&&UI.unread?`<span class="badge">${UI.unread>9?'9+':UI.unread}</span>`:''}</button>`).join(''); }
-function setMV(v){ $('game').dataset.mv=v; if(v==='log'){ UI.unread=0; const l=$('log'); l.scrollTop=l.scrollHeight; }
+Object.assign(IC,{exam:IC.phys,tx:IC.drug});
+const MNAV=[['pt','Пациент'],['ask','Опрос'],['exam','Осмотр'],['tx','Лечение'],['log','Журнал']];
+// На телефоне «Осмотр» объединяет физикальное и анализы, «Лечение» — препараты и манипуляции
+const MV_OF={phys:'exam',inv:'exam',drug:'tx',proc:'tx'};
+const mvOf=t=>MV_OF[t]||t;
+function renderNav(){ $('mnav').innerHTML=MNAV.map(([k,n])=>`<button data-mv="${k}" aria-current="${$('game').dataset.mv===k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>${n}${k==='log'&&UI.unread?`<span class="badge">${UI.unread>9?'9+':UI.unread}</span>`:''}</button>`).join(''); }
+function setMV(v){
+ if(v==='exam') v=['phys','inv'].includes(UI.tab)?UI.tab:(UI.lastEx||'phys');
+ if(v==='tx') v=['drug','proc'].includes(UI.tab)?UI.tab:(UI.lastTx||'drug');
+ if(v==='phys'||v==='inv') UI.lastEx=v; if(v==='drug'||v==='proc') UI.lastTx=v;
+ $('game').dataset.mv=mvOf(v); if(v==='log'){ UI.unread=0; const l=$('log'); l.scrollTop=l.scrollHeight; }
  if(['ask','phys','inv','drug','proc'].includes(v)&&UI.tab!==v){ UI.tab=v; UI.doseFor=null; renderTabs(); renderPane(true); }
  renderNav(); if(isMobile()) window.scrollTo({top:0}); }
 $('mnav').addEventListener('click',e=>{ const b=e.target.closest('[data-mv]'); if(!b) return; Sfx.tab(); setMV(b.dataset.mv); });
 function renderTabs(){ $('tabs').innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${k===UI.tab}" data-tab="${k}">${n}</button>`).join(''); }
-$('tabs').addEventListener('click',e=>{ const b=e.target.closest('[data-tab]'); if(!b) return; Sfx.tab(); UI.tab=b.dataset.tab; UI.doseFor=null; $('game').dataset.mv=UI.tab; renderTabs(); renderPane(true); renderNav(); });
+$('tabs').addEventListener('click',e=>{ const b=e.target.closest('[data-tab]'); if(!b) return; Sfx.tab(); UI.tab=b.dataset.tab; UI.doseFor=null; $('game').dataset.mv=mvOf(UI.tab); renderTabs(); renderPane(true); renderNav(); });
 
+// Переключатель внутри раздела (только телефон): Осмотр | Анализы, Лекарства | Действия
+function segHTML(){ if(!isMobile()) return ''; const g=['phys','inv'].includes(UI.tab)?[['phys','Осмотр'],['inv','Анализы и приборы']]:['drug','proc'].includes(UI.tab)?[['drug','Лекарства'],['proc','Действия']]:null;
+ return g?`<div class="seg" role="tablist">${g.map(([k,n])=>`<button role="tab" data-tab="${k}" aria-selected="${UI.tab===k}">${n}</button>`).join('')}</div>`:''; }
+// Недавно использованные препараты/манипуляции — для быстрого повтора
+function recent(s,type,n){ const out=[]; for(let i=s.acts.length-1;i>=0&&out.length<n;i--){ const [t,r]=s.acts[i].key.split(':'); if(t!==type) continue; const id=r.split('#')[0]; if(!out.includes(id)) out.push(id); } return out; }
 function renderPane(force){
  const s=G.s; if(!s) return; const p=$('pane');
  if(!force&&p.dataset.tab===UI.tab&&!p.dataset.dirty) return;
  p.dataset.tab=UI.tab; delete p.dataset.dirty;
  if(UI.tab==='ask'){
-  const qs=Object.entries(TOPIC_LABEL).map(([k,n])=>`<button data-topic="${k}">${n}</button>`).join('');
+  const qs=Object.entries(TOPIC_LABEL).map(([k,n])=>`<button data-topic="${k}"${s.asked[k]?' class="used"':''}>${n}</button>`).join('');
   p.innerHTML=`<div class="trust">Контакт с пациентом <span class="bar"><i style="width:${Math.round(s.trust)}%"></i></span> <span class="mono">${Math.round(s.trust)}</span></div>
   <div class="chat">${s.chat.length?s.chat.map(m=>m.me?`<div class="msg doc">${esc(m.text)}</div>`:`<div class="msg pt"><i>${esc(m.who)}</i>${esc(m.text)}</div>`).join(''):'<p class="muted">Спрашивайте своими словами: представьтесь, объясните, что делаете, переспросите («честно?»), если ответ кажется уклончивым.</p>'}</div>
   <form class="ask" id="askf"><input type="text" id="q" placeholder="Например: меня зовут ..., я врач. Где болит?" autocomplete="off"><button class="btn pri">Спросить</button></form>
-  <div class="grp">Быстрые вопросы</div><div class="grid-btn">${qs}</div>`;
+  <div class="grp">Быстрые вопросы</div><div class="grid-btn qbtn">${qs}</div>`;
   p.scrollTop=p.scrollHeight; return;
  }
  if(UI.tab==='phys'||UI.tab==='inv'){
   const list=EXAMS.filter(x=>(UI.tab==='phys')===(x.g==='Физикальное')&&avail(x.at,s.loc));
   const groups=[...new Set(list.map(x=>x.g))];
-  p.innerHTML=groups.map(g=>`<div class="grp">${g}</div><div class="grid-btn">${list.filter(x=>x.g===g).map(x=>{
-   const n=s.cnt['x:'+x.id]||0, lk=locked(s,'exam:'+x.id); return `<button data-exam="${x.id}">${esc(x.n)}<span class="sub">${lk?'недоступно':x.tm>=1?'≈'+Math.round(x.tm)+' мин':'сразу'}${n?' · выполнено':''}</span></button>`;}).join('')}</div>`).join('');
+  const wait={}; (s.pend||[]).forEach(q=>{ if(q.lazy&&q.at>s.t) wait[q.lazy]=q.at; });
+  p.innerHTML=segHTML()+groups.map(g=>`<div class="grp">${g}</div><div class="grid-btn">${list.filter(x=>x.g===g).map(x=>{
+   const n=s.cnt['x:'+x.id]||0, lk=locked(s,'exam:'+x.id), w=wait[x.id];
+   return `<button data-exam="${x.id}" class="${w?'wait':n?'done':''}">${esc(x.n)}<span class="sub">${lk?'недоступно':w?'⏳ '+fmtT(w-s.t):n?'✓ готово'+(n>1?' ×'+n:''):x.tm>=1?'≈'+Math.round(x.tm)+' мин':'сразу'}</span></button>`;}).join('')}</div>`).join('');
   return;
  }
  if(UI.tab==='drug'){
@@ -4517,29 +4827,57 @@ function renderPane(force){
   if(UI.doseFor){ const d=DRUGS.find(x=>x.id===UI.doseFor);
    const hasKid=d.d.some(x=>x.kid); const list=d.d.map((x,i)=>[x,i]).filter(([x])=>s.c.child||!x.kid).sort((p,q)=>s.c.child?(q[0].kid?1:0)-(p[0].kid?1:0):0);
    html+=`<div class="dose"><b>${esc(d.n)}</b>${s.c.child?`<span class="muted" style="font-size:12px">Ребёнок, масса ≈ ${s.wt} кг</span>`:''}<div class="row">${list.map(([x,i])=>`<button class="btn" data-dose="${i}">${esc(doseLabel(x,s))}${s.c.child&&hasKid&&!x.kid?' <span class="muted">(взрослая)</span>':''}</button>`).join('')}<button class="btn" data-dose="x">Отмена</button></div></div>`; }
+  html=segHTML()+html;
   html+=`<input type="text" class="search" id="dq" placeholder="Поиск препарата" value="${esc(UI.query)}" autocomplete="off">`;
-  html+=groups.map(g=>`<div class="grp">${g}</div><div class="grid-btn">${list.filter(d=>d.g===g).map(d=>`<button data-drug="${d.id}">${esc(d.n)}${s.cnt['d:'+d.id]?`<span class="sub">введено ×${s.cnt['d:'+d.id]}</span>`:''}</button>`).join('')}</div>`).join('');
+  const dbtn=d=>`<button data-drug="${d.id}"${s.cnt['d:'+d.id]?' class="done"':''}>${esc(d.n)}${s.cnt['d:'+d.id]?`<span class="sub">✓ введено ×${s.cnt['d:'+d.id]}</span>`:''}</button>`;
+  const mob=isMobile(), q=!!UI.query; UI.openG=UI.openG||{};
+  const rec=recent(s,'d',6).map(id=>DRUGS.find(d=>d.id===id)).filter(d=>d&&drugAvail(d,s.loc));
+  if(mob&&!q&&rec.length) html+=`<div class="grp">Недавние</div><div class="grid-btn">${rec.map(dbtn).join('')}</div>`;
+  html+=groups.map(g=>{ const items=list.filter(d=>d.g===g), open=!mob||q||UI.openG[g];
+   return mob?`<button class="acc${open?' open':''}" data-grp="${esc(g)}"><span>${g}</span><small>${items.length}</small></button>${open?`<div class="grid-btn">${items.map(dbtn).join('')}</div>`:''}`
+    :`<div class="grp">${g}</div><div class="grid-btn">${items.map(dbtn).join('')}</div>`; }).join('');
   if(s.loc==='pol') html+=`<p class="muted" style="margin-top:12px">В поликлинике — только укладка неотложной помощи.</p>`;
   const had=document.activeElement&&document.activeElement.id==='dq';
   p.innerHTML=html; if(had){ const i=$('dq'); i.focus(); i.setSelectionRange(i.value.length,i.value.length); }
   return;
  }
  const list=PROCS.filter(x=>avail(x.at,s.loc)); const groups=[...new Set(list.map(x=>x.g))];
- p.innerHTML=groups.map(g=>`<div class="grp">${g}</div><div class="grid-btn">${list.filter(x=>x.g===g).map(x=>`<button data-proc="${x.id}">${esc(x.n)}${s.cnt['p:'+x.id]?`<span class="sub">выполнено${s.cnt['p:'+x.id]>1?' ×'+s.cnt['p:'+x.id]:''}</span>`:''}</button>`).join('')}</div>`).join('');
+ const on={mon:s.mon,iv:s.iv,o2:s.o2,o2n:s.o2,eti:s.f.intub};
+ p.innerHTML=segHTML()+groups.map(g=>`<div class="grp">${g}</div><div class="grid-btn">${list.filter(x=>x.g===g).map(x=>{ const n=s.cnt['p:'+x.id]; return `<button data-proc="${x.id}"${n||on[x.id]?' class="done"':''}>${esc(x.n)}${n?`<span class="sub">✓ ${on[x.id]?'подключено':'выполнено'}${n>1?' ×'+n:''}</span>`:''}</button>`; }).join('')}</div>`).join('');
 }
 $('pane').addEventListener('click',e=>{
  const t=e.target.closest('button'); if(!t) return; const p=$('pane'); p.dataset.dirty=1;
+ if(t.dataset.tab){ setMV(t.dataset.tab); return; }
+ if(t.dataset.grp!==undefined){ UI.openG=UI.openG||{}; UI.openG[t.dataset.grp]=!UI.openG[t.dataset.grp]; renderPane(true); return; }
+ if(t.dataset.drug&&isMobile()){ doseSheet(t.dataset.drug); return; }
  if(t.dataset.topic){ ask(TOPIC_LABEL[t.dataset.topic],t.dataset.topic); renderPane(true); }
  else if(t.dataset.exam){ exam(t.dataset.exam); renderPane(true); }
  else if(t.dataset.drug){ UI.doseFor=t.dataset.drug; renderPane(true); const dz=p.querySelector('.dose'); if(dz) dz.scrollIntoView({block:'center'}); }
  else if(t.dataset.dose!==undefined){ if(t.dataset.dose!=='x'){ act('d:'+UI.doseFor+'#'+t.dataset.dose); Sfx.give(); } UI.doseFor=null; renderPane(true); }
  else if(t.dataset.proc){ act('p:'+t.dataset.proc); renderPane(true); }
 });
+// Выбор дозы на телефоне — шторка снизу, крупные кнопки
+function doseSheet(id){
+ const s=G.s, d=DRUGS.find(x=>x.id===id); if(!s||!d) return;
+ const hasKid=d.d.some(x=>x.kid); const list=d.d.map((x,i)=>[x,i]).filter(([x])=>s.c.child||!x.kid).sort((p,q)=>s.c.child?(q[0].kid?1:0)-(p[0].kid?1:0):0);
+ openModal(`<div class="kind">${esc(d.g)}</div><h2>${esc(d.n)}</h2>${s.c.child?`<p class="muted" style="margin:0">Ребёнок, масса ≈ ${s.wt} кг</p>`:''}
+  <div class="opts">${list.map(([x,i])=>`<button data-sdose="${i}">${esc(doseLabel(x,s))}${s.c.child&&hasKid&&!x.kid?' <span class="muted">(взрослая)</span>':''}</button>`).join('')}</div>
+  <button class="btn" data-sdose="x">Отмена</button>`,'sheet',false);
+ $('modal').onclick=e=>{ const b=e.target.closest('[data-sdose]'); if(!b) return; $('modal').onclick=null; closeModal();
+  if(b.dataset.sdose!=='x'){ act('d:'+id+'#'+b.dataset.sdose); Sfx.give(); } $('pane').dataset.dirty=1; renderPane(true); };
+}
 $('pane').addEventListener('submit',e=>{ e.preventDefault(); const q=$('q').value.trim(); if(q){ ask(q); renderPane(true); const i=$('q'); if(i){ i.focus(); if(isMobile()) i.scrollIntoView({block:'center'}); } } });
 $('pane').addEventListener('input',e=>{ if(e.target.id==='dq'){ UI.query=e.target.value; $('pane').dataset.dirty=1; renderPane(true); } });
 
 // ── Монитор
 function vt(cls,label,val,unit,alarm,wide){ return `<div class="vt ${cls}${alarm?' alarm':''}${wide?' wide':''}${String(val).startsWith('--')?' unknown':''}"><small>${label} ${unit}</small><b>${val}</b></div>`; }
+// Ожидаемые результаты (обследования, консультанты, бригада) — с обратным отсчётом и перемоткой
+function pendHTML(s,mini){
+ const w=(s.pend||[]).filter(p=>p.wait&&p.at>s.t).sort((a,b)=>a.at-b.at); if(!w.length) return '';
+ const items=w.slice(0,mini?2:6).map(p=>`<span>${esc(p.wait)} <b>${fmtT(p.at-s.t)}</b></span>`).join(mini?' · ':'');
+ return `<div class="pend${mini?' m':''}"><i>⏳ Ждём:</i>${items}${w.length>(mini?2:6)?' …':''}${UI.ff?'':`<button class="btn sm" data-ff="1">⏩ Перемотать</button>`}</div>`;
+}
+document.addEventListener('click',e=>{ if(e.target.closest('[data-ff]')){ e.stopPropagation(); setFF(true); } },true);
 function renderVitals(){
  const s=G.s, v=s.v, on=monOn(s), arr=inArrest(s);
  const hr=!on?'--':(arr&&!['pea','peaw'].includes(v.rh)?'--':Math.round(v.rh==='vt'?178:v.hr));
@@ -4554,7 +4892,8 @@ function renderVitals(){
  const ch=[['Монитор',s.mon,locked(s,'mon')],['Вена',s.iv],['O₂',s.o2,locked(s,'o2')],['ИВЛ',s.f.intub]];
  $('lines').innerHTML=ch.map(([n,o,lk])=>`<span class="chip${lk?' lock':o?' on':''}">${n}${lk?' — нет':o?' ✓':''}</span>`).join('')+`<span class="chip">Характер: ${s.temper.n}</span><span class="chip">Масса ≈ ${s.wt} кг</span>`;
  $('g-clock').textContent=fmtT(s.t);
- $('mini').innerHTML=vt('c-hr','ЧСС',hr,'',on&&(arr||v.hr>130||v.hr<45))+vt('c-spo2','SpO₂',sp,'',on&&(sp==='--'||v.spo2<90))+vt('c-bp','АД',bp,'',on&&(arr||v.sbp<90||v.sbp>180))+rrTile(false)+(cs?`<div class="codeline">Остановка ${cs.total} · ${cs.cpr?'СЛР '+cs.cycle+(cs.cycleDue?' → ритм!':''):'НЕТ КОМПРЕССИЙ '+cs.noflow} · разр ${cs.shocks} · адр ${cs.adr}${cs.adrAgo?' ('+cs.adrAgo+')':''}</div>`:'')+`<button class="last" data-mv="log">${esc(UI.lastLog||'')}</button>`;
+ $('mini').innerHTML=vt('c-hr','ЧСС',hr,'',on&&(arr||v.hr>130||v.hr<45))+vt('c-spo2','SpO₂',sp,'',on&&(sp==='--'||v.spo2<90))+vt('c-bp','АД',bp,'',on&&(arr||v.sbp<90||v.sbp>180))+rrTile(false)+(cs?`<div class="codeline">Остановка ${cs.total} · ${cs.cpr?'СЛР '+cs.cycle+(cs.cycleDue?' → ритм!':''):'НЕТ КОМПРЕССИЙ '+cs.noflow} · разр ${cs.shocks} · адр ${cs.adr}${cs.adrAgo?' ('+cs.adrAgo+')':''}</div>`:'')+`<button class="last feed" data-mv="log">${(UI.feed||[]).slice(-2).map(f=>`<span class="${f.cls}"><time>${f.t}</time>${f.cls==='act'?'▸ ':''}${esc(f.text)}</span>`).join('')||'<span class="muted">Журнал пуст</span>'}</button>`+pendHTML(s,true);
+ $('pendbar').innerHTML=pendHTML(s,false); $('pendbar').hidden=!$('pendbar').innerHTML;
  const cd=$('code'); cd.hidden=!cs;
  if(cs) cd.innerHTML=`<b>Остановка ${cs.total}</b>`+
   (cs.cpr?`<span class="chip${cs.cycleDue?' due':''}">СЛР идёт · цикл ${cs.cycle}${cs.cycleDue?' — оцените ритм':''}</span>`:`<span class="chip bad">Нет компрессий ${cs.noflow}</span>`)+
@@ -4650,11 +4989,27 @@ function drawScene(s,now){
 }
 
 G.ui={
- log(t,text,cls){ if(cls!=='muted'&&cls!=='act'){ UI.lastLog=t+' '+text; if($('game').dataset.mv!=='log'){ UI.unread=(UI.unread||0)+1; renderNav(); } } if(/warn|res|cons|good/.test(cls)&&UI.ff) setFF(false); if(cls==='res'||cls==='cons') Sfx.msg(); const l=$('log'); const d=document.createElement('div'); d.className=cls; d.innerHTML=`<time>${t}</time>${linkify(text)}`; l.appendChild(d); l.scrollTop=l.scrollHeight; },
+ log(t,text,cls){ if(cls!=='muted'){ UI.feed=(UI.feed||[]).concat({t,text,cls}).slice(-3); }
+  if(isMobile()&&/res|warn|good|cons/.test(cls)&&t!=='00:00'&&$('game').dataset.mv!=='log'&&!(typeof Coach!=='undefined'&&Coach.on)) toast(text,cls);
+  if(cls==='act') UI.lastLog=t+' ▸ '+text; if(cls!=='muted'&&cls!=='act'){ UI.lastLog=t+' '+text; if($('game').dataset.mv!=='log'){ UI.unread=(UI.unread||0)+1; renderNav(); } } if(/warn|res|cons|good/.test(cls)&&UI.ff) setFF(false); if(cls==='res'||cls==='cons') Sfx.msg(); const l=$('log'); const d=document.createElement('div'); d.className=cls; d.innerHTML=`<time>${t}</time>${linkify(text)}`; l.appendChild(d); l.scrollTop=l.scrollHeight; },
  render(){ if(!G.s||$('game').hidden) return; renderVitals(); if(UI.tab==='ask'&&UI.chatLen!==G.s.chat.length+Math.round(G.s.trust)*1000&&document.activeElement.id!=='q'){ UI.chatLen=G.s.chat.length+Math.round(G.s.trust)*1000; $('pane').dataset.dirty=1; } renderPane(false); },
  flash(c){ setFF(false); if(c==='cycle'){ Sfx.alert(); return; } UI.flashC=c; UI.flashT=performance.now()/1000+1.2; c==='ok'?Sfx.good():Sfx.bad(); },
 };
-$('b-pause').onclick=()=>{ UI.paused=!UI.paused; G.paused=UI.paused; $('b-pause').textContent=UI.paused?'Продолжить':'Пауза'; };
+$('b-pause').onclick=()=>{ UI.paused=!UI.paused; G.paused=UI.paused; $('b-pause').textContent=UI.paused?'Продолжить':'Пауза'; $('b-pause').setAttribute('aria-pressed',String(UI.paused)); };
+// ── Телефон: уведомление о результате прямо поверх текущего раздела
+function toast(text,cls){
+ let el=$('toast'); if(!el){ el=document.createElement('button'); el.id='toast'; el.className='toast'; document.body.appendChild(el);
+  el.addEventListener('click',()=>{ el.classList.remove('show'); setMV('log'); }); }
+ el.className='toast '+(cls||'')+' show'; el.innerHTML=linkify(text).replace(/<button class="term"[^>]*>([^<]*)<\/button>/g,'$1');
+ clearTimeout(UI.toastT); UI.toastT=setTimeout(()=>el.classList.remove('show'),Math.min(9000,2600+text.length*40));
+}
+// ── Телефон: «⋯» — редкие действия в одной шторке
+$('b-more').onclick=()=>{
+ const items=[['b-cons','Консультант','Позвать специалиста — подскажет по профилю'],['b-hint','Спросить старшего','Ближайший нужный шаг (−3 балла)'],
+  ...(!$('b-talk').hidden?[['b-talk','Поговорить','Разговор с пациентом/родственником']]:[]),['b-quit','Выйти из вызова','Результат не сохранится']];
+ openModal(`<div class="kind">Действия</div><div class="opts">${items.map(([id,n,d])=>`<button data-more="${id}"${id==='b-quit'?' class="dng"':''}><b>${n}</b><span class="muted" style="display:block;font-size:12px">${d}</span></button>`).join('')}</div><button class="btn" data-more="x">Закрыть</button>`,'sheet',false);
+ $('modal').onclick=e=>{ const b=e.target.closest('[data-more]'); if(!b) return; $('modal').onclick=null; closeModal(); if(b.dataset.more!=='x') $(b.dataset.more).click(); };
+};
 $('b-ff').onclick=()=>setFF(!UI.ff);
 $('mini').addEventListener('click',e=>{ if(e.target.closest('[data-mv]')) setMV('log'); });
 function quitGame(){ clearInterval(UI.timer); G.s=null; G.paused=false; closeModal(); if(Coach.on) Coach.stop(); renderMenu(); }
@@ -4669,7 +5024,7 @@ requestAnimationFrame(frame);
 </script>
 <script>
 // Интерфейс v2, часть 2: окна (диалог, форс-мажор, консультант, оформление, справочник), разбор, прогресс.
-function openModal(html,cls,pause){ const m=$('modal'); m.className='modal '+(cls||''); m.innerHTML=html; $('overlay').hidden=false; if(pause!==false&&G.s) G.s.modal=true; const f=m.querySelector('button,input,select'); f&&f.focus(); }
+function openModal(html,cls,pause){ const tt=$('toast'); if(tt) tt.classList.remove('show'); const m=$('modal'); m.className='modal '+(cls||''); m.innerHTML=html; $('overlay').hidden=false; if(pause!==false&&G.s) G.s.modal=true; const f=m.querySelector('button,input,select'); f&&f.focus(); }
 function closeModal(){ $('overlay').hidden=true; $('modal').innerHTML=''; if(G.s) G.s.modal=false; }
 $('overlay').addEventListener('keydown',e=>{ if(e.key==='Escape'&&G.s&&!G.s.talk&&!G.s.fmQueue) closeModal(); });
 
@@ -4829,12 +5184,13 @@ function renderProgress(mp){
  $('p-load').onclick=()=>{ if(Store.mode==='guest'){ $('p-err').textContent='Гостю импорт недоступен — войдите в профиль.'; return; } const er=Store.importText($('p-imp').value); $('p-err').textContent=er||'Готово.'; if(!er) renderMenu(); };
 }
 function renderRank(mp){
- const note={cloud:'Общий рейтинг всех, кому вы дали доступ к игре в claude.ai.',server:'Общий рейтинг всех игроков этого сайта.',local:'Без сервера рейтинг видит только профили на этом устройстве. Для общего рейтинга выложите игру на сервер (см. «Как играть»).',guest:'Гость в рейтинг не попадает.'}[Store.mode]||'';
+ const note={cloud:'Общий рейтинг всех, кому вы дали доступ к игре в claude.ai.',server:Store.user&&Store.user.tg?'Общий рейтинг всех, кто играет через бота в Telegram.':'Общий рейтинг всех игроков этого сайта.',local:'Без сервера рейтинг видит только профили на этом устройстве. Для общего рейтинга выложите игру на сервер (см. «Как играть»).',guest:'Гость в рейтинг не попадает.',tg:'Прогресс хранится в вашем облаке Telegram. Общий рейтинг друзей появится, когда игра будет открываться с вашего сервера (см. README «Телеграм»).'}[Store.mode]||'';
  mp.innerHTML=`<p class="muted" style="margin:0">${note} Очки рейтинга — сумма лучших результатов по каждому кейсу с множителем сложности: лёгкий ×0,5, обычный ×1, сложный ×1,5.</p><div id="rk" class="muted">Загружаю…</div>`;
  Store.board().then(rows=>{
   rows.sort((a,b)=>b.r-a.r||b.a-a.a);
+  const mi=rows.findIndex(r=>r.me), pl=$('tg-place'); if(pl&&mi>=0) pl.textContent='Место в рейтинге: '+(mi+1)+' из '+rows.length;
   $('rk').classList.remove('muted');
-  $('rk').innerHTML=rows.length?`<div class="tblwrap"><table class="tbl rank"><thead><tr><th>#</th><th>Игрок</th><th>Очки</th><th>Кейсов</th><th>Средний</th><th>Вызовов</th></tr></thead><tbody>${rows.map((r,i)=>`<tr class="${r.me?'me':''}"><td class="mono">${i+1}</td><td>${esc(r.name)}${r.me?' <span class="muted">(вы)</span>':''}</td><td class="mono"><b>${r.r}</b></td><td class="mono">${r.c}/${CASES.filter(c=>!c.tutorial).length}</td><td class="mono">${r.a}</td><td class="mono">${r.n}</td></tr>`).join('')}</tbody></table></div>`:'<p class="muted">Пока никого. Сыграйте первым!</p>';
+  $('rk').innerHTML=rows.length?`<div class="tblwrap"><table class="tbl rank"><thead><tr><th>#</th><th>Игрок</th><th>Очки</th><th>Кейсов</th><th>Средний</th><th>Вызовов</th></tr></thead><tbody>${rows.map((r,i)=>`<tr class="${r.me?'me':''}"><td class="mono">${i+1}</td><td><span class="rkname">${avatar(r.name,r.photo,'sm')}<span>${esc(r.name)}${r.me?' <span class="muted">(вы)</span>':''}<small class="muted">${titleOf(r.r)}</small></span></span></td><td class="mono"><b>${r.r}</b></td><td class="mono">${r.c}/${CASES.filter(c=>!c.tutorial).length}</td><td class="mono">${r.a}</td><td class="mono">${r.n}</td></tr>`).join('')}</tbody></table></div>`:'<p class="muted">Пока никого. Сыграйте первым!</p>';
  }).catch(e=>{ $('rk').textContent='Не удалось загрузить рейтинг: '+e.message; });
 }
 function renderGloss(mp){
@@ -4856,8 +5212,10 @@ function renderHelp(mp){
 }
 
 // ── Запуск
-Store.onChange(()=>{ if(G.s&&!$('game').hidden) return; Store.user?renderMenu():renderAuth(); });
-renderAuth(); Store.init();
+Store.onChange(()=>{ if(G.s&&!$('game').hidden) return; if(!Store.user&&TGA.inTg&&!Store.ready) return; Store.user?renderMenu():renderAuth(); });
+// Заставка входа: в Telegram не показываем форму с PIN, пока идёт вход по аккаунту Telegram
+function renderSplash(){ $('auth').innerHTML=`<div class="splash"><div class="brand"><h1>Дежу<span>р</span>ство</h1></div><div class="spin"></div><p class="muted">Вход через Telegram…</p></div>`; show('auth'); }
+TGA.inTg?renderSplash():renderAuth(); Store.init();
 
 </script>
 
