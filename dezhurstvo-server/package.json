@@ -1,0 +1,10 @@
+{
+  "name": "dezhurstvo-server",
+  "version": "4.8.0",
+  "private": true,
+  "description": "Дежурство: игра, рейтинг и Telegram-бот",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "pg": "^8.13.1" }
+}

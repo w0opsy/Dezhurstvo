@@ -1,7 +1,9 @@
-// Бот «Дежурства» для Telegram. Без библиотек: long polling через Bot API (Node.js 18+, встроенный fetch).
+// Бот «Дежурства» для Telegram. Без библиотек (Node.js 18+, встроенный fetch).
+// Два режима: вебхук (hook задан — Telegram сам присылает сообщения, так бот будит заснувший сервер на Render)
+// и long polling (обычный VPS).
 // Команды: /start — кнопка запуска игры, /top — рейтинг, /help — что это.
 'use strict';
-module.exports=function startBot({token,url,top,info}){
+module.exports=function startBot({token,url,top,info,hook,secret}){
  const API='https://api.telegram.org/bot'+token+'/';
  const call=async(m,p={})=>{ const r=await fetch(API+m,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}); const j=await r.json(); if(!j.ok) throw new Error(m+': '+j.description); return j.result; };
  const play=url?{inline_keyboard:[[{text:'🩺 Начать дежурство',web_app:{url}}]]}:undefined;
@@ -27,6 +29,12 @@ module.exports=function startBot({token,url,top,info}){
   }
   if(t==='/help') return call('sendMessage',{chat_id:chat,text:'Игра открывается внутри Telegram. Вход — по вашему аккаунту Telegram, прогресс сохраняется на сервере, рейтинг общий для всех игроков. Учебный симулятор, не руководство к лечению реальных пациентов.',reply_markup:play});
  }
+ async function handle(u){ try{ if(u&&u.message) await onMsg(u.message); }catch(e){ console.error('Бот:',e.message); } }
+ if(hook){
+  (async()=>{ await setup(); try{ await call('setWebhook',{url:hook,secret_token:secret,allowed_updates:['message'],drop_pending_updates:false}); console.log('Бот: вебхук установлен'); }
+   catch(e){ console.error('Бот: вебхук',e.message); } })();
+  return {handle};
+ }
  let offset=0;
  async function loop(){
   for(;;){
@@ -36,5 +44,6 @@ module.exports=function startBot({token,url,top,info}){
    }catch(e){ console.error('Бот:',e.message); await new Promise(r=>setTimeout(r,5000)); }
   }
  }
- setup().then(loop);
+ (async()=>{ await setup(); try{ await call('deleteWebhook',{}); }catch(e){} loop(); })();
+ return {handle};
 };

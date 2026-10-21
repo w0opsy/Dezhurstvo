@@ -1,17 +1,51 @@
 // Сервер «Дежурства»: раздаёт игру, хранит аккаунты, прогресс и общий рейтинг.
-// Без внешних зависимостей: нужен только Node.js 18+. Запуск: node server.js  (порт — переменная PORT, по умолчанию 8080)
+// Node.js 18+. Запуск: node server.js  (порт — переменная PORT, по умолчанию 8080)
+// Хранилище: файл data/db.json, а если задан DATABASE_URL — Postgres (Neon и т. п.; нужен пакет pg: npm install).
+// На Render файловая система стирается при перезапуске — там обязательно DATABASE_URL.
 'use strict';
 const http=require('http'), fs=require('fs'), path=require('path'), crypto=require('crypto');
 const PORT=+process.env.PORT||8080;
 const BOT_TOKEN=process.env.BOT_TOKEN||'';      // токен бота от @BotFather — нужен для входа через Telegram и для бота
-const WEBAPP_URL=process.env.WEBAPP_URL||'';    // https-адрес игры, например https://игра.вашдомен.ru/
+const EXT=(process.env.RENDER_EXTERNAL_URL||'').replace(/\/?$/,'/');   // Render задаёт адрес сервиса сам
+// Адрес самого сервера (для вебхука и для игры, если она лежит отдельно)
+const SELF_URL=((process.env.PUBLIC_URL||process.env.WEBAPP_URL||(process.env.RENDER_EXTERNAL_URL?EXT:''))||'').replace(/\/?$/,'/').replace(/^\/$/,'');
+// Игра может лежать отдельно — на GitHub Pages (GAME_URL). Тогда кнопка «Играть» ведёт на GAME_URL?api=SELF_URL:
+// тяжёлый файл игры грузится с GitHub, а сервер отдаёт только маленькие ответы (рейтинг, сохранения).
+const GAME_URL=process.env.GAME_URL||'';
+const WEBAPP_URL=GAME_URL&&SELF_URL?GAME_URL+(GAME_URL.includes('?')?'&':'?')+'api='+encodeURIComponent(SELF_URL):SELF_URL;   // кнопка «Играть»
+// С каких сайтов можно обращаться к API (через запятую). По умолчанию — с любых: вход по токену, cookies не используются.
+const ALLOW_ORIGIN=(process.env.ALLOW_ORIGIN||'*').split(',').map(x=>x.trim()).filter(Boolean);
+const WEBHOOK=process.env.WEBHOOK==='0'?false:!!(process.env.WEBHOOK||process.env.RENDER_EXTERNAL_URL);   // бот через вебхук (будит заснувший сервер)
+const DATABASE_URL=process.env.DATABASE_URL||'';
 const BOT={username:null};
 const PUB=path.join(__dirname,'public'), DATA=path.join(__dirname,'data'), DBF=path.join(DATA,'db.json');
 fs.mkdirSync(DATA,{recursive:true});
 let db={users:{},tokens:{}};
-try{ db=JSON.parse(fs.readFileSync(DBF,'utf8')); }catch(e){}
-let saveT=null;
-function save(){ clearTimeout(saveT); saveT=setTimeout(()=>{ const tmp=DBF+'.tmp'; fs.writeFileSync(tmp,JSON.stringify(db)); fs.renameSync(tmp,DBF); },300); }
+let pool=null;
+async function loadDb(){
+ if(DATABASE_URL){
+  const {Pool}=require('pg');
+  pool=new Pool({connectionString:DATABASE_URL,ssl:/localhost|127\.0\.0\.1/.test(DATABASE_URL)?false:{rejectUnauthorized:false},max:3,idleTimeoutMillis:20000});
+  pool.on('error',e=>console.error('Postgres:',e.message));          // Neon усыпляет базу через 5 минут — переподключимся сами
+  await pool.query('create table if not exists dezh_kv (k text primary key, v jsonb not null, at timestamptz default now())');
+  const r=await pool.query("select v from dezh_kv where k='db'"); if(r.rows[0]) db=r.rows[0].v;
+  console.log('Хранилище: Postgres, игроков '+Object.keys(db.users||{}).length);
+ } else {
+  try{ db=JSON.parse(fs.readFileSync(DBF,'utf8')); }catch(e){}
+  console.log('Хранилище: файл '+DBF+(process.env.RENDER?' — ВНИМАНИЕ: на Render он сотрётся при перезапуске, задайте DATABASE_URL':''));
+ }
+ db.users=db.users||{}; db.tokens=db.tokens||{};
+ const now=Date.now(); for(const t in db.tokens) if(db.tokens[t].exp<now) delete db.tokens[t];
+}
+let saveT=null, saving=false, again=false;
+async function flush(){
+ if(saving){ again=true; return; } saving=true;
+ try{
+  if(pool){ for(let i=0;i<3;i++){ try{ await pool.query("insert into dezh_kv(k,v,at) values('db',$1,now()) on conflict (k) do update set v=excluded.v, at=now()",[JSON.stringify(db)]); break; }catch(e){ console.error('Сохранение:',e.message); await new Promise(r=>setTimeout(r,1500)); } } }
+  else { const tmp=DBF+'.tmp'; fs.writeFileSync(tmp,JSON.stringify(db)); fs.renameSync(tmp,DBF); }
+ } finally { saving=false; if(again){ again=false; flush(); } }
+}
+function save(){ clearTimeout(saveT); saveT=setTimeout(flush,pool?800:300); }
 
 const TYPES={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.png':'image/png','.ico':'image/x-icon'};
 const send=(res,code,obj)=>{ res.writeHead(code,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'}); res.end(JSON.stringify(obj)); };
@@ -51,6 +85,9 @@ function checkWidget(d){
   return {id:d.id,first_name:d.first_name,last_name:d.last_name,username:d.username,photo_url:d.photo_url};
  }catch(e){ return null; }
 }
+let bot=null;
+const HOOK='/tg/'+crypto.createHash('sha256').update('hook:'+BOT_TOKEN).digest('hex').slice(0,24);
+const HOOK_SECRET=crypto.createHash('sha256').update('secret:'+BOT_TOKEN).digest('hex').slice(0,48);
 async function apiRoute(req,res,p){
  const ip=req.socket.remoteAddress;
  if(p==='/api/ping') return send(res,200,{ok:true,tg:!!BOT_TOKEN,bot:BOT.username||null});
@@ -92,17 +129,27 @@ async function apiRoute(req,res,p){
  }
  if(p==='/api/board'){
   const me=auth(req);
-  const rows=Object.values(db.users).filter(u=>u.prog||u===me).map(u=>({name:u.name,photo:u.photo||null,me:u===me,...summary(u.prog)})).sort((a,b)=>b.r-a.r).slice(0,200);
+  const rows=Object.values(db.users).filter(u=>u.prog||u===me).map(u=>({name:u.name,photo:u.photo||null,me:u===me,...summary(u.prog)})).sort((a,b)=>b.r-a.r).slice(0,100);
   return send(res,200,{rows});
  }
  send(res,404,{error:'Нет такого адреса.'});
 }
 
-http.createServer(async(req,res)=>{
+const server=http.createServer(async(req,res)=>{
  res.setHeader('X-Content-Type-Options','nosniff'); res.setHeader('Referrer-Policy','same-origin');
  const p=decodeURIComponent(new URL(req.url,'http://x').pathname);
  try{
-  if(p.startsWith('/api/')) return await apiRoute(req,res,p);
+  if(p.startsWith('/api/')){
+   const o=req.headers.origin;
+   if(o&&(ALLOW_ORIGIN.includes('*')||ALLOW_ORIGIN.includes(o))){ res.setHeader('Access-Control-Allow-Origin',ALLOW_ORIGIN.includes('*')?'*':o); res.setHeader('Vary','Origin');
+    res.setHeader('Access-Control-Allow-Headers','Content-Type, Authorization'); res.setHeader('Access-Control-Allow-Methods','GET, POST, PUT, OPTIONS'); res.setHeader('Access-Control-Max-Age','86400'); }
+   if(req.method==='OPTIONS'){ res.writeHead(204); return res.end(); }
+   return await apiRoute(req,res,p);
+  }
+  if(BOT_TOKEN&&p===HOOK&&req.method==='POST'){
+   if(req.headers['x-telegram-bot-api-secret-token']!==HOOK_SECRET){ res.writeHead(403); return res.end(); }
+   const upd=await body(req); res.writeHead(200); res.end('ok'); if(bot) bot.handle(upd); return;
+  }
   let f=path.normalize(path.join(PUB,p==='/'?'index.html':p));
   if(!f.startsWith(PUB)) { res.writeHead(403); return res.end(); }
   fs.readFile(f,(err,data)=>{
@@ -110,5 +157,9 @@ http.createServer(async(req,res)=>{
    res.writeHead(200,{'Content-Type':TYPES[path.extname(f)]||'application/octet-stream','Cache-Control':f.endsWith('.html')?'no-cache':'max-age=86400'}); res.end(data);
   });
  }catch(e){ send(res,400,{error:'Неверный запрос.'}); }
-}).listen(PORT,()=>console.log('Дежурство работает: http://localhost:'+PORT));
-if(BOT_TOKEN) require('./bot.js')({token:BOT_TOKEN,url:WEBAPP_URL,info:BOT,top:()=>Object.values(db.users).filter(u=>u.prog).map(u=>({name:u.name,...summary(u.prog)})).sort((a,b)=>b.r-a.r)});
+});
+loadDb().then(()=>{
+ server.listen(PORT,()=>console.log('Дежурство работает: порт '+PORT+(WEBAPP_URL?' · '+WEBAPP_URL:'')));
+ if(BOT_TOKEN) bot=require('./bot.js')({token:BOT_TOKEN,url:WEBAPP_URL,info:BOT,hook:WEBHOOK&&SELF_URL?SELF_URL.replace(/\/$/,'')+HOOK:null,secret:HOOK_SECRET,top:()=>Object.values(db.users).filter(u=>u.prog).map(u=>({name:u.name,...summary(u.prog)})).sort((a,b)=>b.r-a.r)});
+}).catch(e=>{ console.error('Не удалось открыть хранилище:',e.message); process.exit(1); });
+for(const sig of ['SIGTERM','SIGINT']) process.on(sig,async()=>{ clearTimeout(saveT); try{ await flush(); }catch(e){} process.exit(0); });

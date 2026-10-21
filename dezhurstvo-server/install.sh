@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Установка «Дежурства» с Telegram-ботом и рейтингом на чистый VPS (Ubuntu 22.04/24.04).
-# Запуск из папки сервера:   sudo bash install.sh ТОКЕН_БОТА [свой_домен]
+# Запуск из папки сервера:   sudo bash install.sh ТОКЕН_БОТА [свой_домен|-] [адрес_игры_на_GitHub_Pages]
+#   Игра на GitHub Pages, рейтинг здесь:   bash install.sh ТОКЕН - https://ник.github.io/Репозиторий/
 # Без домена адрес будет вида https://1-2-3-4.sslip.io — HTTPS-сертификат Caddy получит сам.
 set -e
-TOKEN="$1"; DOMAIN="$2"
+TOKEN="$1"; DOMAIN="$2"; GAME="$3"; [ "$DOMAIN" = "-" ] && DOMAIN=""
 if [ -z "$TOKEN" ]; then echo "Использование: sudo bash install.sh ТОКЕН_БОТА [домен]"; exit 1; fi
 if [ "$(id -u)" != "0" ]; then echo "Нужны права root: sudo bash install.sh ..."; exit 1; fi
 DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -46,7 +47,8 @@ umask 077
 cat > /etc/dezhurstvo.env <<ENV
 PORT=8080
 BOT_TOKEN=$TOKEN
-WEBAPP_URL=$URL
+PUBLIC_URL=$URL
+GAME_URL=$GAME
 ENV
 umask 022
 cat > /etc/systemd/system/dezhurstvo.service <<UNIT
@@ -71,7 +73,7 @@ sleep 4
 echo
 journalctl -u dezhurstvo -n 5 --no-pager | sed 's/^/   /'
 echo
-echo "Готово. Игра: $URL"
+if [ -n "$GAME" ]; then echo "Готово. Сервер рейтинга: $URL   Кнопка «Играть»: $GAME?api=$URL"; else echo "Готово. Игра: $URL"; fi
 echo "Откройте бота в Telegram и отправьте /start — кнопка «Играть» уже ведёт на этот адрес."
 echo "Вход через Telegram в обычном браузере: @BotFather → /setdomain → ваш бот → $DOMAIN"
 echo "Если сертификат ещё не выдан, подождите минуту: journalctl -u caddy -n 20"

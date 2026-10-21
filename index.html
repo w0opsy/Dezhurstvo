@@ -97,7 +97,8 @@ select,input[type=text],input[type=password],textarea{background:var(--panel2);b
 .topbar .where{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .topbar .who{font-weight:600}
 .topbar .sp{flex:1}
-#b-more{display:none}.topbar .sn{display:none}
+#b-more{display:none}
+.netnote{font-size:12px;color:#ffcf8a;background:#2a210f;border:1px solid #5a4317;border-radius:8px;padding:6px 8px;margin:4px 0}.topbar .sn{display:none}
 .splash{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
 .spin{width:34px;height:34px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent);animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
 .tglogin{border-color:#2a6f9e;background:linear-gradient(160deg,#10263a,var(--panel));margin-bottom:12px}.tglogin #tgw{min-height:44px}
@@ -4262,6 +4263,8 @@ const TGA=(()=>{
 //  cloud  — в claude.ai: вход через аккаунт Claude, прогресс приватно, рейтинг в общей таблице артефакта;
 //  server — на своём сайте с server.js: аккаунт по паролю, вход с любого устройства, общий рейтинг;
 //  tg     — мини-приложение Telegram без сервера: вход по Telegram, прогресс в облаке Telegram;
+//  Игра может лежать отдельно от сервера (GitHub Pages): адрес сервера — в ссылке ?api=https://сервер/.
+//  При плохой связи: тайм-ауты, последний рейтинг и прогресс хранятся на устройстве, результаты ждут в очереди.
 //  local  — файл без сервера: профили с PIN в браузере, рейтинг среди профилей этого устройства.
 const DIFF_MULT={easy:0.5,normal:1,hard:1.5};
 const Store = (()=>{
@@ -4269,16 +4272,44 @@ const Store = (()=>{
            set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }};
  const empty=()=>({cases:{},runs:[],total:{n:0,sum:0}});
  const hash=str=>{ let h=2166136261; for(const ch of str){ h^=ch.charCodeAt(0); h=Math.imul(h,16777619); } return (h>>>0).toString(36); };
- let bot=null, tgOn=false, initDone=false, mode='none', user=null, prog=empty(), db=null, uapi=null, dl=null, listeners=[], server=false, token=LS.get('dj-token',null);
+ const API=(()=>{ let a=null; try{ a=new URLSearchParams(location.search).get('api'); }catch(e){}
+  if(a&&(/^https:\/\/[^\s]+$/.test(a)||/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//.test(a))){ a=a.replace(/\/?$/,'/'); LS.set('dj-api',a); return a; }
+  return LS.get('dj-api','')||''; })();
+ let offline=false, retryT=null, bot=null, tgOn=false, initDone=false, mode='none', user=null, prog=empty(), db=null, uapi=null, dl=null, listeners=[], server=false, token=LS.get('dj-token',null);
 
  function summary(p){
   const cs=Object.values(p.cases);
   return {r:Math.round(cs.reduce((a,c)=>a+(c.bestW||Math.round((c.best||0))),0)),c:cs.length,a:p.total.n?Math.round(p.total.sum/p.total.n):0,n:p.total.n};
  }
- async function api(path,opt={}){
-  const r=await fetch('api/'+path,{...opt,headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})}});
-  const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||('Ошибка '+r.status)); return j;
+ // Запрос к серверу с тайм-аутом: при «зависшем» соединении не ждём бесконечно
+ async function api(path,opt={},ms=9000){
+  const ctl=typeof AbortController!=='undefined'?new AbortController():null, t=ctl&&setTimeout(()=>ctl.abort(),ms);
+  let r;
+  try{ r=await fetch(API+'api/'+path,{...opt,signal:ctl&&ctl.signal,headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})}}); }
+  catch(e){ const er=new Error('Нет связи с сервером'); er.net=true; throw er; }
+  finally{ t&&clearTimeout(t); }
+  const j=await r.json().catch(()=>({})); if(!r.ok){ const er=new Error(j.error||('Ошибка '+r.status)); er.status=r.status; throw er; } return j;
  }
+ // Локальная копия: прогресс, рейтинг и неотправленные результаты (на случай плохой связи)
+ const ukey=()=>user&&(user.key||user.id);
+ const pendK=()=>'dj-pend:'+ukey();
+ function cacheSave(){ if(user) LS.set('dj-srv:'+ukey(),{name:user.name,prog,at:Date.now()}); }
+ function addRun(p,r){
+  const c=p.cases[r.c]||{n:0,best:0,bestW:0,last:0,lastAt:0,locs:[]};
+  c.n++; c.best=Math.max(c.best,r.pct); c.bestW=Math.max(c.bestW||0,r.w); c.last=r.pct; c.lastAt=r.at; if(!c.locs.includes(r.loc)) c.locs.push(r.loc);
+  p.cases[r.c]=c; p.runs=[r,...p.runs].slice(0,60); p.total.n++; p.total.sum+=r.pct;
+ }
+ function applyPending(){ const pend=LS.get(pendK(),[]); for(const r of pend){ if(!prog.runs.some(x=>x.at===r.at&&x.c===r.c)) addRun(prog,r); } return pend.length; }
+ async function tgConnect(tu){
+  const pj=await api('ping',{},6000); if(!pj.ok) throw new Error('not a server');
+  server=true; bot=pj.bot||null; tgOn=!!pj.tg;
+  const j=await api('tg',{method:'POST',body:JSON.stringify({initData:TGA.initData})},12000);
+  token=j.token; LS.set('dj-token',token); mode='server'; offline=false;
+  user={id:j.name,name:j.name,tg:true,key:'tg'+tu.id.replace(/^tg/,'')}; prog={...empty(),...(j.prog||{})};
+  const n=applyPending(); cacheSave(); if(n) persist(); return true;
+ }
+ function retryLater(tu){ clearInterval(retryT); retryT=setInterval(async()=>{ if(!offline){ clearInterval(retryT); return; }
+  try{ await tgConnect(tu); clearInterval(retryT); emit(); }catch(e){} },30000); }
  async function init(){ try{ await init0(); } finally{ initDone=true; emit(); } }
  async function init0(){
   const C=window.claude;
@@ -4294,17 +4325,22 @@ const Store = (()=>{
   // Telegram: вход по аккаунту Telegram, без PIN
   const tw=await TGA.load();
   if(tw&&TGA.user()){
-   if(/^https?:/.test(location.protocol)){
-    try{ const r=await fetch('api/ping'); const pj=r.ok?await r.json():{}; if(pj.ok){ server=true; bot=pj.bot||null;
-     const j=await api('tg',{method:'POST',body:JSON.stringify({initData:TGA.initData})});
-     token=j.token; LS.set('dj-token',token); mode='server'; user={id:j.name,name:j.name,tg:true}; prog={...empty(),...(j.prog||{})}; emit(); return; } }catch(e){ console.warn('tg server',e); server=false; }
+   const tu=TGA.user();
+   if(API||/^https?:/.test(location.protocol)){
+    try{ await tgConnect(tu); emit(); return; }
+    catch(e){ console.warn('tg server',e);
+     const cache=LS.get('dj-srv:'+tu.id,null);
+     // Сервер известен, но связи нет — играем с локальной копией, результаты отправятся позже
+     if(e.net&&(API||cache)){ server=true; offline=true; mode='server'; const nm=(cache&&cache.name)||tu.name;
+      user={id:nm,name:nm,tg:true,key:tu.id}; prog={...empty(),...((cache&&cache.prog)||{})}; applyPending(); emit(); retryLater(tu); return; }
+     server=false; }
    }
-   const tu=TGA.user(); mode='tg'; user={...tu,tg:true};
+   mode='tg'; user={...tu,tg:true};
    const cloud=await TGA.loadProg(); prog={...empty(),...(cloud||LS.get('dj-prog:'+tu.id,empty()))};
    emit(); return;
   }
   if(/^https?:/.test(location.protocol)){
-   try{ const r=await fetch('api/ping'); const pj=r.ok?await r.json():{}; if(pj.ok){ server=true; bot=pj.bot||null; tgOn=!!pj.tg;
+   try{ const pj=await api('ping',{},6000); if(pj.ok){ server=true; bot=pj.bot||null; tgOn=!!pj.tg;
     if(token){ try{ const j=await api('me'); mode='server'; user={id:j.name,name:j.name}; prog={...empty(),...(j.prog||{})}; emit(); return; }catch(e){ token=null; LS.set('dj-token',null); } }
     emit(); return; } }catch(e){}
   }
@@ -4343,7 +4379,10 @@ const Store = (()=>{
   if(mode==='cloud'&&db){
    try{ await db.doc('data/users/'+user.id+'/progress').set(prog); }catch(e){ console.warn('save failed',e); }
    try{ await db.doc('board/'+user.id).set({...sm,at:Date.now()}); }catch(e){ console.warn('board failed',e); }
-  } else if(mode==='server'){ try{ await api('progress',{method:'PUT',body:JSON.stringify({prog})}); }catch(e){ console.warn(e); } }
+  } else if(mode==='server'){
+   cacheSave(); if(offline) return;
+   try{ await api('progress',{method:'PUT',body:JSON.stringify({prog})},12000); LS.set(pendK(),[]); }
+   catch(e){ console.warn(e); if(e.net&&user.tg&&TGA.user()){ offline=true; retryLater(TGA.user()); } } }
   else if(mode==='local'){ LS.set('dj-prog:'+user.id,prog); }
   else if(mode==='tg'){ LS.set('dj-prog:'+user.id,prog); try{ await TGA.saveProg(prog); }catch(e){ console.warn(e); } }
  }
@@ -4351,9 +4390,8 @@ const Store = (()=>{
   if(!user) return;
   const diff=s.D?s.D.id:'normal', w=Math.round(s.res.pct*(DIFF_MULT[diff]||1));
   const r={c:s.c.id,loc:s.loc,pct:s.res.pct,w,diff,out:s.res.outcome,at:Date.now(),min:Math.round(s.t),hints:s.hints,dx:s.dispo?s.dispo.dxOk:false};
-  const c=prog.cases[r.c]||{n:0,best:0,bestW:0,last:0,lastAt:0,locs:[]};
-  c.n++; c.best=Math.max(c.best,r.pct); c.bestW=Math.max(c.bestW||0,w); c.last=r.pct; c.lastAt=r.at; if(!c.locs.includes(r.loc)) c.locs.push(r.loc);
-  prog.cases[r.c]=c; prog.runs=[r,...prog.runs].slice(0,60); prog.total.n++; prog.total.sum+=r.pct;
+  addRun(prog,r);
+  if(mode==='server'){ const pend=LS.get(pendK(),[]); pend.push(r); LS.set(pendK(),pend.slice(-60)); }
   persist();
  }
  async function board(){
@@ -4363,9 +4401,14 @@ const Store = (()=>{
    return rows.map(r=>({name:(names[r.id]&&names[r.id].name)||'Коллега',r:r.r||0,c:r.c||0,a:r.a||0,n:r.n||0,me:r.id===user.id}));
   }
   if(mode==='tg') return [{name:user.name,...summary(prog),me:true}];
-  if(server){ const j=await api('board'); return j.rows.map(r=>({...r,me:r.me!==undefined?r.me:(user&&r.name===user.name)})); }
+  if(server){
+   const bk='dj-board:'+(ukey()||'x'), fix=rows=>rows.map(r=>({...r,me:r.me!==undefined?r.me:(user&&r.name===user.name)}));
+   try{ if(offline) throw Object.assign(new Error('offline'),{net:true});
+    const j=await api('board',{},9000); LS.set(bk,{rows:j.rows,at:Date.now()}); return fix(j.rows); }
+   catch(e){ const c=LS.get(bk,null); if(e.net&&c){ const rows=fix(c.rows); rows.stale=c.at; return rows; } throw e; } }
   return Object.keys(LS.get('dj-profiles',{})).map(n=>{ const p=LS.get('dj-prog:'+n,empty()); return {name:n,...summary(p),me:user&&user.name===n}; });
  }
+ function boardCached(){ const c=server&&LS.get('dj-board:'+(ukey()||'x'),null); if(!c) return null; const rows=c.rows.map(r=>({...r,me:r.me!==undefined?r.me:(user&&r.name===user.name)})); rows.stale=c.at; return rows; }
  function exportText(){ return JSON.stringify({v:3,name:user&&user.name,prog}); }
  function importText(t){
   try{ const o=JSON.parse(t); if(!o.prog||!o.prog.cases) return 'Это не файл прогресса.';
@@ -4380,7 +4423,7 @@ const Store = (()=>{
   try{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([data],{type:'application/json'})); a.download=filename; a.click(); return true; }catch(e){ return false; }
  }
  return {init,login,register,guest,logout,saveRun,board,summary,exportText,importText,download,profiles,
-  get mode(){return mode}, get bot(){return bot}, get tgOn(){return tgOn}, get ready(){return initDone}, tgWidget, get server(){return server}, get user(){return user}, get prog(){return prog}, onChange(f){listeners.push(f)}};
+  get mode(){return mode}, get offline(){return offline}, get pending(){ return user?LS.get(pendK(),[]).length:0; }, boardCached, get bot(){return bot}, get tgOn(){return tgOn}, get ready(){return initDone}, tgWidget, get server(){return server}, get user(){return user}, get prog(){return prog}, onChange(f){listeners.push(f)}};
 })();
 
 </script>
@@ -4715,17 +4758,25 @@ function tgHeroWire(){
   if(!tut&&!Store.prog.total.n){ Coach.start(); return; } start(pick(Object.keys(LOCS))); };
  const inv=$('tg-inv'); if(inv) inv.onclick=()=>TGA.invite(Store.bot,Store.summary(Store.prog).r);
 }
+// Пометка о связи: рейтинг из сохранённой копии, результаты в очереди
+function netNote(stale){
+ const n=Store.pending; if(!stale&&!Store.offline&&!n) return '';
+ const when=stale?new Date(stale).toLocaleString('ru-RU',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+ return `<div class="netnote">${stale?'Нет связи с сервером — рейтинг на '+when+'.':''}${n?' Ваши результаты ('+n+') отправятся, когда появится связь.':''}</div>`;
+}
 function tgTop(){
  const box=$('tgtop'); if(!box) return;
  if(!Store.server){ box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b></div><p class="muted" style="margin:0">Общий рейтинг включится, когда игра будет открываться с сервера бота. Ваш прогресс уже сохраняется в облаке Telegram.</p>`; return; }
- Store.board().then(rows=>{
-  rows.sort((a,b)=>b.r-a.r||b.a-a.a); const mi=rows.findIndex(r=>r.me);
+ const draw=rows=>{
+  const stale=rows.stale; rows=rows.slice(); rows.sort((a,b)=>b.r-a.r||b.a-a.a); const mi=rows.findIndex(r=>r.me);
   const pl=$('tg-place'); if(pl&&mi>=0) pl.textContent='Место в рейтинге: '+(mi+1)+' из '+rows.length;
   const show=rows.slice(0,5); if(mi>=5) show.push(rows[mi]);
   const row=(r)=>{ const i=rows.indexOf(r); return `<div class="trow${r.me?' me':''}"><span class="pl">${i<3?['🥇','🥈','🥉'][i]:i+1}</span>${avatar(r.name,r.photo,'sm')}<span class="nm">${esc(r.name)}<small>${r.me?'это вы · ':''}${titleOf(r.r)} · ${r.c} ${plural(r.c,'кейс','кейса','кейсов')}</small></span><b>${r.r}</b></div>`; };
-  box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b><button class="lnk" id="tg-all">Весь рейтинг →</button></div>`+(rows.length?show.map((r,k)=>(k===5?'<div class="tgap">…</div>':'')+row(r)).join(''):'<p class="muted" style="margin:0">Пока никто не сыграл — будьте первым.</p>');
+  box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b><button class="lnk" id="tg-all">Весь рейтинг →</button></div>`+netNote(stale)+(rows.length?show.map((r,k)=>(k===5?'<div class="tgap">…</div>':'')+row(r)).join(''):'<p class="muted" style="margin:0">Пока никто не сыграл — будьте первым.</p>');
   const a=$('tg-all'); if(a) a.onclick=()=>{ UI.mtab='rank'; renderMenu(); };
- }).catch(e=>{ box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b></div><p class="muted" style="margin:0">Не удалось загрузить: ${esc(e.message)}</p>`; });
+ };
+ const c=Store.boardCached(); if(c) draw(c);
+ Store.board().then(draw).catch(e=>{ if(!c) box.innerHTML=`<div class="tth"><b>Рейтинг игроков</b></div><p class="muted" style="margin:0">Не удалось загрузить: ${esc(e.message)}</p>`; });
 }
 function renderPlay(mp){
  const P=Store.prog, SP=Sfx.prefs;
@@ -5186,12 +5237,15 @@ function renderProgress(mp){
 function renderRank(mp){
  const note={cloud:'Общий рейтинг всех, кому вы дали доступ к игре в claude.ai.',server:Store.user&&Store.user.tg?'Общий рейтинг всех, кто играет через бота в Telegram.':'Общий рейтинг всех игроков этого сайта.',local:'Без сервера рейтинг видит только профили на этом устройстве. Для общего рейтинга выложите игру на сервер (см. «Как играть»).',guest:'Гость в рейтинг не попадает.',tg:'Прогресс хранится в вашем облаке Telegram. Общий рейтинг друзей появится, когда игра будет открываться с вашего сервера (см. README «Телеграм»).'}[Store.mode]||'';
  mp.innerHTML=`<p class="muted" style="margin:0">${note} Очки рейтинга — сумма лучших результатов по каждому кейсу с множителем сложности: лёгкий ×0,5, обычный ×1, сложный ×1,5.</p><div id="rk" class="muted">Загружаю…</div>`;
- Store.board().then(rows=>{
+ const drawRk=rows=>{ const stale=rows.stale; rows=rows.slice();
   rows.sort((a,b)=>b.r-a.r||b.a-a.a);
   const mi=rows.findIndex(r=>r.me), pl=$('tg-place'); if(pl&&mi>=0) pl.textContent='Место в рейтинге: '+(mi+1)+' из '+rows.length;
   $('rk').classList.remove('muted');
   $('rk').innerHTML=rows.length?`<div class="tblwrap"><table class="tbl rank"><thead><tr><th>#</th><th>Игрок</th><th>Очки</th><th>Кейсов</th><th>Средний</th><th>Вызовов</th></tr></thead><tbody>${rows.map((r,i)=>`<tr class="${r.me?'me':''}"><td class="mono">${i+1}</td><td><span class="rkname">${avatar(r.name,r.photo,'sm')}<span>${esc(r.name)}${r.me?' <span class="muted">(вы)</span>':''}<small class="muted">${titleOf(r.r)}</small></span></span></td><td class="mono"><b>${r.r}</b></td><td class="mono">${r.c}/${CASES.filter(c=>!c.tutorial).length}</td><td class="mono">${r.a}</td><td class="mono">${r.n}</td></tr>`).join('')}</tbody></table></div>`:'<p class="muted">Пока никого. Сыграйте первым!</p>';
- }).catch(e=>{ $('rk').textContent='Не удалось загрузить рейтинг: '+e.message; });
+  if(typeof netNote==='function') $('rk').insertAdjacentHTML('afterbegin',netNote(stale));
+ };
+ const rc=Store.boardCached&&Store.boardCached(); if(rc) drawRk(rc);
+ Store.board().then(drawRk).catch(e=>{ if(!rc) $('rk').textContent='Не удалось загрузить рейтинг: '+e.message; });
 }
 function renderGloss(mp){
  mp.innerHTML=`<input type="text" class="search" id="gq" placeholder="Поиск по симптомам" autocomplete="off"><div class="gl" id="gl"></div>`;
