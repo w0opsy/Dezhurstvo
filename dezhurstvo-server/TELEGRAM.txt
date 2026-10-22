@@ -71,6 +71,33 @@
 3. Бот сам поставит кнопку «Играть» на  GAME_URL?api=PUBLIC_URL . Если делали /newapp — в @BotFather
    → /myapps → Edit Web App URL вставьте этот же адрес целиком (его печатает журнал: journalctl -u dezhurstvo -n 5).
 
+
+──────────────────────────────────────────────
+ЕСЛИ БОТ ПИШЕТ «fetch failed» (с российского сервера не достать api.telegram.org)
+Игра и рейтинг работают и без бота. Чтобы бот отвечал на /start и /top, поставьте бесплатного посредника
+на Cloudflare Workers (карта не нужна):
+1. Зарегистрируйтесь на dash.cloudflare.com.
+2. Workers & Pages → Create → Create Worker (Hello World) → назовите, например, dezh-tg → Deploy.
+3. Edit code → удалите всё → вставьте содержимое worker/worker.js → проверьте BOT_ID → Deploy.
+   Адрес посредника вида https://dezh-tg.ВАШ-НИК.workers.dev
+4. Проверка на сервере (подставьте адрес и токен):
+      curl -m 15 -sS https://dezh-tg.ВАШ-НИК.workers.dev/botТОКЕН/getMe
+   Ответ {"ok":true,...} — посредник работает с вашего сервера.
+5. Подключите:
+      echo "TG_API=https://dezh-tg.ВАШ-НИК.workers.dev" >> /etc/dezhurstvo.env
+      systemctl restart dezhurstvo
+      journalctl -u dezhurstvo -n 5 --no-pager      → «Бот запущен: @… (через посредника …)»
+
+──────────────────────────────────────────────
+БАГ-РЕПОРТЫ ОТ ИГРОКОВ
+Игроки жмут «Сообщить об ошибке» (меню «⋯», экран разбора, «Как играть»). Отчёты хранятся на сервере.
+1. Придумайте ключ и добавьте на сервер:
+      echo "ADMIN_KEY=$(openssl rand -hex 8)" >> /etc/dezhurstvo.env && systemctl restart dezhurstvo
+      grep ADMIN_KEY /etc/dezhurstvo.env        ← запомните ключ
+2. Отчёты: https://79-174-78-227.sslip.io/reports?key=ВАШ_КЛЮЧ  (без ключа страница закрыта)
+3. (если бот работает) Чтобы бот присылал каждый отчёт вам: напишите боту /myid, затем
+      echo "ADMIN_CHAT=ваш_chat_id" >> /etc/dezhurstvo.env && systemctl restart dezhurstvo
+
 ──────────────────────────────────────────────
 ОБСЛУЖИВАНИЕ
  Обновить игру:     заменить файл /opt/dezhurstvo-server/public/index.html новым
