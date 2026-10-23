@@ -385,7 +385,35 @@ kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line);border
 .imgv-res{padding:10px 12px;border-radius:8px;background:rgba(255,255,255,.05);border-left:3px solid var(--line);font-size:14px;line-height:1.45}.imgv-res.ok{border-color:#4cc38a}.imgv-res.bad{border-color:#e5534b}
 #log .imgbtn{display:block;margin:6px 0 2px;min-height:38px;padding:6px 12px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-weight:600;font-size:13px}
 @media (max-width:600px){.imgv-q .opts{grid-template-columns:1fr}}
-.modal.mgwrap{max-width:820px;width:100%;padding:12px;background:#2a221b;border-color:#4a3d31}
+.modal.mgwrap .mg3{display:flex;flex-direction:column;gap:10px;min-height:0;user-select:none;-webkit-user-select:none}
+.mg3-head{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap}.mg3-head h2{margin:2px 0 0;font-size:19px;color:#f6e7c8}.mg3-head .kind{color:#e8a33a}
+.mg3-meta{font-family:var(--f-mono);font-size:12px;color:#d9cfb8}
+.mg3-dots{display:flex;gap:4px}.mg3-dots i{flex:1;height:5px;border-radius:3px;background:#3b3128}.mg3-dots i.d{background:#4cc38a}.mg3-dots i.c{background:#e8a33a}
+.mg3-main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;align-items:start}
+.mg3-main.novis{grid-template-columns:1fr;max-width:760px;margin:0 auto;width:100%}.mg3-stage{background:#120d0a;border:3px solid #1a1410;border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 2px #4a3d31}
+.mg3-stage svg{display:block;width:100%;height:auto}
+.mg3-panel{display:flex;flex-direction:column;gap:9px}
+.mg3-hint{margin:0;padding:9px 12px;background:#efe6d1;color:#2b1f12;border-left:4px solid #b5651d;border-radius:8px;font-size:14px;line-height:1.4}
+.mg3-opts{display:flex;flex-direction:column;gap:8px}
+.mg3-opt{display:flex;gap:10px;align-items:flex-start;text-align:left;padding:11px 12px;min-height:52px;border-radius:10px;border:1px solid #5a4a38;background:#2f2620;color:#f1e7d3;font-size:14.5px;line-height:1.35;cursor:pointer}
+.mg3-opt i{flex:0 0 24px;height:24px;border-radius:6px;background:#5a4a38;color:#f6e7c8;font-style:normal;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:13px}
+.mg3-opt:hover:not(:disabled){border-color:#e8a33a;background:#3a2e25}.mg3-opt:disabled{cursor:default;opacity:.55}
+.mg3-opt.wrong{border-color:#e5534b;background:#3a1f1d;opacity:.6;text-decoration:line-through}.mg3-opt.mg3-ok{border-color:#4cc38a;background:#1f3a2c;opacity:1}
+.mg3-info{display:flex;gap:8px;flex-wrap:wrap}.mg3-info .btn.on{background:#e8a33a;color:#2b1f12}
+.mg3-skill{display:flex;flex-direction:column;gap:10px}
+.mg3-bar{position:relative;height:30px;background:#1b1612;border:2px solid #5a4a38;border-radius:10px;overflow:hidden}
+.mg3-bar b{position:absolute;top:0;bottom:0;background:rgba(76,195,138,.4);border-left:2px solid #4cc38a;border-right:2px solid #4cc38a}
+.mg3-bar i{position:absolute;top:-2px;bottom:-2px;width:6px;margin-left:-3px;background:#f2c14e;border-radius:3px;box-shadow:0 0 8px #f2c14e}
+.mg3-bar span{position:absolute;bottom:3px;font-size:10px;color:#a99b84}.mg3-bar .l{left:6px}.mg3-bar .r{right:6px}
+.mg3-act{min-height:58px;font-size:17px;font-weight:700;background:#e8a33a;color:#2b1f12;border:0;border-bottom:4px solid #9b6a1d;border-radius:12px;cursor:pointer;touch-action:none}
+.mg3-act:active{transform:translateY(2px);border-bottom-width:2px;background:#f2b552}
+.mg3-fb{padding:10px 12px;border-radius:8px;font-size:14px;line-height:1.4}.mg3-fb.ok{background:#1f3a2c;color:#c9f0d9;border-left:4px solid #4cc38a}.mg3-fb.warn{background:#3a321c;color:#f6e7c8;border-left:4px solid #e8a33a}.mg3-fb.bad{background:#3a1f1d;color:#f5d0cd;border-left:4px solid #e5534b}
+.mg3-next{min-height:48px;font-size:15px}
+.mg3-foot{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.mg3-log{flex:1;background:#d8cdb4;color:#2b241c;border-radius:8px;padding:6px 10px;font-size:12.5px}.mg3-log summary{cursor:pointer;font-weight:700}.mg3-log ol{margin:4px 0;padding-left:18px;max-height:20vh;overflow:auto}
+.modal.mgwrap{max-width:1040px}
+@media (max-width:820px){.mg3-main{grid-template-columns:1fr}.mg3-head h2{font-size:16px}.mg3-opt{font-size:14px}.overlay .modal.mgwrap{max-height:100dvh;height:100dvh;border-radius:0;padding:10px 10px calc(10px + env(safe-area-inset-bottom))}.mg3-foot{flex-direction:column;align-items:stretch}.mg3{flex:1}}
+.modal.mgwrap{max-width:1040px;width:100%;padding:14px;background:#2a221b;border-color:#4a3d31}
 .mg2{display:flex;flex-direction:column;gap:8px;min-height:0;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .mg2-top{display:flex;justify-content:space-between;align-items:flex-end;gap:10px}.mg2-top h2{margin:2px 0 0;font-size:17px;color:#f6e7c8}
 .mg2-meta{font-family:var(--f-mono);font-size:12px;color:#d9cfb8;text-align:right}.mg-spo2 b{font-size:16px;color:#5fd3f0}.mg-spo2.low b{color:#ff6b6b;animation:mgblink .8s steps(2) infinite}@keyframes mgblink{50%{opacity:.4}}
@@ -402,7 +430,7 @@ kbd{font-family:var(--f-mono);font-size:11px;border:1px solid var(--line);border
 .mg2-tool.sel{background:linear-gradient(#f2c14e,#e0a535);border-bottom-color:#9b6a1d;box-shadow:0 0 0 3px #fff3c4}
 .mg2-tool.used{opacity:.6}.mg2-tool.used::after{content:'✓';position:absolute;top:3px;right:6px;color:#2f6b45;font-weight:800}
 .mg2-tool:active{transform:translateY(2px);border-bottom-width:2px}
-.mg2-pick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;background:#efe6d1;color:#2b1f12;border-radius:8px;font-size:13px}.mg2-pick button{min-height:44px;min-width:60px;border:0;border-radius:8px;background:#2b241c;color:#f6e7c8;font-family:var(--f-mono);font-weight:700}
+.mg2-stage .tgt{animation:mgtgt 1.1s ease-in-out infinite}@keyframes mgtgt{50%{filter:brightness(1.4) drop-shadow(0 0 6px #f2c14e)}}.mg2-pick button.on{background:#e8a33a;color:#2b1f12}.mg2-pick{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;background:#efe6d1;color:#2b1f12;border-radius:8px;font-size:13px}.mg2-pick button{min-height:44px;min-width:60px;border:0;border-radius:8px;background:#2b241c;color:#f6e7c8;font-family:var(--f-mono);font-weight:700}
 .mg2-foot{margin-top:auto;display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
 .mg2-board{flex:1;background:#d8cdb4;color:#2b241c;border-radius:8px;padding:7px 10px;font-size:12.5px;font-family:var(--f-mono)}.mg2-board summary{cursor:pointer;font-weight:700;min-height:28px;line-height:28px}
 .mg2-board ol{margin:4px 0 2px;padding-left:20px;max-height:22vh;overflow:auto}.mg2-board li{margin:2px 0}.mg2-board .muted{color:#7a6e5c;list-style:none;margin-left:-20px}
@@ -6512,18 +6540,18 @@ const NEWS_LOG=[
   ['Рентген и КТ быстрее','Рентген — около 5 минут, КТ — 8–12 минут.'],
   ['Честные форс-мажоры','Поломка КТ, отключение света или монитора задерживают уже заказанные исследования. Гемолиз «завышенного калия» — только если брали биохимию.'],
   ['ЦВК: выбор доступа','Доступ выбирается касанием точки прямо на схеме.'],
+  ['Мини-игры переделаны','Периферический катетер — с картинкой: выбор вены, пункция и продвижение кнопкой. ЦВК и интубация — пошаговый выбор правильного действия с короткой подсказкой и разбором ошибок. После установки ЦВК — измерение ЦВД и его оценка.'],
   ['Исправления','Проверены все кейсы и механики, найденные ошибки исправлены.'],
  ]},
  {v:'5.2',d:'23 октября 2026',items:[
-  ['Новые мини-игры','Перерисованы и сделаны под телефон и планшет: берите инструмент из лотка и касайтесь места на пациенте. Катетер продвигается удержанием кнопки, ларингоскоп поднимается движением пальца вверх (вниз — рычаг на зубы), игла для ЦВК ведётся под УЗИ.'],
+  ['Новые мини-игры','Перерисованы и сделаны под телефон и планшет: берите инструмент из лотка и касайтесь места на пациенте. Катетер продвигается удержанием кнопки, игла для ЦВК ведётся под УЗИ.'],
   ['ЦВК без подсказок','В наборе есть лишние инструменты, порядок Сельдингера — на вас. Вену от артерии отличают сжатием датчиком и проверкой крови шприцем. Забытый проводник и дилатация артерии — тяжёлые ошибки.'],
-  ['Интубация по-настоящему','Валик, преоксигенация, индукция и миорелаксант, BURP, манжета, капнография, выслушивание обоих лёгких и эпигастрия, глубина трубки. Сатурация падает, пока идёт попытка.'],
   ['Капнограф и FAST','Капнография показывает EtCO₂ сразу. FAST-протокол доступен на СМП.'],
   ['Разговор с пациентом','Сообщения отправляются по Enter и кнопке. Грубость портит доверие и может довести до конфликта, извинение помогает. На вопросы не по делу пациент отвечает как больной человек, а не «справочник».'],
   ['Пациенты без лишней болтовни','В тяжёлых состояниях и отравлениях пациенты больше не «звонят сыну» и не рассуждают о корвалоле — только раздражение или отказ.'],
  ]},
  {v:'5.1',d:'23 октября 2026',items:[
-  ['Мини-игры манипуляций','Периферический катетер, интубация и центральный катетер делаются руками. Вид пациента влияет на сложность. Отключаются в настройках.'],
+  ['Мини-игры манипуляций','Периферический и центральный катетеры ставятся руками. Вид пациента влияет на сложность. Отключаются в настройках.'],
   ['Доверие пациента','При низком доверии пациент отказывается от уколов и процедур, а с тяжёлым характером может сорваться. Кнопки «Представиться», «Объяснить», «Попросить согласия».'],
   ['Диагноз по МКБ-10','Поиск по всему справочнику и дифференциальный ряд: если основной диагноз неверен, а верный есть в ряду, часть баллов засчитается.'],
   ['Профиль и достижения','Звание, прогресс по дисциплинам и достижения. В рейтинге можно открыть профиль другого игрока.'],
@@ -6610,7 +6638,7 @@ function renderPlay(mp){
   <label><input type="checkbox" id="snd-ui" ${SP.ui?'checked':''}> Звуки интерфейса</label>
   <label><input type="checkbox" id="snd-mon" ${SP.mon?'checked':''}> Звук монитора</label>
   ${Store.aiOn?`<label><input type="checkbox" id="opt-ai" ${typeof AIP==='undefined'||AIP.on()?'checked':''}> Живые ответы пациента (нейросеть)</label>`:''}
-  <label><input type="checkbox" id="opt-mg" ${typeof MG==='undefined'||MG.enabled()?'checked':''}> Мини-игры (катетер, интубация, ЦВК) и заключения по снимкам</label>
+  <label><input type="checkbox" id="opt-mg" ${typeof MG==='undefined'||MG.enabled()?'checked':''}> Мини-игры (катетер, ЦВК, интубация) и заключения по снимкам</label>
   ${TGA.W&&TGA.W.HapticFeedback?`<label><input type="checkbox" id="snd-vib" ${SP.vib!==false?'checked':''}> Вибрация</label>`:''}
   <label>Громкость <input type="range" id="snd-vol" min="0" max="1" step="0.05" value="${SP.vol}"></label>
  </div>
@@ -7544,7 +7572,7 @@ const IMG=(()=>{
   const quiz=quizOn()&&!im.ans, note=NOTE[im.key]||'';
   const html=`<div class="imgv"><div class="kind">${esc(im.name)} · ${esc(s.name)}</div>
    <div class="imgv-frame${im.grp==='ecg'?' ecg':''}">${draw(im,s)}</div>
-   <div class="imgv-cap">${im.grp==='ecg'?'ЭКГ построена по данным этого пациента; прокрутите вбок, чтобы увидеть все отведения.':REAL(im.key)?'Реальный обезличенный снимок со сходной картиной (не этого пациента). '+esc(REAL(im.key).cap):'Схема снимка по данным этого пациента.'}${note?' '+esc(note):''}</div>
+   <div class="imgv-cap">${im.grp==='ecg'?'Прокрутите вбок, чтобы увидеть все отведения.':REAL(im.key)?(quiz?'Обезличенный снимок (не этого пациента). Источник — после заключения.':'Реальный обезличенный снимок со сходной картиной (не этого пациента). '+esc(REAL(im.key).cap)):''}${!quiz&&note?' '+esc(note):''}</div>
    ${quiz?`<div class="imgv-q"><b>Ваше заключение?</b><div class="opts">${im.opts.map(k=>`<button type="button" data-ans="${k}">${esc(grp[k])}</button>`).join('')}</div></div>`
     :`<div class="imgv-res ${im.ans===im.key?'ok':im.ans?'bad':''}">${im.ans?(im.ans===im.key?'✓ Верно: ':'✗ Ваше заключение: «'+esc(grp[im.ans])+'». Правильно: ')+esc(grp[im.key])+'<br>':''}<span>${esc(im.full)}</span></div>`}
    <div class="row"><button class="btn" data-imgclose="1">${quiz?'Позже':'Закрыть'}</button></div></div>`;
@@ -7564,427 +7592,355 @@ const IMG=(()=>{
 
 </script>
 <script>
-// Мини-игры манипуляций v2 — в духе Papers, Please: стол, лоток инструментов, планшет.
-// Управление одинаковое для мыши и пальца: коснитесь инструмента в лотке, затем — места на сцене.
-// Удержание и перетаскивание там, где это важно: продвижение катетера, подъём ларингоскопа, игла под УЗИ.
-// Подсказок «что нажать дальше» нет: планшет показывает только то, что уже сделано.
+// Мини-игры манипуляций v3 — пошаговые: на каждом шаге крупная сцена, короткая подсказка «что сейчас нужно»,
+// выбор действия из нескольких вариантов (включая типичные ошибки) и в ключевых местах — простое действие руками:
+// поймать момент или удержать кнопку. Одинаково работает мышью, пальцем и клавиатурой (1–4, пробел, Enter).
+// ЦВД по картине кейса (см вод. ст.): гиповолемия/сепсис — низкое, перегрузка правых отделов — высокое.
+function cvpOf(s){ const id=s.c.id, r=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
+ if(s.cvpVal!=null) return s.cvpVal;
+ let v=['ape','tamponade','pe','pneumo','hyperk'].includes(id)?r(16,22):['gib','sepsis','urosep','dka','trauma','ectopic','burns','anaph','amanita','hypo_t','pregarrest'].includes(id)?(s.f.fluids?r(5,7):r(1,3)):r(7,10);
+ s.cvpVal=v; return v; }
+if(typeof EXAMS!=='undefined'&&!EXAMS.find(x=>x.id==='cvp')) EXAMS.push({id:'cvp',n:'Измерение ЦВД (через ЦВК)',g:'Инструментальное',tm:1,at:'pri orit'});
+if(typeof DEF_EX!=='undefined') DEF_EX.cvp=s=>s.f.cvc?'ЦВД '+cvpOf(s)+' см вод. ст. (норма 5–12).':'Нет центрального венозного катетера — ЦВД не измерить.';
 const MG=(()=>{
  const KEYS={'p:iv':'iv','p:eti':'eti','p:cvc':'cvc'};
  let st=null, raf=0, last=0;
  const $m=()=>document.getElementById('modal');
  const enabled=()=>{ try{ return localStorage.getItem('dj-mg')!=='0'; }catch(e){ return true; } };
  function setEnabled(on){ try{ localStorage.setItem('dj-mg',on?'1':'0'); }catch(e){} }
+ const E=x=>typeof esc==='function'?esc(x):String(x);
  function mix(a,b,t){ const p=x=>[1,3,5].map(i=>parseInt(x.slice(i,i+2),16)); const A=p(a),B=p(b); return '#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join(''); }
+ function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
  function look(s){
   const v=s.v, base=['#f1d0b3','#e3b892','#cf9c74','#b4805a'][s.skinTone||0], pale=v.sbp<88||v.glu<3, cyan=v.spo2<88;
   let skin=pale?mix(base,'#dedfd9',0.4):base; if(cyan) skin=mix(skin,'#9fb3c8',0.25);
   return {skin,shade:mix(skin,'#3a2418',0.22),dark:mix(skin,'#2a160d',0.45),shock:v.sbp<90,obese:s.wt>=100,child:!!s.c.child,old:s.age>=70,
-   edema:!!(s.c.look&&s.c.look.edema),user:s.c.id==='opioid',
-   airway:(s.wt>=100?1:0)+(['trauma','tbi','pneumo'].includes(s.c.id)||(s.c.look&&s.c.look.collar)?1:0)+(['burns','anaph','croup'].includes(s.c.id)?1:0)+(s.c.child?1:0)};
+   edema:!!(s.c.look&&s.c.look.edema),user:s.c.id==='opioid',trauma:['trauma','tbi','pneumo'].includes(s.c.id)||!!(s.c.look&&s.c.look.collar),
+   airway:(s.wt>=100?1:0)+(['trauma','tbi','pneumo'].includes(s.c.id)?1:0)+(['burns','anaph','croup'].includes(s.c.id)?1:0)+(s.c.child?1:0)};
  }
- function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
- // ── Каркас окна
+ // ══════════ Движок шагов ══════════
+ const cur=()=>st.steps[st.i];
+ function nextStep(){ st.fb=null; st.wrong=new Set(); st.sk=null; st.order=null;
+  do{ st.i++; }while(st.i<st.steps.length&&cur().when&&!cur().when(st.d));
+  if(st.i>=st.steps.length){ finish(true); return; }
+  initSkill(); render(); }
+ function initSkill(){ const S=cur(); if(!S||!S.skill) return; const k=typeof S.skill==='function'?S.skill(st.d):S.skill; st.sk={...k,p:0,dir:1,holding:false,done:false}; }
+ function opts(){ const S=cur(); if(!S.opts) return []; if(!st.order){ const o=typeof S.opts==='function'?S.opts(st.d):S.opts; st.order=S.keep?o:shuffle(o); } return st.order; }
+ const viol=(t,w)=>{ if(t&&!st.viol.some(v=>v.t===t)) st.viol.push({t,w:w||2}); };
+ function choose(i){ const o=opts()[i]; if(!o||st.fb&&st.fb.cls!=='bad'||st.wrong.has(i)) return; const S=cur();
+  if(o.ok===false){ st.wrong.add(i); viol(o.vt||o.why,Math.min(o.w||2,6)); st.mist++; st.fb={cls:'bad',text:o.why}; if(o.fx) o.fx(st.d); render(); return; }
+  if(o.fx) o.fx(st.d); if(o.ok==='warn'){ viol(o.vt||o.why,o.w||1); }
+  st.log.push((st.wrong.size?'⚠ ':'✓ ')+S.t+': '+(o.short||o.t));
+  if(o.end){ st.fb={cls:o.ok==='warn'?'warn':'ok',text:o.why||'',end:o.end}; render(); return; }
+  st.fb={cls:o.ok==='warn'?'warn':'ok',text:o.why||'Верно.'}; render(); }
+ function skillHit(){ const k=st.sk; if(!k||k.done) return; const S=cur(), sk=typeof S.skill==='function'?S.skill(st.d):S.skill;
+  const r=sk.on(st.d,k.p); k.done=true;
+  if(r.ok){ st.log.push('✓ '+S.t); st.fb={cls:'ok',text:r.text}; }
+  else { st.mist++; if(r.viol) viol(r.viol,r.w); st.fb={cls:r.go?'warn':'bad',text:r.text,retry:!r.go,back:r.back||0}; if(r.go) st.log.push('⚠ '+S.t); }
+  render(); }
+ function retrySkill(){ const b=st.fb&&st.fb.back||0; st.fb=null; if(b){ st.i=Math.max(0,st.i-b); st.order=null; st.wrong=new Set(); } initSkill(); render(); }
+
+ // ══════════ Вёрстка ══════════
  function layout(){
-  const G=GAMES[st.kind], tools=G.tools();
-  const pick=st.pick==='depth'?`<div class="mg2-pick"><span>Метка на трубке у резцов:</span>${['19','21','23','25','27'].map(v=>`<button type="button" data-pick="${v}">${v} см</button>`).join('')}</div>`:'';
-  return `<div class="mg2" data-kind="${st.kind}">
-   <div class="mg2-top"><div><div class="kind">Манипуляция</div><h2>${G.title}</h2></div><div class="mg2-meta" id="mg-meta">${G.meta()}</div></div>
-   <div class="mg2-stagewrap"><svg class="mg2-stage" id="mg-svg" viewBox="0 0 400 260" preserveAspectRatio="xMidYMid meet">${G.scene()}</svg>
-</div>
-   <div class="mg2-say" id="mg-say">${st.say||G.hint()}</div>${G.hold?G.hold():''}
-   ${pick}<div class="mg2-tray" id="mg-tray">${tools.map(t=>`<button type="button" class="mg2-tool${st.tool===t.id?' sel':''}${t.used?' used':''}" data-tool="${t.id}"><svg viewBox="0 0 40 40" aria-hidden="true">${ICON[t.ic||t.id]||ICON.dot}</svg><span>${t.n}</span></button>`).join('')}</div>
-   <div class="mg2-foot"><details class="mg2-board"${st.boardOpen?' open':''}><summary>Планшет · сделано: ${st.log.length}</summary><ol>${st.log.map(x=>`<li>${x}</li>`).join('')||'<li class="muted">пока ничего</li>'}</ol></details>
-    <button type="button" class="btn" data-mgskip="1">${st.skipLabel}</button></div></div>`;
+  const G=GAMES[st.kind], S=cur(), D=st.d, total=st.steps.filter(x=>!x.when||x.when(D)).length, n=st.steps.slice(0,st.i+1).filter(x=>!x.when||x.when(D)).length;
+  const fb=st.fb, done=fb&&fb.cls!=='bad';
+  let body='';
+  if(S.info&&!done) body+=`<div class="mg3-info">${S.info.map((x,i)=>`<button type="button" class="btn sm${x.on&&x.on(D)?' on':''}" data-info="${i}">${E(x.t)}</button>`).join('')}</div>`;
+  if(S.opts){ body+=`<div class="mg3-opts">${opts().map((o,i)=>`<button type="button" class="mg3-opt${st.wrong.has(i)?' wrong':''}${done&&o.ok!==false&&st.picked===i?' mg3-ok':''}" data-opt="${i}" ${st.wrong.has(i)||done?'disabled':''}><i>${i+1}</i><span>${E(o.t)}</span></button>`).join('')}</div>`; }
+  if(S.skill&&st.sk){ const k=st.sk;
+   body+=`<div class="mg3-skill"><div class="mg3-bar" id="mg-bar"><b style="left:${k.zone[0]*100}%;width:${(k.zone[1]-k.zone[0])*100}%"></b><i id="mg-ptr" style="left:${k.p*100}%"></i>${k.labels?`<span class="l">${E(k.labels[0])}</span><span class="r">${E(k.labels[1])}</span>`:''}</div>
+    ${fb?'':`<button type="button" class="mg3-act" id="mg-act" data-act="1">${E(k.btn)}</button>`}</div>`; }
+  if(fb) body+=`<div class="mg3-fb ${fb.cls}">${fb.cls==='ok'?'✓ ':fb.cls==='warn'?'⚠ ':'✗ '}${E(fb.text)}</div>`;
+  if(fb&&fb.retry) body+=`<button type="button" class="btn pri mg3-next" data-retry="1">Попробовать ещё раз</button>`;
+  else if(done) body+=`<button type="button" class="btn pri mg3-next" data-next="1">${fb.end?'Завершить':st.i>=st.steps.length-1?'Готово':'Дальше →'}</button>`;
+  return `<div class="mg3" data-kind="${st.kind}">
+   <div class="mg3-head"><div><div class="kind">${E(G.title)} · шаг ${n} из ${total}</div><h2>${E(S.t)}</h2></div><div class="mg3-meta" id="mg-meta">${G.meta(D)}</div></div>
+   <div class="mg3-dots">${Array.from({length:total},(_,j)=>`<i class="${j<n-1?'d':j===n-1?'c':''}"></i>`).join('')}</div>
+   <div class="mg3-main${G.novis?' novis':''}">${G.novis?'':`<div class="mg3-stage"><svg id="mg-svg" viewBox="0 0 400 240" preserveAspectRatio="xMidYMid meet">${G.scene(S.sc,D,st)}</svg></div>`}
+    <div class="mg3-panel"><p class="mg3-hint">${E(typeof S.h==='function'?S.h(D):S.h)}</p>${body}</div></div>
+   <div class="mg3-foot"><details class="mg3-log"><summary>Сделано: ${st.log.length}</summary><ol>${st.log.map(x=>`<li>${E(x)}</li>`).join('')||'<li class="muted">пока ничего</li>'}</ol></details>
+    <button type="button" class="btn" data-mgskip="1">${E(st.skipLabel)}</button></div></div>`;
  }
- function render(){ const m=$m(); const tr=m.querySelector('#mg-tray'), sl=tr?tr.scrollLeft:0; const bd=m.querySelector('.mg2-board'); if(bd) st.boardOpen=bd.open;
-  m.innerHTML=layout(); const tr2=m.querySelector('#mg-tray'); if(tr2) tr2.scrollLeft=sl; bindStage(); }
- function refresh(){ if(!st) return; const G=GAMES[st.kind]; const svg=document.getElementById('mg-svg'); if(svg) svg.innerHTML=G.scene();
-  const sy=document.getElementById('mg-say'); if(sy) sy.innerHTML=st.say||G.hint();
-  const meta=document.getElementById('mg-meta'); if(meta) meta.innerHTML=G.meta(); }
- const say=t=>{ st.say=t; };
- const did=t=>{ st.log.push(t); };
- const viol=(t,w)=>{ if(!st.viol.some(v=>v.t===t)) st.viol.push({t,w}); };
- function toSvg(e){ const svg=document.getElementById('mg-svg'); const pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY; const m=svg.getScreenCTM(); return m?pt.matrixTransform(m.inverse()):{x:0,y:0}; }
- function bindStage(){
-  const svg=document.getElementById('mg-svg'); if(!svg) return; let down=null;
-  svg.onpointerdown=e=>{ e.preventDefault(); try{ svg.setPointerCapture(e.pointerId); }catch(_){} const p=toSvg(e); down={x:p.x,y:p.y}; const G=GAMES[st.kind]; if(G.drag) G.drag('start',p,down); };
-  svg.onpointermove=e=>{ if(!down||!st) return; const p=toSvg(e); const G=GAMES[st.kind]; if(G.drag) G.drag('move',p,down); };
-  svg.onpointerup=e=>{ if(!down||!st) return; const p=toSvg(e), G=GAMES[st.kind], moved=Math.hypot(p.x-down.x,p.y-down.y);
-   const el=document.elementFromPoint(e.clientX,e.clientY), z0=el&&el.closest&&el.closest('[data-z]'), z=z0?z0.dataset.z:null;
-   down=null; st.full=false;
-   if(G.drag) G.drag('end',p,{moved});
-   if(st&&moved<10) G.tap(z,p);
-   if(st){ if(st.full) render(); else refresh(); st.full=false; } };
-  svg.onpointercancel=()=>{ down=null; };
+ function render(){ if(!st) return; $m().innerHTML=layout(); const b=$m().querySelector('.mg3-next,.mg3-act'); if(b&&!('ontouchstart' in window)) try{ b.focus({preventScroll:true}); }catch(e){} }
+ function loop(t){ if(!st) return; const dt=Math.min(0.05,(t-(last||t))/1000); last=t; const k=st.sk;
+  if(k&&!k.done&&!st.fb){
+   if(k.type==='timing'){ k.p+=k.dir*k.speed*dt; if(k.p>1){k.p=1;k.dir=-1;} if(k.p<0){k.p=0;k.dir=1;} }
+   if(k.type==='hold'&&k.holding){ k.p=Math.min(1,k.p+k.speed*dt); if(k.p>=1) skillHit(); }
+   const ptr=document.getElementById('mg-ptr'); if(ptr) ptr.style.left=(k.p*100)+'%';
+   const G=GAMES[st.kind]; if(G.live) G.live(st.d,k.p);
+  }
+  if(GAMES[st.kind].tick) GAMES[st.kind].tick(st.d,dt);
+  raf=requestAnimationFrame(loop); }
+ function finish(ok){ cancelAnimationFrame(raf); const G=GAMES[st.kind]; const r=G.result(st.d,ok); r.viol=st.viol; r.log=st.log; const cb=st.done; st=null; document.removeEventListener('keydown',onKey,true); document.removeEventListener('keyup',onKeyUp,true); closeModal(); cb(r); }
+ function onKey(e){ if(!st) return; const k=e.key;
+  if(/^[1-6]$/.test(k)&&cur().opts&&!(st.fb&&st.fb.cls!=='bad')){ e.preventDefault(); st.picked=+k-1; choose(+k-1); return; }
+  if(k===' '&&st.sk&&!st.sk.done&&!st.fb){ e.preventDefault(); if(st.sk.type==='hold'){ if(!e.repeat) st.sk.holding=true; } else skillHit(); return; }
+  if(k==='Enter'&&st.fb){ e.preventDefault(); if(st.fb.retry) retrySkill(); else if(st.fb.cls!=='bad'){ if(st.fb.end) finish(st.fb.end==='ok'); else nextStep(); } } }
+ function onKeyUp(e){ if(st&&e.key===' '&&st.sk&&st.sk.type==='hold'&&st.sk.holding){ st.sk.holding=false; skillHit(); } }
+
+ function open(kind,s,done){
+  const G=GAMES[kind], d=G.init(s);
+  st={kind,d,steps:G.steps(d,s),i:-1,log:[],viol:[],mist:0,fb:null,wrong:new Set(),done,skipLabel:kind==='eti'?'Позвать анестезиолога':kind==='iv'?'Поручить медсестре':'Позвать реаниматолога'};
+  openModal('','mgwrap'); const m=$m();
+  m.onclick=e=>{ if(!st) return;
+   if(e.target.closest('[data-mgskip]')){ cancelAnimationFrame(raf); document.removeEventListener('keydown',onKey,true); document.removeEventListener('keyup',onKeyUp,true); const cb=st.done; st=null; closeModal(); cb({skip:true}); return; }
+   const o=e.target.closest('[data-opt]'); if(o&&!o.disabled){ st.picked=+o.dataset.opt; try{ Sfx.tab&&Sfx.tab(); }catch(_){} choose(+o.dataset.opt); return; }
+   const inf=e.target.closest('[data-info]'); if(inf){ const x=cur().info[+inf.dataset.info]; x.fx(st.d); render(); return; }
+   if(e.target.closest('[data-act]')&&st.sk&&st.sk.type==='timing'){ skillHit(); return; }
+   if(e.target.closest('[data-retry]')){ retrySkill(); return; }
+   if(e.target.closest('[data-next]')){ if(st.fb&&st.fb.end) finish(st.fb.end==='ok'); else nextStep(); return; } };
+  m.onpointerdown=e=>{ if(st&&st.sk&&st.sk.type==='hold'&&e.target.closest('[data-act]')){ e.preventDefault(); st.sk.holding=true; } };
+  const up=()=>{ if(st&&st.sk&&st.sk.type==='hold'&&st.sk.holding){ st.sk.holding=false; skillHit(); } };
+  m.onpointerup=up; m.onpointercancel=up; m.oncontextmenu=e=>{ if(e.target.closest('.mg3')) e.preventDefault(); };
+  document.addEventListener('keydown',onKey,true); document.addEventListener('keyup',onKeyUp,true);
+  nextStep(); last=0; raf=requestAnimationFrame(loop);
  }
- function loop(t){ if(!st) return; const dt=Math.min(0.05,(t-(last||t))/1000); last=t; const G=GAMES[st.kind]; if(G.tick) G.tick(dt); raf=requestAnimationFrame(loop); }
- function finish(ok){ cancelAnimationFrame(raf); const G=GAMES[st.kind]; const r=G.result(ok); r.viol=st.viol; r.log=st.log; const cb=st.done; st=null; closeModal(); cb(r); }
 
- // ── Иконки инструментов
- const S='stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"';
- const ICON={
-  dot:`<circle cx="20" cy="20" r="6" fill="currentColor"/>`,
-  tq:`<path ${S} d="M5 15h30v10H5z"/><path ${S} d="M25 15v10M29 18v4"/>`,
-  palp:`<path ${S} d="M14 30V12a3 3 0 0 1 6 0v8M20 18a3 3 0 0 1 6 0v6M26 22a3 3 0 0 1 6 0v4c0 6-4 10-10 10h-2c-4 0-6-2-8-5l-4-6a3 3 0 0 1 5-3l3 3"/>`,
-  anti:`<path ${S} d="M14 6h12v6l3 4v18H11V16l3-4z"/><path ${S} d="M15 23h10M20 18v10"/>`,
-  cath:`<path ${S} d="M5 35l17-17"/><path ${S} d="M20 14l6 6 9-9-6-6z"/>`,
-  syr:`<path ${S} d="M7 33l5-5M12 28l14-14 4 4-14 14zM22 10l8 8M30 4l6 6M33 7l-5 5"/>`,
-  tape:`<rect x="5" y="14" width="30" height="12" rx="3" ${S}/><path ${S} d="M13 14v12M27 14v12"/>`,
-  pillow:`<path ${S} d="M5 25c0-8 6-11 15-11s15 3 15 11-6 6-15 6-15 2-15-6z"/>`,
-  bvm:`<ellipse cx="13" cy="20" rx="8" ry="11" ${S}/><path ${S} d="M21 20h5l8-7v14z"/>`,
-  drug:`<path ${S} d="M7 33l5-5M12 28l14-14 4 4-14 14zM22 10l8 8"/><circle cx="32" cy="8" r="3" fill="currentColor"/>`,
-  scope:`<path ${S} d="M9 35V10a4 4 0 0 1 8 0v3h17"/><path ${S} d="M34 13c-2 7-6 11-13 13"/>`,
-  burp:`<path ${S} d="M20 5v13M14 12l6 6 6-6"/><circle cx="20" cy="29" r="6" ${S}/>`,
-  tube:`<path ${S} d="M7 7c15 0 21 7 21 17v11"/><ellipse cx="28" cy="29" rx="5" ry="3" ${S}/>`,
-  cuff:`<path ${S} d="M5 27l14-14M17 11l8 8"/><circle cx="31" cy="25" r="5" ${S}/>`,
-  capno:`<rect x="4" y="8" width="32" height="24" rx="3" ${S}/><path ${S} d="M8 26h4v-10h7v10h3v-10h7v10h3"/>`,
-  steth:`<path ${S} d="M10 5v11a8 8 0 0 0 16 0V5"/><path ${S} d="M18 24v4a6 6 0 0 0 12 0v-3"/><circle cx="30" cy="22" r="3" ${S}/>`,
-  ruler:`<rect x="4" y="15" width="32" height="10" rx="2" ${S}/><path ${S} d="M10 15v4M15 15v6M20 15v4M25 15v6M30 15v4"/>`,
-  pull:`<path ${S} d="M20 35V8M12 16l8-8 8 8"/>`,
-  vent:`<rect x="5" y="7" width="30" height="20" rx="3" ${S}/><path ${S} d="M12 33h16M20 27v6M9 18h5l3-6 4 11 3-5h7"/>`,
-  marker:`<path ${S} d="M8 32l4-12 16-14 6 6-14 16z"/><path ${S} d="M6 36h10"/>`,
-  tilt:`<path ${S} d="M4 27l32-11"/><path ${S} d="M10 31v-6M30 23v6"/><circle cx="11" cy="18" r="3" ${S}/>`,
-  drape:`<rect x="5" y="5" width="30" height="30" rx="2" ${S}/><rect x="15" y="15" width="10" height="10" ${S}/>`,
-  us:`<path ${S} d="M13 5h14v12l-3 7h-8l-3-7z"/><path ${S} d="M20 24v11"/>`,
-  sleeve:`<path ${S} d="M12 5h16v30H12z"/><path ${S} d="M12 11h16M16 18l8 8M24 18l-8 8"/>`,
-  lido:`<path ${S} d="M7 33l5-5M12 28l14-14 4 4-14 14zM22 10l8 8"/><text x="27" y="36" font-size="10" font-weight="700" fill="currentColor">L</text>`,
-  needle:`<path ${S} d="M4 36l18-18"/><path ${S} d="M20 14l6 6 9-9-6-6z"/><path ${S} d="M29 8l3 3"/>`,
-  wire:`<path ${S} d="M4 34c10-4 6-14 16-16s8-10 14-12"/><path ${S} d="M34 6a3 3 0 1 1 1 5"/>`,
-  scalpel:`<path ${S} d="M5 35l14-14"/><path ${S} d="M19 21c6-8 10-12 16-15-2 7-6 11-12 17z"/>`,
-  dil:`<path ${S} d="M5 35l20-20"/><path ${S} d="M23 9l8 8-4 4-8-8z"/>`,
-  cvc:`<path ${S} d="M4 36l16-16"/><path ${S} d="M20 20l5-13M20 20l12-5M20 20l13 2"/>`,
-  wireoff:`<path ${S} d="M5 31c8-2 6-10 14-12"/><path ${S} d="M23 9l11 11M34 9L23 20"/>`,
-  suture:`<path ${S} d="M5 30c6-14 24-14 30 0"/><path ${S} d="M13 22l2 4M20 19v5M27 22l-2 4"/>`,
-  xray:`<rect x="5" y="5" width="30" height="30" rx="2" ${S}/><path ${S} d="M20 9v22M14 13c-4 4-4 13 0 17M26 13c4 4 4 13 0 17"/>`,
-  compress:`<path ${S} d="M20 4v12M14 10l6 6 6-6"/><path ${S} d="M6 24h28M10 31h20"/>`,
-  doppler:`<circle cx="14" cy="20" r="7" ${S}/><circle cx="27" cy="20" r="7" ${S}/><path ${S} d="M11 20h6M27 17v6"/>`,
-  out:`<path ${S} d="M20 5v22M12 19l8 8 8-8"/><path ${S} d="M8 35h24"/>`,
- };
- const TABLE=`<defs><pattern id="mgwood" width="60" height="30" patternUnits="userSpaceOnUse"><rect width="60" height="30" fill="#5a4632"/><path d="M0 9h60M0 22c20-3 40 3 60 0" stroke="#4d3c2b" stroke-width="2" fill="none"/></pattern>
-  <filter id="mgsh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".35"/></filter></defs>`;
+ // ══════════ Общие элементы рисунков ══════════
+ const DEFS=`<defs><pattern id="mgwood" width="60" height="30" patternUnits="userSpaceOnUse"><rect width="60" height="30" fill="#5a4632"/><path d="M0 9h60M0 22c20-3 40 3 60 0" stroke="#4d3c2b" stroke-width="2" fill="none"/></pattern>
+  <filter id="mgsh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity=".35"/></filter>
+  <pattern id="mgspk" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#202020"/><circle cx="2" cy="3" r="1.1" fill="#444"/><circle cx="6" cy="7" r="1.3" fill="#343434"/><circle cx="7" cy="2" r=".8" fill="#555"/></pattern></defs>`;
+ const tag=(x,y,t,c)=>`<g><rect x="${x-3}" y="${y-13}" width="${t.length*6.6+8}" height="18" rx="5" fill="${c||'#efe6d1'}" opacity=".95"/><text x="${x+1}" y="${y}" font-size="11" font-weight="700" fill="#2b1f12">${t}</text></g>`;
 
- // ════════ Периферический катетер ════════
- const GAUGES=[['14G','#e8742e'],['16G','#9aa0a6'],['18G','#4caf50'],['20G','#e85d8a'],['22G','#3d8bd9'],['24G','#f2d24b']];
+ // ══════════ Периферический катетер ══════════
+ const GAUGES=[['14G','#e8742e','оранжевый'],['16G','#9aa0a6','серый'],['18G','#4caf50','зелёный'],['20G','#e85d8a','розовый'],['22G','#3d8bd9','синий'],['24G','#f2d24b','жёлтый']];
  function gaugeGoal(s){
   if(s.c.child) return {ok:['22G','24G'],fine:['20G'],why:'Ребёнку — 22–24G.'};
-  if(['trauma','gib','ectopic','burns','birth','pregarrest','anaph','sepsis','dka','pe'].includes(s.c.id)) return {ok:['14G','16G'],fine:['18G'],why:'Кровопотеря или массивная инфузия — 14–16G (минимум 18G).'};
+  if(['trauma','gib','ectopic','burns','birth','pregarrest','anaph','sepsis','dka','pe','urosep'].includes(s.c.id)) return {ok:['14G','16G'],fine:['18G'],why:'Кровопотеря, шок или массивная инфузия — катетер большого диаметра: 14–16G (минимум 18G).'};
   if(s.age>=75) return {ok:['20G','22G'],fine:['18G'],why:'Хрупкие вены пожилого — 20–22G.'};
-  return {ok:['18G','20G'],fine:['16G','22G'],why:'Стандартная инфузия — 18–20G.'};
+  return {ok:['18G','20G'],fine:['16G','22G'],why:'Обычная инфузия и препараты — 18–20G.'};
  }
  const IV={
   title:'Периферический венозный катетер',
-  init(s){ const L=look(s);
-   const veins=[{id:'a',d:'M60 128 C140 116 230 120 352 108',q:L.obese||L.edema?1:3,feel:'упругая, прямая, хорошо наполняется',y:120},
-    {id:'b',d:'M60 156 C150 166 240 148 352 160',q:L.old||L.user?1:2,feel:'извитая, «катается» под пальцем',y:156},
-    {id:'c',d:'M150 104 C180 116 214 130 250 150',q:2,feel:'у локтевого сгиба: крупная, но рядом сустав — катетер будет перегибаться',y:130,joint:true}];
-   if(L.user){ veins[0].q=1; veins[0].feel='плотная, склерозированная — «тяж»'; }
-   if(L.shock) veins.forEach(v=>v.feel+=', спавшаяся');
-   return {L,G:gaugeGoal(s),veins,tq:false,palp:{},anti:false,gauge:null,vein:null,phase:'prep',ang:8,dir:1,adv:0,holding:false,att:0,tqOff:false,flush:false,tape:false,hema:[]};
+  init(s){ const L=look(s), G=gaugeGoal(s), big=G.ok[0]==='14G';
+   const A={id:'A',n:'А — предплечье',q:L.obese||L.edema||L.user?1:3,feel:L.user?'плотный тяж, склерозирована':L.obese||L.edema?'почти не видна и едва прощупывается':'прямая, упругая, хорошо наполняется'};
+   const B={id:'B',n:'Б — тыл кисти',q:1,feel:L.old?'тонкая, извитая, «катается», хрупкая':'тонкая, извитая'};
+   const C={id:'C',n:'В — локтевой сгиб',q:2,feel:'крупная, хорошо видна, рядом сустав'};
+   return {s,L,G,big,veins:[A,B,C],vein:null,tq:false,anti:false,gauge:null,att:0,hema:[],cath:false,flushed:false,tape:false,ang:20};
   },
-  tools(){ const D=st.d, on=D.tq&&!D.tqOff;
-   const T=[{id:'tq',n:on?'Снять жгут':'Жгут',used:on},{id:'palp',n:'Пальпация'},{id:'anti',n:'Антисептик',used:D.anti}];
-   GAUGES.forEach(([g])=>T.push({id:'g'+g,n:'Катетер '+g,ic:'cath',used:D.gauge===g&&D.phase!=='prep'}));
-   T.push({id:'flush',n:'Шприц NaCl',ic:'syr',used:D.flush},{id:'tape',n:'Повязка',used:D.tape}); return T; },
-  meta(){ const D=st.d; return `Попыток: ${D.att}${D.L.shock?' · гипотония':''}${D.L.obese?' · ожирение':''}${D.L.child?' · ребёнок':''}${D.L.old?' · пожилой':''}`; },
-  hint(){ const D=st.d; if(D.phase==='aim') return 'Игла качается — коснитесь сцены, когда стрелка в зелёном секторе (15–30°).'; if(D.phase==='flash') return 'Обратный ток крови в канюле! Удерживайте кнопку и отпустите в зелёной зоне.';
-   if(st.tool==='palp') return 'Коснитесь вены, чтобы прощупать её.'; if(st.tool&&st.tool[0]==='g') return 'Коснитесь вены, которую будете пунктировать.'; return st.tool?'Коснитесь руки там, где нужен инструмент.':'Выберите инструмент в лотке.'; },
-  scene(){ const D=st.d, L=D.L, w=L.child?52:L.obese?94:72, y0=135-w/2, k=w/72, vy=y=>135+(y-135)*k;
-   const vis=v=>{ let o=D.tq&&!D.tqOff?0.8:0.32; if(L.shock) o*=0.45; if(v.q===1) o*=0.6; if(L.obese) o*=0.55; if(D.palp[v.id]) o=Math.max(o,0.35); return Math.max(0.1,Math.min(0.85,o)); };
-   let g=TABLE+`<defs><linearGradient id="mgarm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${L.shade}"/><stop offset=".3" stop-color="${L.skin}"/><stop offset=".72" stop-color="${L.skin}"/><stop offset="1" stop-color="${L.dark}"/></linearGradient></defs>
-    <rect width="400" height="260" fill="url(#mgwood)"/><rect x="14" y="56" width="372" height="160" rx="12" fill="#cfe0e4" opacity=".22"/><rect x="14" y="200" width="372" height="16" fill="#000" opacity=".12"/>
-    <g filter="url(#mgsh)"><path d="M26 ${y0+8} Q34 ${y0} 62 ${y0+2} L352 ${y0-6} Q388 ${y0} 388 135 Q388 ${y0+w+6} 352 ${y0+w+5} L62 ${y0+w-2} Q34 ${y0+w} 26 ${y0+w-8} Z" fill="url(#mgarm)" data-z="arm"/>
-    <path d="M4 ${135-w*0.42} Q-2 135 4 ${135+w*0.42} L34 ${135+w*0.5} Q44 135 34 ${135-w*0.5} Z" fill="${L.skin}" stroke="${L.dark}" stroke-opacity=".3" data-z="arm"/>
-    ${[0.18,0.38,0.6].map(f=>`<path d="M6 ${135-w*0.42+f*w*0.84} h-6" stroke="${L.dark}" stroke-opacity=".35" stroke-width="1.5"/>`).join('')}</g>
-    <path d="M196 ${y0+8} q7 ${w/2-8} 0 ${w-16}" stroke="${L.dark}" stroke-width="2" fill="none" opacity=".35" pointer-events="none"/>
-    <text x="196" y="${y0-6}" font-size="9" fill="#f6e7c8" text-anchor="middle" opacity=".7">локтевой сгиб</text>`;
-   if(D.anti) g+=`<ellipse cx="${D.antiX}" cy="135" rx="56" ry="${w/2-3}" fill="#b5651d" opacity=".22" pointer-events="none"/>`;
-   for(const h of D.hema) g+=`<ellipse cx="${h.x}" cy="${h.y}" rx="20" ry="9" fill="#5c2a6b" opacity=".45" pointer-events="none"/>`;
-   g+=`<g transform="translate(0,135) scale(1,${k}) translate(0,-135)">`;
-   for(const v of D.veins) g+=`<path d="${v.d}" stroke="#2f4f9e" stroke-width="${L.child?5:7}" vector-effect="non-scaling-stroke" stroke-linecap="round" fill="none" opacity="${vis(v)}"/><path d="${v.d}" stroke="#000" stroke-opacity="0.001" stroke-width="26" fill="none" data-z="v${v.id}"/>`;
+  meta(D){ return `Попыток: ${D.att}${D.L.shock?' · гипотония':''}${D.L.obese?' · ожирение':''}${D.L.child?' · ребёнок':''}`; },
+  steps(D){ const L=D.L, G=D.G;
+   const best=D.veins.filter(v=>v.id!=='C'&&v.q>=2).length?'A':'C';
+   return [
+    {t:'Выбор вены',sc:'arm',h:'Выберите вену для катетера. Учитывайте, что нужно ввести и в каком состоянии пациент.',keep:true,
+     opts:D.veins.map(v=>{ const ok=v.id===best||(v.id==='C'&&D.big)?true:v.id==='B'?false:'warn';
+      return {t:v.n+': '+v.feel,ok,short:v.n,fx:d=>{ d.vein=v.id; },w:v.id==='B'?1:1,
+       why:ok===true?(v.id==='C'?'Для быстрой инфузии и большого калибра локтевая вена подходит хорошо.':'Прямая упругая вена предплечья — лучший выбор: катетер не перегибается в суставе.')
+        :v.id==='B'?'Вены кисти тонкие и хрупкие: большой калибр не встанет, а боль и экстравазация вероятнее. Выберите другую.':(v.id==='C'?'Можно, но в локтевом сгибе катетер перегибается при сгибании руки — если есть хорошая вена на предплечье, лучше она.':'Вена плохая — попытка, скорее всего, не удастся.')}; })},
+    {t:'Жгут',sc:'arm',h:'Наполните вену перед пункцией.',opts:[
+     {t:'Наложить жгут на 10–15 см выше места пункции, пульс на запястье сохранён',ok:true,short:'жгут выше пункции',fx:d=>{d.tq=true;},why:'Венозный застой без пережатия артерий — вена наполнилась.'},
+     {t:'Наложить жгут туго, чтобы исчез пульс на запястье',ok:false,w:1,why:'Пережатие артерии: вена не наполняется, а рука ишемизируется. Жгут — только венозный.'},
+     {t:'Наложить жгут ниже места пункции',ok:false,w:1,why:'Ниже места пункции жгут вену не наполнит — кровь собирается выше препятствия.'},
+     {t:'Жгут не нужен — вену и так видно',ok:false,w:1,why:'Без жгута вена спадается под иглой, особенно при гипотонии.'}]},
+    {t:'Обработка кожи',sc:'arm',h:'Подготовьте кожу к пункции.',opts:[
+     {t:'Антисептик круговыми движениями, дать полностью высохнуть, место пункции больше не трогать',ok:true,short:'антисептик, высохнуть',fx:d=>{d.anti=true;},why:'Антисептик действует, пока высыхает; пальпация после обработки снова загрязняет кожу.'},
+     {t:'Протереть и сразу колоть, пока влажно',ok:false,w:1,why:'Мокрый антисептик не успел подействовать и щиплет при пункции.'},
+     {t:'Обработать, затем ещё раз прощупать вену пальцем',ok:false,w:2,why:'Палец после обработки — снова нестерильное место пункции. Если нужно прощупать — обработайте повторно.'},
+     {t:'Не обрабатывать — катетер стерильный',ok:false,w:2,why:'Флора кожи заносится иглой в кровь — риск флебита и катетер-ассоциированной инфекции.'}]},
+    {t:'Калибр катетера',sc:'arm',h:'Выберите размер катетера для этого пациента.',keep:true,
+     opts:GAUGES.map(([g,c,col])=>({t:g+' ('+col+')',short:g,ok:G.ok.includes(g)?true:G.fine.includes(g)?'warn':false,w:G.ok[0]==='14G'?3:2,fx:d=>{d.gauge=g;},
+      why:G.ok.includes(g)?G.why:G.fine.includes(g)?'Допустимо, но не оптимально. '+G.why:'Не подходит. '+G.why}))},
+    {t:'Пункция вены',sc:'needle',h:'Нажмите «Колоть», когда игла под углом 15–30° (зелёная зона).',
+     skill:d=>{ const v=d.veins.find(x=>x.id===d.vein)||d.veins[0]; const hard=(v.q===1?1:0)+(d.L.shock?1:0)+(d.L.obese?1:0)+(d.L.child?1:0);
+      return {type:'timing',btn:'Колоть',speed:0.55+hard*0.25,zone:[0.27,0.55],labels:['0°','55°'],
+       on:(d,p)=>{ const ang=p*55; d.ang=ang; d.att++; const okA=ang>=15&&ang<=30; const chance=okA?(v.q===3?0.95:v.q===2?0.85:0.55)*(d.tq?1:0.6):0;
+        if(Math.random()<chance) return {ok:true,text:'Обратный ток крови в канюле — игла в вене.'};
+        d.hema.push(v.id); return {ok:false,viol:d.att>=2?'Повторные пункции ('+d.att+').':null,w:1,text:!okA?(ang<15?'Слишком полого — игла прошла над веной.':'Слишком круто — прокол задней стенки, гематома.'):'Вена «ушла» из-под иглы, небольшая гематома.'}; }}; }},
+    {t:'Продвижение катетера',sc:'needle',h:'Удерживайте кнопку и отпустите, когда метка в зелёной зоне.',
+     skill:{type:'hold',btn:'Удерживайте — продвинуть',speed:0.45,zone:[0.55,0.8],labels:['игла','катетер в вене'],
+      on:(d,p)=>{ if(p>=0.55&&p<=0.8){ d.cath=true; return {ok:true,text:'Катетер полностью в вене, игла извлечена.'}; }
+       d.att++; d.hema.push(d.vein); return {ok:false,w:1,viol:'Повторные пункции.',text:p<0.55?'Катетер не дошёл и выскользнул из вены. Пунктируйте снова.':'Слишком далеко — прокол задней стенки, гематома. Пунктируйте снова.',back:1}; }}},
+    {t:'После установки',sc:'arm',h:'Что делаете сразу после того, как катетер в вене?',opts:[
+     {t:'Снять жгут, затем промыть катетер 0,9% NaCl и проверить, нет ли отёка',ok:true,short:'снять жгут → промыть',fx:d=>{d.tq=false;d.flushed=true;},why:'Сначала снимают жгут — иначе промывание идёт против застоя и может разорвать вену.'},
+     {t:'Промыть катетер, жгут снять потом',ok:false,w:3,why:'Промывание при наложенном жгуте — высокое давление в вене, разрыв и экстравазация.'},
+     {t:'Снять жгут и сразу подключить капельницу без проверки',ok:'warn',w:1,fx:d=>{d.tq=false;},why:'Работает, но проходимость и положение катетера не проверены.'},
+     {t:'Оставить жгут до конца инфузии',ok:false,w:4,why:'Жгут на руке — ишемия и венозный тромбоз.'}]},
+    {t:'Фиксация',sc:'arm',h:'Закрепите катетер.',opts:[
+     {t:'Прозрачная стерильная повязка, отметить дату установки',ok:true,short:'прозрачная повязка',fx:d=>{d.tape=true;},why:'Место пункции видно, катетер зафиксирован.'},
+     {t:'Лейкопластырь крест-накрест прямо через место пункции',ok:'warn',w:1,fx:d=>{d.tape=true;},why:'Держит, но место пункции не видно и не стерильно.'},
+     {t:'Туго забинтовать предплечье',ok:false,w:1,why:'Тугая повязка пережимает вену и скрывает инфильтрацию.'}]},
+   ]; },
+  scene(sc,D,S){ const L=D.L, w=L.child?54:L.obese?92:72, y0=130-w/2, k=w/72, vy=y=>130+(y-130)*k;
+   const vpos={A:{d:'M60 124 C140 112 230 116 352 104',x:205,y:116},B:{d:'M28 140 C40 150 54 144 70 152',x:44,y:146},C:{d:'M150 98 C180 112 214 124 250 146',x:196,y:122}};
+   if(sc==='needle'){ const v=vpos[D.vein]||vpos.A, ang=(S.sk?S.sk.p*55:D.ang)*Math.PI/180, col=(GAUGES.find(x=>x[0]===D.gauge)||[0,'#4caf50'])[1];
+    const adv=S.sk&&S.sk.type==='hold'?S.sk.p:0, tx=200, ty=150, len=120, bx=tx-len*Math.cos(ang), by=ty-len*Math.sin(ang);
+    return DEFS+`<rect width="400" height="240" fill="#1e1712"/>
+     <rect x="0" y="96" width="400" height="20" fill="${L.skin}"/><rect x="0" y="116" width="400" height="26" fill="${mix(L.skin,'#f6e3c6',0.5)}"/><rect x="0" y="142" width="400" height="98" fill="${mix(L.skin,'#c0646a',0.45)}"/>
+     <ellipse cx="200" cy="158" rx="${D.tq?46:30}" ry="${D.tq?16:9}" fill="#3a4f9e" stroke="#25346e" stroke-width="2"/><text x="250" y="190" font-size="11" fill="#f6e7c8">вена ${D.tq?'наполнена':'спавшаяся'}</text>
+     <text x="8" y="110" font-size="10" fill="#2b1f12">кожа</text><text x="8" y="134" font-size="10" fill="#2b1f12">клетчатка</text>
+     <g id="mg-needle"><line x1="${bx}" y1="${by}" x2="${tx}" y2="${ty}" stroke="#eef3f5" stroke-width="3"/>
+      <line x1="${bx-34*Math.cos(ang)}" y1="${by-34*Math.sin(ang)}" x2="${bx}" y2="${by}" stroke="${col}" stroke-width="14" stroke-linecap="round"/>
+      ${D.att&&!S.fb?'':''}${S.fb&&S.fb.cls==='ok'&&S.sk&&S.sk.type==='timing'?`<circle cx="${bx-6*Math.cos(ang)}" cy="${by-6*Math.sin(ang)}" r="5" fill="#c0262d"/>`:''}
+      ${adv?`<line x1="${tx-14*Math.cos(ang)}" y1="${ty-14*Math.sin(ang)}" x2="${tx+adv*70}" y2="${ty+adv*4}" stroke="${col}" stroke-width="5" opacity=".8"/>`:''}</g>
+     <g transform="translate(330,40)"><path d="M0 0 A44 44 0 0 0 -44 0" fill="none" stroke="#5a4a3a" stroke-width="9"/><path d="M${-44*Math.cos(15*Math.PI/180)} ${-44*Math.sin(15*Math.PI/180)} A44 44 0 0 0 ${-44*Math.cos(30*Math.PI/180)} ${-44*Math.sin(30*Math.PI/180)}" fill="none" stroke="#4cc38a" stroke-width="9"/>
+      <line id="mg-angl" x1="0" y1="0" x2="${-48*Math.cos(ang)}" y2="${-48*Math.sin(ang)}" stroke="#f2c14e" stroke-width="3"/><text id="mg-angt" x="-22" y="18" font-size="13" font-weight="700" fill="#f6e7c8" text-anchor="middle">${Math.round(ang*180/Math.PI)}°</text></g>`; }
+   let g=DEFS+`<defs><linearGradient id="mgarm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${L.shade}"/><stop offset=".3" stop-color="${L.skin}"/><stop offset=".72" stop-color="${L.skin}"/><stop offset="1" stop-color="${L.dark}"/></linearGradient></defs>
+    <rect width="400" height="240" fill="url(#mgwood)"/>
+    <g filter="url(#mgsh)"><path d="M70 ${y0+6} Q80 ${y0} 100 ${y0+2} L352 ${y0-6} Q388 ${y0} 388 130 Q388 ${y0+w+6} 352 ${y0+w+5} L100 ${y0+w-2} Q80 ${y0+w} 70 ${y0+w-6} Z" fill="url(#mgarm)"/>
+     <path d="M10 ${130-w*0.36} Q4 130 10 ${130+w*0.4} L74 ${130+w*0.46} Q86 130 74 ${130-w*0.46} Z" fill="${L.skin}" stroke="${L.dark}" stroke-opacity=".3"/></g>
+    <path d="M196 ${y0+8} q7 ${w/2-8} 0 ${w-16}" stroke="${L.dark}" stroke-width="2" fill="none" opacity=".35"/>`;
+   if(D.anti){ const v=vpos[D.vein]||vpos.A; g+=`<ellipse cx="${v.x}" cy="${vy(v.y)}" rx="46" ry="${w/2-3}" fill="#b5651d" opacity=".25"/>`; }
+   g+=`<g transform="translate(0,130) scale(1,${k}) translate(0,-130)">`;
+   for(const v of D.veins){ const P=vpos[v.id], o=Math.max(0.15,Math.min(0.85,(D.tq?0.8:0.4)*(v.q===1?0.55:1)*(L.shock?0.6:1)*(L.obese&&v.id==='A'?0.5:1)));
+    g+=`<path d="${P.d}" stroke="#2f4f9e" stroke-width="${v.id==='B'?4:L.child?5:7}" vector-effect="non-scaling-stroke" stroke-linecap="round" fill="none" opacity="${o}"/>`; }
    g+=`</g>`;
-   const pt=v=>({x:v.joint?196:205,y:vy(v.y)});
-   if(D.vein&&D.phase==='prep'){ const v=D.veins.find(x=>x.id===D.vein), P=pt(v); g+=`<circle cx="${P.x}" cy="${P.y}" r="10" fill="none" stroke="#f2c14e" stroke-width="2" stroke-dasharray="4 3"/>`; }
-   if(D.tq&&!D.tqOff) g+=`<g data-z="tq"><rect x="318" y="${y0-14}" width="24" height="${w+28}" rx="4" fill="#2f7fd1" stroke="#164a80"/><rect x="322" y="${y0-6}" width="16" height="12" rx="2" fill="#123f6f"/></g>`;
-   const col=(GAUGES.find(x=>x[0]===D.gauge)||[0,'#4caf50'])[1];
-   if(D.phase==='aim'||D.phase==='flash'){ const v=D.veins.find(x=>x.id===D.vein), P=pt(v);
-    const a=D.ang*Math.PI/180, len=88, bx=P.x-len*Math.cos(a), by=P.y-len*Math.sin(a), hx=bx-28*Math.cos(a), hy=by-28*Math.sin(a);
-    g+=`<g pointer-events="none"><line x1="${bx}" y1="${by}" x2="${P.x}" y2="${P.y}" stroke="#eef3f5" stroke-width="3"/><line x1="${hx}" y1="${hy}" x2="${bx}" y2="${by}" stroke="${col}" stroke-width="13" stroke-linecap="round"/>
-     <line x1="${hx}" y1="${hy}" x2="${bx}" y2="${by}" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-linecap="round"/>${D.phase==='flash'?`<circle cx="${bx-6*Math.cos(a)}" cy="${by-6*Math.sin(a)}" r="5" fill="#c0262d"/>`:''}</g>
-     <g transform="translate(366,64)" pointer-events="none"><circle r="50" cx="-24" cy="-6" fill="#2b231b" opacity=".75"/><path d="M0 0 A44 44 0 0 0 -44 0" fill="none" stroke="#5a4a3a" stroke-width="10"/>
-     <path d="M${-44*Math.cos(15*Math.PI/180)} ${-44*Math.sin(15*Math.PI/180)} A44 44 0 0 0 ${-44*Math.cos(30*Math.PI/180)} ${-44*Math.sin(30*Math.PI/180)}" fill="none" stroke="#4cc38a" stroke-width="10"/>
-     <line x1="0" y1="0" x2="${-48*Math.cos(a)}" y2="${-48*Math.sin(a)}" stroke="#f2c14e" stroke-width="3"/><text x="-24" y="18" font-size="12" font-weight="700" fill="#f6e7c8" text-anchor="middle">${Math.round(D.ang)}°</text></g>`; }
-   if(D.phase==='in'){ const v=D.veins.find(x=>x.id===D.vein), P=pt(v);
-    g+=`<g data-z="cath"><rect x="${P.x-80}" y="${P.y-24}" width="104" height="48" fill="#000" fill-opacity="0.001"/><rect x="${P.x-56}" y="${P.y-7}" width="40" height="14" rx="4" fill="${col}"/><rect x="${P.x-16}" y="${P.y-2}" width="22" height="4" fill="#e9eef0"/>
-     <path d="M${P.x-46} ${P.y-7} l-8 -11 h16 z M${P.x-46} ${P.y+7} l-8 11 h16 z" fill="${col}" opacity=".85"/><rect x="${P.x-70}" y="${P.y-4}" width="14" height="8" rx="2" fill="#f4f4f4"/>
-     ${D.tape?`<rect x="${P.x-74}" y="${P.y-20}" width="80" height="40" rx="6" fill="#f4f1e8" opacity=".85"/>`:''}</g>`; }
+   const LP={A:[120,108],B:[36,128],C:[232,148]}; for(const v of D.veins){ const P=LP[v.id]; g+=tag(P[0],vy(P[1]),{A:'А',B:'Б',C:'В'}[v.id],D.vein===v.id?'#f2c14e':'#efe6d1'); }
+   for(const h of D.hema){ const P=vpos[h]||vpos.A; g+=`<ellipse cx="${P.x+10}" cy="${vy(P.y)+4}" rx="18" ry="8" fill="#5c2a6b" opacity=".45"/>`; }
+   if(D.tq) g+=`<rect x="318" y="${y0-12}" width="24" height="${w+24}" rx="4" fill="#2f7fd1" stroke="#164a80"/><rect x="322" y="${y0-4}" width="16" height="12" rx="2" fill="#123f6f"/>`;
+   if(D.cath){ const P=vpos[D.vein]||vpos.A, y=vy(P.y), col=(GAUGES.find(x=>x[0]===D.gauge)||[0,'#4caf50'])[1];
+    g+=`<rect x="${P.x-48}" y="${y-7}" width="38" height="14" rx="4" fill="${col}"/><rect x="${P.x-10}" y="${y-2}" width="20" height="4" fill="#e9eef0"/><path d="M${P.x-38} ${y-7} l-8 -10 h16 z M${P.x-38} ${y+7} l-8 10 h16 z" fill="${col}"/>
+     ${D.tape?`<rect x="${P.x-62}" y="${y-20}" width="78" height="40" rx="6" fill="#f4f1e8" opacity=".75"/>`:''}`; }
    return g; },
-  hold(){ const D=st.d; if(D.phase!=='flash') return ''; return `<div class="mg2-hold"><div class="mg2-bar"><i id="mg-adv" style="width:0%"></i><b style="left:55%;width:25%"></b></div><button type="button" class="mg2-holdbtn" id="mg-holdbtn">Удерживайте — продвинуть катетер</button></div>`; },
-  tick(dt){ const D=st.d;
-   if(D.phase==='aim'){ const sp=(D.L.shock||D.L.obese||D.L.child?46:32); D.ang+=D.dir*sp*dt; if(D.ang>55){D.ang=55;D.dir=-1;} if(D.ang<0){D.ang=0;D.dir=1;} refresh(); }
-   if(D.phase==='flash'&&D.holding){ D.adv=Math.min(1.05,D.adv+dt*(D.L.child?0.5:0.42)); const b=document.getElementById('mg-adv'); if(b) b.style.width=Math.round(Math.min(1,D.adv)*100)+'%'; if(D.adv>=1.05) IV.release(); } },
-  release(){ const D=st.d; if(D.phase!=='flash') return; D.holding=false; const v=D.veins.find(x=>x.id===D.vein);
-   if(D.adv>=0.55&&D.adv<=0.8){ D.phase='in'; did('Катетер '+D.gauge+' в вене'+(v.joint?' (локтевой сгиб)':'')); say('Катетер в вене, игла извлечена.'); }
-   else if(D.adv<0.55){ say(D.adv<0.05?'Катетер не продвинут — игла вышла из вены. Новая попытка.':'Катетер не дошёл — вышел из вены. Новая попытка.'); D.phase='prep'; D.vein=null; }
-   else{ say('Слишком далеко — прокол задней стенки, гематома. Выберите другую вену.'); D.hema.push({x:205,y:135+(v.y-135)*(D.L.child?52:D.L.obese?94:72)/72}); D.phase='prep'; D.vein=null; }
-   D.adv=0; render(); },
-  tool(id){ const D=st.d; if(D.phase==='aim'||D.phase==='flash'){ say('Руки заняты иглой.'); return; }
-   if(id==='tq'&&D.tq&&!D.tqOff){ D.tqOff=true; did('Жгут снят'); st.tool=null; return; }
-   st.tool=st.tool===id?null:id; },
-  tap(z,p){ const D=st.d, t=st.tool; if(D.phase==='aim'){ IV.stab(); return; } if(D.phase==='flash') return; if(!t){ say('Сначала выберите инструмент в лотке.'); return; }
-   const onArm=z==='arm'||z==='tq'||(z&&z[0]==='v');
-   if(t==='tq'){ if(!onArm){ say('Мимо руки.'); return; } if(p.x<270){ say('Жгут накладывают выше места пункции — на плечо (справа).'); return; } D.tq=true; D.tqOff=false; did('Жгут на плечо'); st.tool=null; return; }
-   if(t==='palp'){ if(z&&z[0]==='v'){ const v=D.veins.find(x=>x.id===z.slice(1)); D.palp[v.id]=1; say('Пальпация: '+v.feel+(D.tq&&!D.tqOff?'':' (без жгута наполнение слабое)')+'.'); } else say('Здесь вены не прощупываются.'); return; }
-   if(t==='anti'){ if(!onArm) return; D.anti=true; D.antiX=Math.max(120,Math.min(300,p.x)); did('Кожа обработана антисептиком'); st.tool=null; say('Кожа обработана. Не пальпируйте место пункции после антисептика.'); return; }
-   if(t[0]==='g'){ if(!(z&&z[0]==='v')){ say('Катетер вводят в вену — коснитесь вены.'); return; }
-    D.gauge=t.slice(1); D.vein=z.slice(1); const v=D.veins.find(x=>x.id===D.vein);
-    if(!D.tq||D.tqOff) viol('Пункция без жгута: вена не наполнена.',1); if(!D.anti) viol('Пункция без обработки кожи антисептиком.',2);
-    if(D.anti&&Math.abs(D.antiX-(v.joint?196:205))>60) viol('Пункция вне обработанного участка кожи.',2);
-    if(v.joint) viol('Катетер в локтевом сгибе — перегибы и тромбоз; при выборе ставят на предплечье.',1);
-    D.phase='aim'; D.att++; st.tool=null; say(''); st.full=true; return; }
-   if(t==='flush'){ if(z!=='cath'){ say(D.phase==='in'?'Шприц подсоединяют к катетеру.':'Сначала установите катетер.'); return; } if(D.tq&&!D.tqOff) viol('Промывание при наложенном жгуте — катетер «не идёт», риск разрыва вены.',3); D.flush=true; did('Промыт NaCl 0,9% — проходим'); st.tool=null; say('Катетер проходим, отёка нет.'); return; }
-   if(t==='tape'){ if(z!=='cath'){ say(D.phase==='in'?'Повязку клеят на катетер.':'Сначала установите катетер.'); return; } D.tape=true; did('Наклеена фиксирующая повязка');
-    if(D.tq&&!D.tqOff) viol('Жгут забыт на руке.',4); if(!D.flush) viol('Проходимость катетера не проверена (не промыт).',1); finish(true); return; }
-  },
-  stab(){ const D=st.d, v=D.veins.find(x=>x.id===D.vein), ok=D.ang>=15&&D.ang<=30, tq=D.tq&&!D.tqOff;
-   const p=ok?(v.q===3?0.95:v.q===2?0.8:0.45)*(tq?1:0.55)*(D.L.shock?0.75:1):0.05;
-   const P={x:v.joint?196:205,y:135+(v.y-135)*(D.L.child?52:D.L.obese?94:72)/72};
-   if(Math.random()<p){ D.phase='flash'; D.adv=0; say(''); }
-   else{ D.phase='prep'; D.hema.push(P); say(ok?'Вена «ушла» из-под иглы — гематома. Новая попытка.':D.ang<15?'Слишком полого — игла прошла над веной.':'Слишком круто — прокол задней стенки, гематома.'); D.vein=null; }
-   st.full=true; },
-  result(ok){ const D=st.d, G=D.G; const out={ok,mins:0.8+0.7*(D.att-1),att:D.att,gauge:D.gauge};
-   if(ok&&D.gauge&&!G.ok.includes(D.gauge)&&!G.fine.includes(D.gauge)) st.viol.push({t:'Калибр катетера '+D.gauge+' не подходит: '+G.why,w:G.ok[0]==='14G'?5:2}); return out; }
+  live(D,p){ const t=document.getElementById('mg-angt'); if(t&&st.sk&&st.sk.type==='timing'){ const svg=document.getElementById('mg-svg'); if(svg) svg.innerHTML=IV.scene('needle',D,st); } else if(st.sk&&st.sk.type==='hold'){ const svg=document.getElementById('mg-svg'); if(svg) svg.innerHTML=IV.scene('needle',D,st); } },
+  result(D,ok){ return {ok,mins:1+0.7*Math.max(0,D.att-1),att:Math.max(1,D.att),gauge:D.gauge}; }
  };
 
- // ════════ Интубация ════════
- const ETI={
-  title:'Интубация трахеи',
-  init(s){ const L=look(s), arr=inArrest(s), sed=s.acts.some(a=>a.t>s.t-10&&/^d:(pro|ktm|mdz|dzp|fen|roc|sux)/.test(a.key));
-   const grade=Math.min(4,1+L.airway+(Math.random()<0.25?1:0));
-   return {L,arr,needRSI:!arr&&s.v.gcs>8&&!sed,ind:null,rel:null,pillow:false,preox:0,phase:'prep',lift:0,burp:false,tip:0,dir:1,tube:false,esoph:false,deep:false,cuff:false,depth:null,capno:null,ausc:{},spo2:s.v.spo2,grade,att:0,teeth:false,downAcc:0,male:s.sex!=='f'};
-  },
-  tools(){ const D=st.d, T=[];
-   if(D.phase==='prep'){ T.push({id:'pillow',n:'Валик под голову',used:D.pillow},{id:'bvm',n:'Мешок Амбу + O₂',used:D.preox>=3});
-    [['ktm','Кетамин'],['pro','Пропофол'],['mdz','Мидазолам'],['roc','Рокуроний'],['sux','Суксамето&shy;ний']].forEach(([k,n])=>T.push({id:'d_'+k,n,ic:'drug',used:D.ind===k||D.rel===k}));
-    T.push({id:'scope',n:'Ларинго&shy;скоп'}); }
-   if(D.phase==='scope') T.push({id:'tube',n:'Трубка'},{id:'burp',n:'BURP',used:D.burp},{id:'bvm',n:'Прервать, вентилировать'});
-   if(D.phase==='tube') T.push({id:'cuff',n:'Раздуть манжету',used:D.cuff},{id:'capno',n:'Капнограф',used:!!D.capno},{id:'steth',n:'Фонендоскоп'},{id:'ruler',n:'Глубина по резцам',used:!!D.depth},{id:'pull',n:'Извлечь трубку'},{id:'vent',n:'Подключить ИВЛ'});
-   return T; },
-  meta(){ const D=st.d; return `<span class="mg-spo2${D.spo2<88?' low':''}">SpO₂ <b id="mg-spo2">${Math.round(D.spo2)}</b>%</span> · ${D.arr?'идёт СЛР':D.phase==='prep'?'дышит сам':'апноэ'}${D.phase!=='prep'?' · попытка '+D.att:''}`; },
-  hint(){ const D=st.d;
-   if(D.phase==='scope') return st.tool==='tube'?'Коснитесь сцены, когда голубой кончик трубки окажется между связками.':'Ведите пальцем по экрану вверх и вправо — подъём клинка вперёд-вверх. Движение вниз = рычаг на зубы.';
-   if(D.phase==='tube') return 'Трубка проведена. Дальше — на ваше усмотрение.';
-   return st.tool?'Коснитесь пациента там, где нужен инструмент.':'Подготовка к интубации. Выберите инструмент.'; },
-  scene(){ const D=st.d, L=D.L;
-   if(D.phase==='prep'){ const tilt=D.pillow?-9:0;
-    return `<defs><linearGradient id="mgface" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${L.skin}"/><stop offset="1" stop-color="${L.shade}"/></linearGradient></defs>
-     <rect width="400" height="260" fill="#23323a"/><rect x="0" y="0" width="400" height="120" fill="#2b3d46"/><rect x="0" y="186" width="400" height="74" fill="#d7dde0"/><rect x="0" y="180" width="400" height="10" fill="#aab6bb"/>
-     ${D.pillow?`<path d="M70 182 q36 -24 120 -18 q22 2 22 18 z" fill="#eef1f3" stroke="#b9c3c8"/>`:''}
-     <g transform="rotate(${tilt} 200 160)" filter="url(#mgsh)"><path d="M120 178 C108 118 150 78 205 78 C258 78 286 108 292 138 L304 150 L294 160 C292 172 282 178 270 178 L252 196 L160 196 Z" fill="url(#mgface)" stroke="${L.dark}" stroke-opacity=".35" data-z="head"/>
-      <path d="M150 96 C170 80 200 74 224 78" stroke="#3b2a20" stroke-width="10" fill="none" opacity=".8" pointer-events="none"/>
-      <path d="M287 146 q8 4 10 9" stroke="${L.dark}" stroke-width="2" fill="none"/><path d="M270 168 q12 0 18 -6" stroke="#8a4b4b" stroke-width="3" fill="none"/>
-      <path d="M246 118 q6 -4 12 0" stroke="#2a1d18" stroke-width="2.5" fill="none"/><rect x="250" y="150" width="56" height="38" fill="#000" fill-opacity="0.001" data-z="mouth"/>
-      <path d="M160 196 L252 196 L242 232 L170 232 Z" fill="${L.skin}" data-z="neck"/>
-      ${D.preox?`<path d="M258 136 q24 -6 46 8 v28 q-22 14 -46 8 z" fill="#bfe6f5" opacity=".6" stroke="#6fb6d3" data-z="mouth"/>`:''}</g>
-     <g data-z="arm"><rect x="12" y="212" width="132" height="28" rx="13" fill="${L.skin}" stroke="${L.dark}" stroke-opacity=".3"/><rect x="66" y="218" width="22" height="12" rx="3" fill="#4caf50"/><text x="78" y="252" font-size="10" fill="#33424a" text-anchor="middle">порт в/в катетера</text></g>
-     <g transform="translate(250,10)"><rect width="140" height="30" rx="6" fill="#0d1416" opacity=".8"/><text x="10" y="19" font-size="11" fill="#cfe9ff">Преоксигенация ${Math.min(3,D.preox)}/3 ${D.pillow?'· «нюхающая» поза':''}</text></g>`; }
-   if(D.phase==='scope'){ const g=D.grade, vis=Math.min(1,D.lift/(40+g*16)+(D.burp?0.2:0)), glot=vis>0.55, gap=glot?Math.max(10,42-g*7+(D.burp?8:0)):0;
-    return `<defs><radialGradient id="mgthr" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#3a0f12"/><stop offset=".6" stop-color="#7c2b31"/><stop offset="1" stop-color="#3a1416"/></radialGradient>
-     <radialGradient id="mglight" cx=".5" cy=".55" r=".55"><stop offset="0" stop-color="#fff6d8" stop-opacity=".25"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs>
-     <rect width="400" height="260" fill="#0b0405"/><ellipse cx="200" cy="130" rx="182" ry="122" fill="url(#mgthr)"/>
-     <ellipse cx="200" cy="${200-vis*70}" rx="${130-vis*30}" ry="${70-vis*30}" fill="#c4626a"/><ellipse cx="200" cy="${206-vis*70}" rx="${110-vis*30}" ry="${40-vis*20}" fill="#d47c83" opacity=".6"/>
-     <path d="M158 ${170-vis*90} Q200 ${128-vis*100} 242 ${170-vis*90}" stroke="#e48b91" stroke-width="13" fill="none" stroke-linecap="round" opacity="${vis>0.25?1:0}"/>
-     ${glot?`<g><path d="M${200-gap/2} 70 L200 126 L${200+gap/2} 70 Z" fill="#050202"/><path d="M${200-gap/2} 70 L200 126 M${200+gap/2} 70 L200 126" stroke="#f3eded" stroke-width="4" stroke-linecap="round"/><circle cx="${200-gap/2-11}" cy="130" r="8" fill="#d2777e"/><circle cx="${200+gap/2+11}" cy="130" r="8" fill="#d2777e"/></g>`
-      :`<text x="200" y="58" text-anchor="middle" font-size="12" fill="#f6e7c8">${D.lift?'Надгортанник… выше и вперёд':'Клинок во рту. Поднимайте вверх-вперёд'}</text>`}
-     <rect width="400" height="260" fill="url(#mglight)"/><path d="M196 260 L188 ${206-vis*40} L216 ${200-vis*40} L232 260 Z" fill="#b8c4c8" stroke="#7e8a8e"/>
-     ${st.tool==='tube'?`<path d="M${120+D.tip} 260 Q${160+D.tip} 160 ${200+D.tip} 100" stroke="#d9eef5" stroke-width="12" fill="none" opacity=".7"/><circle cx="${200+D.tip}" cy="100" r="7" fill="#5fd3f0" stroke="#e8f8ff" stroke-width="2"/>`:''}
-     <rect width="400" height="260" fill="#000" fill-opacity="0.001" data-z="view"/>`; }
-   const cap=D.capno, wave=cap==='trachea'?'M0 60 h18 q4 -40 10 -40 h30 q4 0 8 40 h18 q4 -40 10 -40 h30 q4 0 8 40 h18 q4 -40 10 -40 h30 q4 0 8 40 h20':'M0 60 h240';
-   return `<rect width="400" height="260" fill="#23323a"/><path d="M106 44 C96 94 96 172 128 224 L272 224 C304 172 304 94 294 44 Z" fill="${L.skin}" stroke="${L.dark}" stroke-opacity=".3"/>
-    <path d="M200 50 v160" stroke="${L.dark}" stroke-opacity=".25"/>
-    <g data-z="lchest"><rect x="124" y="72" width="70" height="120" rx="30" fill="#e7b9bd" opacity=".35"/><text x="159" y="136" font-size="10" fill="#4a1a1d" text-anchor="middle">правое</text></g>
-    <g data-z="rchest"><rect x="206" y="72" width="70" height="120" rx="30" fill="#e7b9bd" opacity=".35"/><text x="241" y="136" font-size="10" fill="#4a1a1d" text-anchor="middle">левое</text></g>
-    <g data-z="epi"><ellipse cx="200" cy="208" rx="36" ry="14" fill="#e7b9bd" opacity=".4"/><text x="200" y="212" font-size="9" fill="#4a1a1d" text-anchor="middle">эпигастрий</text></g>
-    <g data-z="tube"><rect x="186" y="0" width="28" height="70" fill="#000" fill-opacity="0.001"/><path d="M200 0 v66" stroke="#d9eef5" stroke-width="10"/><path d="M200 0 v66" stroke="#fff" stroke-opacity=".5" stroke-width="2"/>${D.depth?`<text x="186" y="40" font-size="9" fill="#cfe9ff" text-anchor="end">${D.depth} см</text>`:''}</g>
-    <g data-z="pilot"><path d="M206 30 q16 4 18 14" stroke="#cfd8dc" stroke-width="2" fill="none"/><circle cx="226" cy="48" r="9" fill="${D.cuff?'#f2c14e':'#9aa0a6'}" stroke="#555"/></g>
-    ${cap?`<g transform="translate(252,8)"><rect width="140" height="84" rx="6" fill="#050807" stroke="#2d5a4c"/><text x="8" y="15" font-size="10" fill="#f2d24b">EtCO₂ ${cap==='trachea'?'36':'0'} мм рт.ст.</text><path transform="translate(8,20) scale(.52)" d="${wave}" stroke="#f2d24b" stroke-width="3.5" fill="none"/></g>`:''}`;
-  },
-  tick(dt){ const D=st.d;
-   if(D.phase!=='prep'){ const rate=(D.preox>=3?0.35:0.9)*(D.L.obese?1.6:1)*(D.L.child?1.5:1); D.spo2=Math.max(40,D.spo2-rate*dt*2.2); const e=document.getElementById('mg-spo2'); if(e){ e.textContent=Math.round(D.spo2); e.parentNode.classList.toggle('low',D.spo2<88); }
-    if(D.spo2<70&&!D.warn70){ D.warn70=true; viol('Попытка интубации продолжалась при SpO₂ ниже 70%.',3); say('SpO₂ ниже 70%! Прервите попытку и вентилируйте мешком.'); refresh(); } }
-   if(D.phase==='scope'&&st.tool==='tube'){ D.tip+=D.dir*(70+D.grade*22)*dt; if(D.tip>60){D.tip=60;D.dir=-1;} if(D.tip<-60){D.tip=-60;D.dir=1;} refresh(); } },
-  drag(kind,p,d){ const D=st.d; if(D.phase!=='scope'||st.tool==='tube'||kind!=='move') return;
-   const dx=p.x-(d.lx===undefined?d.x:d.lx), dy=p.y-(d.ly===undefined?d.y:d.ly); d.lx=p.x; d.ly=p.y;
-   if(dy<0){ D.lift+=(-dy)*0.6*(D.pillow?1.2:0.8)+Math.max(0,dx)*0.15; D.downAcc=0; }
-   else if(dy>0){ D.downAcc+=dy; if(D.downAcc>14){ D.lift+=dy*0.4; if(!D.teeth){ D.teeth=true; viol('Ларингоскоп рычагом на зубы — травма зубов.',4); say('Хруст… скол резца! Подъём — вверх-вперёд, а не на себя.'); } } }
-   refresh(); },
-  tool(id){ const D=st.d;
-   if(id==='bvm'&&D.phase==='scope'){ D.phase='prep'; D.lift=0; D.spo2=Math.min(100,D.spo2+12); D.warn70=false; D.preox=Math.max(D.preox,2); did('Попытка прервана, масочная вентиляция'); say('Вентиляция мешком, сатурация поднимается.'); st.tool=null; st.full=true; return; }
-   if(id==='burp'){ D.burp=true; did('Давление на гортань (BURP)'); st.tool=null; return; }
-   if(id==='vent'){ if(!D.cuff) viol('Манжета не раздута — утечка и риск аспирации.',3); if(!D.capno) viol('Положение трубки не подтверждено капнографией.',5); if(!D.ausc.l||!D.ausc.r) viol('Лёгкие не выслушаны с обеих сторон.',2);
-    if(!D.esoph&&D.deep) viol('Трубка в правом главном бронхе — вентилируется одно лёгкое.',4); else if(D.depth&&D.depthBad) viol('Неверная глубина трубки (≈21 см у женщин, ≈23 см у мужчин).',2);
-    did('ИВЛ подключена'); finish(!D.esoph); return; }
-   if(id==='pull'){ D.phase='scope'; D.tube=false; D.esoph=false; D.deep=false; D.cuff=false; D.capno=null; D.ausc={}; D.depth=null; D.lift=0; D.spo2=Math.min(100,D.spo2+6); D.att++; did('Трубка извлечена, повторная ларингоскопия'); say('Трубка извлечена.'); st.tool=null; st.full=true; return; }
-   if(id==='ruler'){ st.tool=null; st.pick='depth'; return; }
-   if(id==='tube'){ st.tool=st.tool==='tube'?null:'tube'; D.tip=-60+Math.random()*120; return; }
-   st.tool=st.tool===id?null:id; },
-  tap(z){ const D=st.d, t=st.tool;
-   if(D.phase==='prep'){
-    if(!t){ say('Выберите инструмент.'); return; }
-    if(t==='pillow'){ if(z!=='head'&&z!=='neck'){ say('Валик — под затылок.'); return; } D.pillow=true; did('Валик под затылок'); st.tool=null; return; }
-    if(t==='bvm'){ if(z!=='mouth'&&z!=='head'){ say('Маску прижимают к лицу.'); return; } D.preox++; D.spo2=Math.min(100,D.spo2+3); if(D.preox===3) did('Преоксигенация 100% O₂'); say('Маска прижата, вдох '+Math.min(3,D.preox)+'/3.'); return; }
-    if(t.startsWith('d_')){ if(z!=='arm'){ say('Препараты вводят в порт в/в катетера.'); return; } const k=t.slice(2); if(['ktm','pro','mdz'].includes(k)) D.ind=k; else D.rel=k; did((DRUGS.find(x=>x.id===k)||{n:k}).n.split(' (')[0]+' в/в'); st.tool=null; return; }
-    if(t==='scope'){ if(z!=='mouth'&&z!=='head'){ say('Клинок вводят в рот.'); return; } if(D.needRSI&&!(D.ind&&D.rel)){ say('Пациент сжимает зубы и кашляет — без индукции и миорелаксанта рот не открыть.'); return; }
-     if(D.preox<3) viol('Ларингоскопия без преоксигенации.',3); D.phase='scope'; D.att++; D.lift=0; did('Ларингоскопия, попытка '+D.att); st.tool=null; st.full=true; return; }
-    return; }
-   if(D.phase==='scope'){ if(t!=='tube') return; const vis=Math.min(1,D.lift/(40+D.grade*16)+(D.burp?0.2:0)); if(vis<=0.55){ say('Голосовую щель не видно — вслепую трубку не проводят.'); return; }
-    const gap=Math.max(10,42-D.grade*7+(D.burp?8:0)); const hit=Math.abs(D.tip)<=gap/2+4; D.tube=true; D.esoph=!hit; D.deep=hit&&Math.random()<0.3; D.phase='tube'; did('Трубка проведена'); st.tool=null; st.full=true; return; }
-   if(D.phase==='tube'){
-    if(t==='cuff'){ if(z!=='pilot'){ say('Шприц — к пилотному баллону.'); return; } D.cuff=true; did('Манжета раздута'); st.tool=null; return; }
-    if(t==='capno'){ if(z!=='tube'){ say('Датчик капнографа — на коннектор трубки.'); return; } D.capno=D.esoph?'esoph':'trachea'; did('Капнография: '+(D.esoph?'прямая линия':'волны')); say(D.esoph?'Капнограмма — прямая линия.':'Прямоугольные волны, EtCO₂ 36.'); st.tool=null; return; }
-    if(t==='steth'){ if(!['lchest','rchest','epi'].includes(z)) return; D.ausc[z==='lchest'?'r':z==='rchest'?'l':'e']=1;
-     say(D.esoph?(z==='epi'?'В эпигастрии — бульканье при каждом вдохе.':'Дыхание не проводится.'):z==='epi'?'Над эпигастрием тихо.':(D.deep&&z==='rchest'?'Слева дыхание не проводится!':'Дыхание проводится.')); return; }
-    return; }
-  },
-  pick(v){ const D=st.d, right=D.male?['23','25']:['21','23']; D.depth=v; D.depthBad=!right.includes(v); if(D.deep&&(v==='21'||v==='19'||(D.male&&v==='23'))) D.deep=false; if(+v>=27&&!D.esoph) D.deep=true; did('Трубка подтянута на '+v+' см'); st.pick=null; },
-  result(ok){ const D=st.d; const out={ok,mins:1.5+0.8*(D.att-1),att:D.att,spo2:D.spo2,rsi:D.needRSI?{ind:D.ind,rel:D.rel}:null}; if(!ok) out.esoph=true; return out; }
- };
-
- // ════════ ЦВК по Сельдингеру ════════
- const KIT=[['tilt','Тренде&shy;ленбург'],['anti','Антисептик'],['drape','Стерильное бельё'],['sleeve','Чехол на датчик'],['us','УЗИ-датчик'],['compress','Сжать датчиком'],['doppler','Цветной допплер'],
-  ['lido','Лидокаин 1%'],['needle','Игла со шприцем'],['syr','Шприц'],['wire','J-проводник'],['out','Извлечь иглу'],['scalpel','Скальпель'],['dil','Дилататор'],['cvc','ЦВК 3-про&shy;светный'],
-  ['wireoff','Удалить про&shy;водник'],['suture','Шов, фиксация'],['xray','Контроль положения'],
-  ['cath','Перифер. катетер'],['tq','Жгут'],['tube','Трубка ЭТТ']];
+ // ══════════ ЦВК по Сельдингеру ══════════
  const SITE={ij:'внутренняя яремная',sc:'подключичная',fem:'бедренная'};
  const CVC={
-  title:'ЦВК по Сельдингеру',
+  title:'Центральный венозный катетер', novis:true,
   init(s){ const L=look(s), sw=Math.random()<0.5;
-   return {L,site:null,view:'body',tilt:false,anti:false,drape:false,sleeve:false,us:false,lido:false,press:false,dop:false,
-    art:{x:sw?140:262,y:118,r:17},vein:{x:sw?255:148,y:124,rx:32,ry:24},needle:null,punct:false,punctArt:false,wire:false,artWire:false,needleOff:false,cut:false,dil:false,cath:false,wireOut:false,flush:false,sut:false,
-    order:shuffle(KIT.map(x=>x[0])),conscious:s.v.gcs>8&&!inArrest(s),coag:/gib|sepsis|amanita|mening/.test(s.c.id),att:0,artHit:false,err:0};
+   return {s,L,arr:inArrest(s),coag:/gib|sepsis|amanita|mening|urosep/.test(s.c.id),conscious:s.v.gcs>8&&!inArrest(s),site:null,tilt:false,sterile:false,us:false,lido:false,press:false,dop:false,
+    artLeft:sw,punct:null,artHit:false,wire:false,needleOut:false,cut:false,dil:false,cath:false,wireOut:false,flush:false,sut:false,att:0};
   },
-  tools(){ const D=st.d; return D.order.map(id=>({id,n:KIT.find(x=>x[0]===id)[1],ic:id,used:(id==='tilt'&&D.tilt)||(id==='anti'&&D.anti)||(id==='drape'&&D.drape)||(id==='sleeve'&&D.sleeve)||(id==='lido'&&D.lido)||(id==='compress'&&D.press)||(id==='doppler'&&D.dop)})); },
-  meta(){ const D=st.d; return `${D.site?SITE[D.site]+' вена':'доступ не выбран'} · пункций: ${D.att}${D.conscious?' · в сознании':''}${D.coag?' · риск кровотечения':''}`; },
-  hint(){ const D=st.d; if(st.tool==='needle') return 'Ведите иглу пальцем по экрану УЗИ и отпустите в просвете сосуда.'; if(!D.site) return 'Выберите доступ: коснитесь точки на схеме.'; return 'Порядок действий — за вами. Планшет записывает сделанное.'; },
-  scene(){ const D=st.d, L=D.L;
-   if(D.view==='us'){ const a=D.art, v=D.vein, t=performance.now()/1000, puls=1+0.09*Math.max(0,Math.sin(t*7.5)), comp=D.press;
-    const fA=D.dop?D.colA:'#060606', fV=D.dop?D.colV:'#060606';
-    return `<defs><pattern id="mgspk" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="9" height="9" fill="#202020"/><circle cx="2" cy="3" r="1.1" fill="#444"/><circle cx="6" cy="7" r="1.3" fill="#343434"/><circle cx="7" cy="2" r=".8" fill="#555"/></pattern>
-     <radialGradient id="mgusf" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient></defs>
-     <rect width="400" height="260" fill="#000"/><path d="M70 16 L330 16 L392 256 L8 256 Z" fill="url(#mgspk)"/><path d="M70 16 L330 16 L392 256 L8 256 Z" fill="url(#mgusf)"/>
-     <path d="M20 200 Q200 180 380 205" stroke="#6a6a6a" stroke-width="5" fill="none" opacity=".6"/>
-     <ellipse cx="${a.x}" cy="${a.y}" rx="${a.r*puls}" ry="${a.r*puls}" fill="${fA}" stroke="#9a9a9a" stroke-width="2.5"/>
-     <ellipse cx="${v.x}" cy="${comp?v.y+15:v.y}" rx="${comp?v.rx+6:v.rx}" ry="${comp?3:v.ry}" fill="${fV}" stroke="#8a8a8a" stroke-width="2"/>
-     <rect x="0" y="0" width="400" height="16" fill="#0c0c0c"/><text x="8" y="12" font-size="10" fill="#9fb">УЗИ · ${D.site?SITE[D.site]:''} · поперечный срез${D.dop?' · ЦДК':''}${D.press?' · компрессия':''}</text>
-     ${D.needle?`<line x1="200" y1="16" x2="${D.needle.x}" y2="${D.needle.y}" stroke="#f4f4f4" stroke-width="2" stroke-dasharray="${D.punct?'0':'5 4'}" opacity=".85"/><circle cx="${D.needle.x}" cy="${D.needle.y}" r="4.5" fill="#fff"/>`:''}
-     ${D.punct?`<circle cx="${D.needle.x}" cy="${D.needle.y}" r="9" fill="none" stroke="#f2c14e" stroke-width="2"/>`:''}`; }
-   if(D.view==='field'){ const x0=200,y0=140;
-    return `<rect width="400" height="260" fill="#2a5b86"/><path d="M0 0h400v260H0z M120 60h160v150H120z" fill="#24507a" fill-rule="evenodd"/>
-     <rect x="120" y="60" width="160" height="150" fill="${L.skin}"/><rect x="120" y="60" width="160" height="150" fill="#b5651d" opacity="${D.anti?0.25:0}"/>
-     ${D.wire&&!D.wireOut?`<path d="M${x0} ${y0} C170 110 150 90 110 30" stroke="#d7dee2" stroke-width="2.2" fill="none"/>`:''}
-     ${!D.needleOff&&D.wire?`<line x1="${x0}" y1="${y0}" x2="164" y2="96" stroke="#eef3f5" stroke-width="3.5"/><rect x="148" y="78" width="22" height="20" rx="3" fill="#cfd8dc" transform="rotate(-50 159 88)"/>`:''}
-     ${D.cut?`<path d="M${x0-6} ${y0-2} l12 5" stroke="#8b1d24" stroke-width="3"/>`:''}
-     ${D.dil&&!D.cath?`<circle cx="${x0}" cy="${y0}" r="5" fill="#7a1f26" opacity=".7"/>`:''}
-     ${D.cath?`<line x1="${x0}" y1="${y0}" x2="152" y2="84" stroke="#f2f2f2" stroke-width="8" stroke-linecap="round"/><path d="M152 84 l-38 -26" stroke="#e5534b" stroke-width="5"/><path d="M152 84 l-44 -6" stroke="#3d8bd9" stroke-width="5"/><path d="M152 84 l-38 12" stroke="#f2f2f2" stroke-width="5"/>`:''}
-     ${D.sut?`<path d="M178 124 q8 -8 16 0 M206 146 q8 -8 16 0" stroke="#111" stroke-width="2" fill="none"/>`:''}
-     <text x="200" y="236" text-anchor="middle" font-size="11" fill="#e8f8ff">${D.fieldMsg||'Стерильное поле · '+(SITE[D.site]||'')+' доступ'}</text>`; }
-   const tilt=D.tilt?-6:0, P={ij:[150,122],sc:[170,152],fem:[318,200]};
-   return `<rect width="400" height="260" fill="#2e3b3a"/><g transform="rotate(${tilt} 200 150)" filter="url(#mgsh)"><rect x="34" y="104" width="340" height="132" rx="18" fill="#dfe4e6"/>
-    <ellipse cx="80" cy="122" rx="36" ry="42" fill="${L.skin}" stroke="${L.dark}" stroke-opacity=".3"/><path d="M112 102 L300 102 Q334 104 344 132 L344 214 Q334 228 300 228 L112 228 Z" fill="${L.skin}" stroke="${L.dark}" stroke-opacity=".3"/>
-    <path d="M114 112 q30 6 58 2" stroke="${L.dark}" stroke-width="2" fill="none" opacity=".4"/><path d="M122 146 q24 -10 50 -6" stroke="${L.dark}" stroke-width="3" fill="none" opacity=".35"/><path d="M300 190 q14 8 30 4" stroke="${L.dark}" stroke-width="2" fill="none" opacity=".35"/>
-    ${D.drape?`<path d="M96 92 h270 v150 h-270 z M${P[D.site][0]-30} ${P[D.site][1]-22} h60 v44 h-60 z" fill="#2a5b86" fill-rule="evenodd" opacity=".95"/>`:''}
-    ${D.anti&&D.site?`<ellipse cx="${P[D.site][0]}" cy="${P[D.site][1]}" rx="44" ry="30" fill="#b5651d" opacity=".3"/>`:''}
-    ${Object.entries(P).map(([k,[x,y]])=>`<g data-z="site_${k}"><circle cx="${x}" cy="${y}" r="20" fill="#000" fill-opacity="0.001"/><circle cx="${x}" cy="${y}" r="${D.site===k?7:5}" fill="${D.site===k?'#f2c14e':'none'}" stroke="${D.site===k?'#111':'#ffffff55'}" stroke-dasharray="${D.site===k?'0':'2 2'}"/><circle cx="${x}" cy="${y}" r="13" fill="none" stroke="#f2c14e" stroke-opacity="${D.site?0:.55}" stroke-width="2"><animate attributeName="r" values="9;15;9" dur="1.6s" repeatCount="indefinite"/></circle><text x="${x}" y="${k==='sc'?y+30:y-22}" pointer-events="none" font-size="11" font-weight="700" fill="#2b1f12" text-anchor="middle" paint-order="stroke" stroke="#f6e7c8" stroke-width="3">${{ij:'яремная',sc:'подключичная',fem:'бедренная'}[k]}</text></g>`).join('')}</g>
-    <text x="12" y="22" font-size="11" fill="#cfe9ff">${D.tilt?'Головной конец опущен на 15°':'Стол горизонтально'}</text>`;
+  meta(D){ return `${D.site?SITE[D.site]+' вена':'доступ не выбран'} · пункций: ${D.att}${D.conscious?' · в сознании':''}${D.coag?' · коагулопатия':''}${D.arr?' · идёт СЛР':''}`; },
+  steps(D){ return [
+   {t:'Доступ',sc:'body',h:'Выберите вену с учётом состояния пациента.',keep:true,opts:[
+    {t:'Внутренняя яремная вена справа, под УЗИ',short:'внутренняя яремная',ok:D.arr?'warn':true,w:1,fx:d=>{d.site='ij';},why:D.arr?'Возможно, но мешает компрессиям и интубации; при СЛР удобнее бедренная.':'Доступ выбора под УЗИ: сосуд хорошо виден, кровотечение можно прижать.'},
+    {t:'Подключичная вена',short:'подключичная',ok:D.coag?false:'warn',w:D.coag?5:1,fx:d=>{if(!d.coag) d.site='sc';},vt:D.coag?'Подключичный доступ при коагулопатии — место пункции не прижать.':'Подключичная вена — выше риск пневмоторакса.',why:D.coag?'При коагулопатии подключичную вену не прижать — кровотечение не остановить. Выберите другой доступ.':'Можно, но под УЗИ видна хуже и выше риск пневмоторакса.'},
+    {t:'Бедренная вена',short:'бедренная',ok:D.arr||D.coag?true:'warn',w:1,fx:d=>{d.site='fem';},why:D.arr?'При СЛР — лучший выбор: не мешает компрессиям и дыхательным путям.':D.coag?'При коагулопатии подходит: место пункции легко прижать.':'Допустимо, но выше риск инфекции и тромбоза — для длительного стояния хуже яремной.'}]},
+   {t:'Положение пациента',sc:'body',h:'Как уложить пациента?',when:d=>d.site!=='fem',opts:[
+    {t:'Положение Тренделенбурга: головной конец опустить на 10–15°, голову повернуть в сторону',ok:true,short:'Тренделенбург',fx:d=>{d.tilt=true;},why:'Вены шеи наполняются, а риск воздушной эмболии снижается.'},
+    {t:'Полусидя — так пациенту легче дышать',ok:false,w:4,why:'Полусидя вены шеи спадаются, а при отрицательном давлении в вене засасывается воздух — воздушная эмболия.'},
+    {t:'Не важно, лишь бы удобно было мне',ok:false,w:3,why:'Положение — профилактика воздушной эмболии и залог успешной пункции.'}]},
+   {t:'Асептика',sc:'body',h:'Подготовьте стерильное поле.',opts:[
+    {t:'Обработка рук, маска, шапочка, стерильные халат и перчатки, антисептик широко, большое стерильное бельё',ok:true,short:'максимальная асептика',fx:d=>{d.sterile=true;},why:'Максимальные барьерные меры — главная профилактика катетер-ассоциированной инфекции кровотока.'},
+    {t:'Стерильные перчатки и антисептик на место пункции — достаточно',ok:false,w:4,why:'Для ЦВК нужны максимальные барьерные меры: халат, маска, шапочка и большое бельё.'},
+    {t:'Спешим — без бельё, только антисептик',ok:false,w:5,why:'Даже в экстренной ситуации ЦВК ставят стерильно; если асептику не соблюсти — катетер меняют в течение 48 часов.'}]},
+   {t:'Обезболивание',sc:'body',h:'Пациент в сознании.',when:d=>d.conscious,opts:[
+    {t:'Инфильтрация кожи и подкожной клетчатки лидокаином 1%',ok:true,short:'лидокаин',fx:d=>{d.lido=true;},why:'Пункция и дилатация болезненны.'},
+    {t:'Не нужно, это быстро',ok:false,w:2,why:'Дилатация хода очень болезненна; пациент дёргается — растёт риск осложнений.'}]},
+   {t:'УЗИ: найдите вену',h:d=>'На экране УЗИ два сосуда рядом. '+(d.artLeft?'Слева — круглый, пульсирует, при надавливании датчиком не меняется. Справа — овальный, крупнее, без пульсации, при надавливании полностью спадается.':'Слева — овальный, крупнее, без пульсации, при надавливании полностью спадается. Справа — круглый, пульсирует, при надавливании не меняется.')+' Какой пунктировать?',keep:true,
+    opts:d=>[
+     {t:'Сосуд слева',short:'сосуд слева',ok:d.artLeft?false:true,w:3,vt:'Пункция артерии вместо вены.',why:d.artLeft?'Это артерия: круглая, пульсирует и не сжимается датчиком.':'Верно: вена овальная, не пульсирует и полностью сжимается датчиком.'},
+     {t:'Сосуд справа',short:'сосуд справа',ok:d.artLeft?true:false,w:3,vt:'Пункция артерии вместо вены.',why:d.artLeft?'Верно: вена овальная, не пульсирует и полностью сжимается датчиком.':'Это артерия: круглая, пульсирует и не сжимается датчиком.'},
+     {t:'Включить цветной допплер: синий — значит вена',ok:false,w:2,why:'Цвет показывает направление кровотока относительно датчика, а не «вена или артерия». Надёжнее сжатие датчиком и пульсация.'}]},
+   {t:'Пункция',h:'Вена выбрана. Как пунктировать?',opts:[
+    {t:'Под контролем УЗИ в реальном времени, игла со шприцем, постоянная лёгкая аспирация до появления тёмной крови',ok:true,short:'пункция под УЗИ',fx:d=>{d.att++;},why:'Видно кончик иглы, вена пунктируется с первой попытки, артерию не задевают.'},
+    {t:'По анатомическим ориентирам, УЗИ только чтобы найти вену заранее',ok:'warn',w:2,fx:d=>{d.att+=2;},why:'Возможно, но больше попыток и осложнений, чем при пункции под постоянным УЗИ-контролем.'},
+    {t:'Вводить иглу на всю длину и только потом тянуть поршень',ok:false,w:3,why:'Без аспирации по ходу иглы легко проколоть вену насквозь и попасть в артерию или плевру.'}]},
+   {t:'Проверка перед проводником',sc:'us',h:'Кровь в шприце есть. Что дальше?',opts:[
+    {t:'Отсоединить шприц: кровь тёмная, течёт без пульсации — ввести J-проводник на 15–20 см, следя за монитором',ok:true,short:'проверить кровь → проводник',fx:d=>{d.wire=true;},why:'Тёмная непульсирующая кровь — вена. Экстрасистолы при проводнике — признак, что он слишком глубоко: подтянуть.'},
+    {t:'Ввести проводник сразу, не проверяя кровь',ok:'warn',w:2,fx:d=>{d.wire=true;},why:'Обошлось, но проверка крови/УЗИ-контроль проводника — защита от дилатации артерии.'},
+    {t:'Ввести проводник на всю длину, чтобы «точно не выпал»',ok:false,w:3,why:'Глубокий проводник раздражает сердце — желудочковые аритмии; риск потерять проводник.'}]},
+   {t:'Порядок Сельдингера',sc:'field',h:'Проводник в вене, игла ещё на нём. Следующее действие?',opts:[
+    {t:'Извлечь иглу, удерживая проводник',ok:true,short:'снять иглу',fx:d=>{d.needleOut=true;},why:'Проводник нельзя отпускать ни на секунду.'},
+    {t:'Ввести дилататор по игле',ok:false,w:2,why:'Дилататор проводят только по проводнику, игла должна быть снята.'},
+    {t:'Удалить проводник и ввести катетер по игле',ok:false,w:3,why:'Катетер по игле не проходит и может срезать стенку вены.'}]},
+   {t:'Подготовка хода',sc:'field',h:'Игла снята. Как расширить ход?',opts:[
+    {t:'Небольшой надрез скальпелем у проводника, затем дилататор по проводнику — только через кожу и клетчатку',ok:true,short:'надрез → дилататор',fx:d=>{d.cut=true;d.dil=true;},why:'Дилататор расширяет только ход к вене; заводить его глубоко — риск перфорации вены.'},
+    {t:'Дилататор на всю длину до упора',ok:false,w:5,why:'Глубокий дилататор может перфорировать вену и стенку сосуда — гемоторакс, тампонада.'},
+    {t:'Без надреза и дилатации — сразу катетер',ok:false,w:2,why:'Катетер упирается в кожу, проводник перегибается.'}]},
+   {t:'Установка катетера',sc:'field',h:'Ход расширен. Что дальше?',opts:[
+    {t:'Провести катетер по проводнику, удерживая конец проводника, затем удалить проводник',ok:true,short:'катетер → удалить проводник',fx:d=>{d.cath=true;d.wireOut=true;},why:'Проводник всегда держат за конец, после установки катетера — удаляют.'},
+    {t:'Провести катетер, проводник оставить внутри «на всякий случай»',ok:false,w:20,vt:'Проводник оставлен в сосуде!',why:'Оставленный проводник — тяжёлое осложнение: эмболия, перфорация. Его удаляют сразу.'},
+    {t:'Отпустить проводник, чтобы освободить руки',ok:false,w:8,why:'Отпущенный проводник может уйти в вену целиком.'}]},
+   {t:'Проверка и фиксация',sc:'field',h:'Катетер стоит.',opts:[
+    {t:'Аспирировать кровь и промыть все просветы, закрыть, подшить, прозрачная повязка',ok:true,short:'промыть, подшить',fx:d=>{d.flush=true;d.sut=true;},why:'Кровь из каждого просвета — катетер в вене; промывка — профилактика тромбоза.'},
+    {t:'Сразу подключить инфузию, промоем потом',ok:false,w:3,why:'Непроверенный просвет может стоять вне вены; без промывки — тромбоз.'},
+    {t:'Закрепить пластырем без шва',ok:'warn',w:2,fx:d=>{d.flush=true;},why:'Катетер легко выпадает — нужен шов или бесшовная фиксация.'}]},
+   {t:'Контроль положения',sc:'field',h:'Перед использованием катетера.',when:d=>d.site!=='fem',opts:[
+    {t:'Рентген грудной клетки или УЗИ: кончик катетера и исключить пневмоторакс',ok:true,short:'рентген/УЗИ',why:'Кончик — у впадения в правое предсердие; пневмоторакс исключают сразу.'},
+    {t:'Контроль не нужен — кровь же получили',ok:false,w:3,why:'Кровь не исключает пневмоторакс и неправильное положение кончика.'}]},
+   {t:'Измерение ЦВД',sc:'cvp',h:'Катетер стоит. Измерьте центральное венозное давление.',when:d=>d.site!=='fem',opts:[
+    {t:'Пациент лёжа горизонтально, ноль флеботонометра — на уровне правого предсердия (4-е межреберье по средней подмышечной линии), инфузию остановить, отсчёт в конце выдоха',ok:true,short:'ЦВД измерено',fx:d=>{d.cvp=cvpOf(d.s);},why:'Правильная нулевая точка и пауза в инфузии — иначе ошибка в несколько сантиметров.'},
+    {t:'Ноль — на уровне грудины',ok:false,w:2,why:'Грудина лежит примерно на 5 см выше правого предсердия — ЦВД получится заниженным.'},
+    {t:'Измерить полусидя на высоте вдоха',ok:false,w:2,why:'Измеряют лёжа в конце выдоха: положение и дыхание сильно меняют показания.'},
+    {t:'Измерить через ту же линию, не останавливая капельницу',ok:false,w:2,why:'Текущая инфузия завышает показания.'}]},
+   {t:'Оценка ЦВД',sc:'cvp',h:d=>'ЦВД '+d.cvp+' см вод. ст. (норма 5–12). Как это понять?',when:d=>d.cvp!=null,opts:d=>{ const v=d.cvp, cat=v<5?'low':v>12?'high':'norm';
+     const O={low:'Низкое: гиповолемия или вазодилатация — продолжить инфузию болюсами, оценивая ЦВД, АД и диурез в динамике',
+      norm:'В пределах нормы: само по себе не говорит, нужна ли жидкость — оценивать в динамике вместе с клиникой и пробой с нагрузкой',
+      high:'Высокое: перегрузка правых отделов — застойная сердечная недостаточность, тампонада, ТЭЛА, напряжённый пневмоторакс; инфузию ограничить, искать причину'};
+     return Object.entries(O).map(([k,txt])=>({t:txt,short:'ЦВД '+v+' — '+(k==='low'?'низкое':k==='high'?'высокое':'норма'),ok:k===cat?true:false,w:2,
+      why:k===cat?'Верно. ЦВД — ориентир для инфузии, но надёжнее его динамика, чем одно число.':'Нет: ЦВД '+v+' см вод. ст. — '+(cat==='low'?'это ниже нормы.':cat==='high'?'это выше нормы.':'это в пределах нормы.')})); },keep:true},
+  ]; },
+  scene(){ return ''; },
+  result(D,ok){ return {ok,cvp:D.cvp,site:SITE[D.site]?SITE[D.site]+' вена':'',art:st.viol.some(v=>/артери/i.test(v.t)),mins:5+0.8*Math.max(0,D.att-1),att:Math.max(1,D.att)}; }
+ };
+
+ // ══════════ Интубация трахеи ══════════
+ const ETI={
+  title:'Интубация трахеи', novis:true,
+  init(s){ const L=look(s), arr=inArrest(s), sed=s.acts.some(a=>a.t>s.t-10&&/^d:(pro|ktm|mdz|dzp|fen|roc|sux)/.test(a.key));
+   const grade=Math.min(4,1+L.airway+(Math.random()<0.25?1:0));
+   return {s,L,arr,needRSI:!arr&&s.v.gcs>8&&!sed,shock:s.v.sbp<90,hyperK:['hyperk','burns','trauma'].includes(s.c.id),ind:null,rel:null,pillow:false,preox:false,lift:0,burp:false,
+    esoph:false,deep:false,cuff:false,capno:null,spo2:s.v.spo2,grade,att:0,phase:'prep'};
   },
-  tick(){ if(st.d.view==='us') refresh(); },
-  drag(kind,p,info){ const D=st.d; if(D.view!=='us'||st.tool!=='needle') return;
-   if(kind==='start'||kind==='move'){ D.needle={x:Math.max(20,Math.min(380,p.x)),y:Math.max(22,Math.min(250,p.y))}; refresh(); return; }
-   if(kind==='end') CVC.stick(); },
-  stick(){ const D=st.d, n=D.needle; if(!n) return; const v=D.vein, vy=D.press?v.y+15:v.y, vry=D.press?3:v.ry;
-   const inA=Math.hypot(n.x-D.art.x,n.y-D.art.y)<D.art.r, inV=Math.pow((n.x-v.x)/v.rx,2)+Math.pow((n.y-vy)/vry,2)<1;
-   if(!inA&&!inV){ say('Игла в тканях — крови в шприце нет. Подведите кончик иглы в просвет сосуда.'); return; }
-   D.att++; D.punct=true; D.punctArt=inA; st.tool=null; if(inA) D.artHit=true;
-   if(D.att>1) viol('Повторные пункции ('+D.att+').',1);
-   did('Пункция '+D.att+': кровь в шприце'); say('Есть кровь в шприце.'); },
-  tool(id){ const D=st.d, need=()=>{ if(!D.site){ D.err++; say('Сначала выберите доступ — коснитесь точки на схеме.'); return true; } return false; };
-   if(st.tool==='needle'&&id!=='needle'&&!D.punct){ /* отказ от пункции */ }
-   st.tool=null;
-   const once=(f,name,msg)=>{ if(D[f]){ say('Уже сделано.'); return false; } D[f]=true; did(name); if(msg) say(msg); return true; };
-   switch(id){
-    case 'marker': if(D.view!=='body'){ say('Точку доступа выбирают до начала манипуляции.'); return; } st.tool='marker'; return;
-    case 'tilt': if(!D.site){ D.err++; say('Сначала выберите доступ — коснитесь точки на схеме.'); return; } if(D.site==='fem'){ say('Для бедренного доступа головной конец не опускают.'); return; } once('tilt','Положение Тренделенбурга'); return;
-    case 'anti': if(need()) return; once('anti','Антисептик широко'); return;
-    case 'drape': if(need()) return; if(!D.anti) viol('Стерильное бельё на необработанную кожу.',2); once('drape','Стерильное бельё'); return;
-    case 'sleeve': once('sleeve','Стерильный чехол на датчик'); return;
-    case 'us': if(need()) return; if(D.drape&&!D.sleeve) viol('УЗИ-датчик без стерильного чехла в стерильном поле.',3);
-     if(!D.us){ D.us=true; did('УЗИ: поперечный срез сосудов'); D.colA=Math.random()<0.5?'#d33':'#33d'; D.colV=D.colA==='#d33'?'#33d':'#d33'; }
-     D.view='us'; st.full=true; return;
-    case 'compress': if(D.view!=='us'){ D.err++; say('Сжимать нечем — датчик не на коже.'); return; } D.press=!D.press; if(D.press&&!D.pressSeen){ D.pressSeen=true; did('Компрессионная проба'); } say(D.press?'Давите датчиком…':'Давление снято.'); return;
-    case 'doppler': if(D.view!=='us'){ D.err++; say('Допплер — режим УЗИ.'); return; } D.dop=!D.dop; if(D.dop) say('Цвет показывает направление потока относительно датчика, а не «артерия/вена».'); return;
-    case 'lido': if(need()) return; once('lido','Местная анестезия'); return;
-    case 'needle': if(need()) return; if(D.punct){ say('Игла уже в сосуде.'); return; }
-     if(!D.anti||!D.drape) viol('Пункция без полноценной асептики (антисептик + стерильное бельё).',5);
-     if(D.conscious&&!D.lido) viol('Пункция без местной анестезии у пациента в сознании.',2);
-     if(D.site!=='fem'&&!D.tilt) viol('Пункция яремной/подключичной вены без положения Тренделенбурга — риск воздушной эмболии.',4);
-     if(!D.us){ viol('Пункция центральной вены вслепую, без УЗИ-навигации.',3); D.us=true; D.colA='#060606'; D.colV='#060606'; }
-     if(D.site==='sc'&&D.coag) viol('Подключичный доступ при коагулопатии — место пункции не прижать.',5);
-     D.view='us'; st.tool='needle'; D.needle={x:200,y:30}; st.full=true; return;
-    case 'syr': if(D.view==='us'&&D.punct){ D.checked=true; did('Проверка крови шприцем'); say(D.punctArt?'Алая кровь, поршень выталкивает пульсирующей струёй!':'Тёмная кровь, поступает спокойно, без пульсации.'); return; }
-     if(!D.cath){ D.err++; say('Сейчас шприц не нужен.'); return; } if(D.flush){ say('Уже промыто.'); return; } D.flush=true; did('Аспирация и промывка всех просветов'); D.fieldMsg='Кровь из всех просветов, промыты NaCl'; if(!D.wireOut) say('Через дистальный просвет промыть не удаётся — в нём что-то есть.'); return;
-    case 'wire': if(!D.punct){ D.err++; say('Проводник некуда вводить — сначала пункция сосуда.'); return; } if(D.wire){ say('Проводник уже введён.'); return; }
-     D.wire=true; D.artWire=D.punctArt; D.view='field'; did('J-проводник по игле'); say('Проводник прошёл свободно.'+(D.site!=='fem'?' На мониторе — короткая пробежка экстрасистол.':'')); st.full=true; return;
-    case 'out': if(!D.punct){ D.err++; say('Извлекать нечего.'); return; }
-     if(!D.wire){ D.punct=false; D.punctArt=false; did('Игла извлечена, место пункции прижато'); say('Игла извлечена, прижатие.'); D.view='us'; st.full=true; return; }
-     if(D.needleOff){ say('Иглы уже нет.'); return; } D.needleOff=true; did('Игла снята, проводник удерживается'); return;
-    case 'scalpel': if(!D.wire){ D.err++; say('Без проводника разрез не нужен.'); return; } if(!D.needleOff){ D.err++; say('Мешает игла на проводнике.'); return; } once('cut','Надрез кожи у проводника'); return;
-    case 'dil': if(!D.wire){ D.err++; say('Дилататор проводят только по проводнику.'); return; } if(D.cath){ say('Уже не нужно.'); return; } if(!D.needleOff){ D.err++; say('Дилататор по игле не пройдёт.'); return; } if(!D.cut){ D.err++; say('Дилататор упирается в кожу.'); return; }
-     if(D.artWire) viol('Дилатация АРТЕРИИ: проводник стоял в артерии (не проверили кровь/УЗИ) — тяжёлое осложнение.',20);
-     once('dil','Дилатация хода'); return;
-    case 'cvc': if(!D.wire){ D.err++; say('Катетер вводят по проводнику.'); return; } if(!D.dil){ D.err++; say('Катетер не проходит — ход не расширен.'); return; } once('cath','Катетер по проводнику'); return;
-    case 'wireoff': if(!D.wire||D.wireOut){ say('Проводника нет.'); return; } if(!D.cath){ D.err++; say('Без катетера проводник — единственный доступ к вене. Рано.'); return; } once('wireOut','Проводник удалён'); return;
-    case 'suture': if(!D.cath){ D.err++; say('Пока нечего фиксировать.'); return; } once('sut','Шов, фиксация катетера'); return;
-    case 'xray': if(!D.cath){ D.err++; say('Контроль — после установки катетера.'); return; } did('Контроль положения: УЗИ лёгких/рентген'); CVC.done(); return;
-    default: D.err++; say('Это из другого набора.'); return;
-   } },
-  tap(z,p){ const D=st.d;
-   if(D.view==='body'){ const P={ij:[150,122],sc:[170,152],fem:[318,200]}; let k=z&&z.startsWith('site_')?z.slice(5):null;
-    if(!k&&p){ let bd=46; for(const [kk,[x,y]] of Object.entries(P)){ const d=Math.hypot(p.x-x,p.y-y); if(d<bd){ bd=d; k=kk; } } }
-    if(!k){ say('Коснитесь одной из трёх точек доступа: яремная, подключичная или бедренная.'); return; }
-    if(D.anti||D.drape){ say('Поле уже обработано — доступ менять поздно.'); return; }
-    if(D.site!==k){ D.site=k; did('Доступ: '+SITE[k]+' вена'); if(k==='fem'&&D.tilt){ D.tilt=false; } } st.tool=null; return; }
-  },
-  done(){ const D=st.d;
-   if(!D.wireOut) viol('Проводник оставлен в сосуде!',20);
-   if(D.artHit&&!D.checked&&!D.pressSeen&&!D.artWire) viol('Сосуд не верифицирован (ни компрессии, ни проверки крови).',2);
-   if(!D.flush) viol('Не проверены и не промыты просветы катетера.',3);
-   if(!D.sut) viol('Катетер не зафиксирован.',2);
-   if(D.err>=3) viol('Нарушения последовательности Сельдингера ('+D.err+').',Math.min(6,D.err));
-   finish(true); },
-  result(ok){ const D=st.d; return {ok,site:SITE[D.site]?SITE[D.site]+' вена':'',art:D.artHit,mins:4+(D.artHit?3:0)+0.8*Math.max(0,D.att-1)+D.err*0.3,att:D.att}; }
+  meta(D){ return `<span class="mg-spo2${D.spo2<88?' low':''}">SpO₂ <b>${Math.round(D.spo2)}</b>%</span>${D.arr?' · идёт СЛР':''}${D.att?' · попытка '+D.att:''}${D.grade>=3?' · трудные дыхательные пути':''}`; },
+  steps(D){ const L=D.L; return [
+   {t:'Положение головы',sc:'prep',h:'Как уложить голову для ларингоскопии?',opts:L.trauma?[
+     {t:'Голова по средней линии, помощник руками удерживает шею (ручная стабилизация), воротник расстегнуть',ok:true,short:'ручная стабилизация шеи',fx:d=>{d.pillow=true;},why:'При возможной травме шейного отдела разгибание запрещено; воротник мешает открыть рот.'},
+     {t:'Валик под затылок и максимально запрокинуть голову',ok:false,w:5,why:'При травме разгибание шеи опасно — повреждение спинного мозга.'},
+     {t:'Интубировать прямо в жёстком воротнике',ok:false,w:2,why:'Воротник не даёт открыть рот — ларингоскопия почти невозможна.'}]:[
+     {t:'«Нюхающая» позиция: валик под затылок, наружный слуховой проход на уровне грудины',ok:true,short:'«нюхающая» позиция',fx:d=>{d.pillow=true;},why:'Оси рта, глотки и гортани выравниваются — обзор лучше.'},
+     {t:'Голова на ровной поверхности без валика',ok:'warn',w:1,why:'Можно, но обзор голосовой щели хуже.'},
+     {t:'Подушка под лопатки, голова свисает',ok:false,w:2,why:'Чрезмерное разгибание ухудшает обзор и опасно при травме шеи.'}]},
+   {t:'Преоксигенация',sc:'prep',h:D.arr?'Пациент в остановке кровообращения.':'Создайте запас кислорода перед апноэ.',opts:D.arr?[
+     {t:'Вентиляция мешком с O₂ 30:2, интубация без остановки компрессий дольше 5 секунд',ok:true,short:'вентиляция мешком',fx:d=>{d.preox=true;},why:'При СЛР компрессии не прерывают надолго.'},
+     {t:'Остановить СЛР на время интубации',ok:false,w:5,why:'Каждая пауза в компрессиях снижает шанс восстановить кровообращение.'}]:[
+     {t:'Плотно прижатая маска, 100% O₂ 3 минуты (или 8 глубоких вдохов)',ok:true,short:'3 минуты 100% O₂',fx:d=>{d.preox=true;d.spo2=Math.min(100,d.spo2+4);},why:'Азотное «вымывание» даёт несколько минут безопасного апноэ.'},
+     {t:'Сатурация 92% — достаточно, сразу ларингоскопия',ok:false,w:3,why:'Без преоксигенации десатурация наступает за десятки секунд.'},
+     {t:'Носовая канюля 2 л/мин',ok:false,w:2,why:'Низкопоточный кислород не создаёт запаса.'}]},
+   {t:'Индукция',sc:'prep',h:'Пациент в сознании — нужна быстрая последовательная индукция.',when:d=>d.needRSI,opts:[
+     {t:'Кетамин 1–2 мг/кг',short:'кетамин',ok:true,fx:d=>{d.ind='ktm';},why:D.shock?'При гипотонии — препарат выбора: поддерживает давление.':'Подходит: сохраняет гемодинамику и дыхание до релаксанта.'},
+     {t:'Пропофол 1,5–2 мг/кг',short:'пропофол',ok:D.shock?false:true,w:3,fx:d=>{if(!d.shock) d.ind='pro';},why:D.shock?'При шоке пропофол резко снижает давление. Выберите другой препарат.':'Подходит при стабильной гемодинамике.'},
+     {t:'Без индукции — сразу миорелаксант',ok:false,w:5,why:'Миорелаксант без анестезии — пациент парализован, но в сознании.'}]},
+   {t:'Миорелаксант',sc:'prep',h:'Нужна быстрая релаксация.',when:d=>d.needRSI,opts:[
+     {t:'Рокуроний 1,2 мг/кг',short:'рокуроний',ok:true,fx:d=>{d.rel='roc';},why:'Быстрая релаксация, нет гиперкалиемии; есть антидот (сугаммадекс).'},
+     {t:'Суксаметоний 1,5 мг/кг',short:'суксаметоний',ok:D.hyperK?false:true,w:4,fx:d=>{if(!d.hyperK) d.rel='sux';},why:D.hyperK?'Суксаметоний повышает калий — опасно при гиперкалиемии, ожогах и размозжении.':'Подходит при отсутствии противопоказаний.'},
+     {t:'Обойдёмся без релаксанта',ok:false,w:2,why:'Без релаксации — ларингоспазм, рвота, травма; первая попытка часто неудачна.'}]},
+   {t:'Ларингоскопия',h:'Клинок во рту. Как получить обзор голосовой щели?',opts:[
+     {t:'Клинок по правому краю рта, отвести язык влево, кончик в валлекулу; поднимать рукоятку вверх-вперёд, по её оси',ok:true,short:'подъём вверх-вперёд',fx:d=>{d.att=Math.max(1,d.att);},why:'Язык и надгортанник поднимаются — открывается голосовая щель.'},
+     {t:'Качнуть рукоятку на себя, опираясь клинком на верхние зубы',ok:false,w:4,vt:'Ларингоскоп рычагом на зубы — травма зубов.',why:'Это рычаг на зубы: скол резцов, а обзор не улучшается.'},
+     {t:'Ввести клинок по центру и давить на язык вниз',ok:false,w:2,why:'Язык закрывает обзор; его нужно отвести влево и поднять вверх-вперёд.'}]},
+   {t:'Обзор недостаточен',sc:'scope',h:'Видна только задняя часть связок.',when:d=>d.grade>=3,opts:[
+     {t:'Наружное давление на щитовидный хрящ (BURP) или буж',ok:true,short:'BURP/буж',fx:d=>{d.burp=true;},why:'Смещение гортани назад-вверх-вправо открывает связки.'},
+     {t:'Провести трубку вслепую в сторону связок',ok:false,w:4,why:'Вслепую трубка часто уходит в пищевод.'},
+     {t:'Продолжать попытку, пока не получится, несмотря на сатурацию',ok:false,w:4,why:'При SpO₂ < 90% попытку прерывают и вентилируют мешком.'}]},
+   {t:'Проведение трубки',h:'Голосовая щель видна. Как провести трубку?',opts:[
+     {t:'Ввести трубку справа, видеть, как манжета проходит между связками, продвинуть на 1–2 см за связки, извлечь проводник',ok:true,short:'трубка под контролем глаза',fx:d=>{ const r=Math.random(); d.esoph=r<(d.grade>=3&&!d.burp?0.3:0.12); d.deep=!d.esoph&&Math.random()<0.25; },why:'Трубка проведена под контролем зрения. Теперь обязательно проверить, где она стоит.'},
+     {t:'Провести трубку по центру клинка, закрыв себе обзор',ok:false,w:2,why:'Трубка закрывает голосовую щель — не видно, куда она идёт.'},
+     {t:'Завести трубку как можно глубже, «чтобы не выпала»',ok:false,w:3,why:'Глубокая трубка уходит в правый главный бронх.'}]},
+   {t:'Подтверждение положения',sc:'chest',h:'Как убедиться, что трубка в трахее?',opts:[
+     {t:'Капнография + выслушать оба лёгких и эпигастрий',ok:true,short:'капнография + аускультация',fx:d=>{d.capno=d.esoph?'esoph':'trachea';},why:'Капнография — «золотой стандарт»: волны EtCO₂ есть только из трахеи.'},
+     {t:'Трубка запотевает — значит в трахее',ok:false,w:3,why:'Запотевание бывает и при интубации пищевода.'},
+     {t:'Грудь поднимается — достаточно',ok:false,w:3,why:'Визуальная экскурсия ненадёжна; без капнографии интубацию пищевода легко пропустить.'}]},
+   {t:'Результат проверки',sc:'chest',h:d=>d.esoph?'Капнограмма — прямая линия, в эпигастрии бульканье.':d.deep?'Волны EtCO₂ есть, но слева дыхание не проводится.':'Волны EtCO₂ 36 мм рт.ст., дыхание проводится с обеих сторон.',
+    opts:d=>d.esoph?[
+     {t:'Извлечь трубку, вентилировать маской, повторить попытку',ok:true,short:'пищевод → извлечь',fx:d=>{d.esoph=false;d.deep=false;d.capno='trachea';d.att++;},why:'«Сомневаешься — вынимай». Повторная попытка удалась, капнограмма теперь в норме.'},
+     {t:'Раздуть манжету и подключить ИВЛ — разберёмся потом',ok:false,w:25,vt:'Нераспознанная интубация пищевода — капнография обязательна.',why:'Трубка в пищеводе: пациент не дышит, желудок раздувается. Это смертельная ошибка — трубку надо вынуть.'}]
+     :d.deep?[
+     {t:'Подтянуть трубку на 2–3 см и выслушать снова',ok:true,short:'подтянуть трубку',fx:d=>{d.deep=false;},why:'Трубка ушла в правый главный бронх; после подтягивания дыхание слева появилось.'},
+     {t:'Это нормально, подключаем ИВЛ',ok:false,w:4,why:'Однолёгочная вентиляция — ателектаз слева и гипоксемия.'}]:[
+     {t:'Трубка в трахее — переходим к фиксации',ok:true,short:'в трахее',why:'Волны EtCO₂ и симметричное дыхание.'},
+     {t:'Для надёжности переинтубировать',ok:false,w:2,why:'Лишняя попытка — риск травмы и десатурации.'}]},
+   {t:'Манжета, фиксация, ИВЛ',sc:'chest',h:'Последний шаг.',opts:[
+     {t:'Раздуть манжету (20–30 см вод. ст.), зафиксировать на 21–23 см у резцов, подключить ИВЛ',ok:true,short:'манжета, фиксация, ИВЛ',fx:d=>{d.cuff=true;},end:'ok',why:'Готово: трубка в трахее и надёжно закреплена.'},
+     {t:'Подключить ИВЛ без манжеты — так меньше давление на трахею',ok:false,w:3,why:'Без манжеты — утечка и аспирация.'},
+     {t:'Зафиксировать на 27 см «чтобы не выпала»',ok:false,w:3,why:'Глубоко — трубка уйдёт в правый бронх. Обычно 21 см у женщин и 23 см у мужчин.'}]},
+  ]; },
+  scene(){ return ''; },
+  tick(D,dt){ if(!st) return; const sc=cur()&&cur().sc; if(sc==='scope'||(sc==='chest'&&!D.cuff)){ D.spo2=Math.max(50,D.spo2-(D.preox?0.3:0.8)*(D.L.obese?1.6:1)*(D.L.child?1.5:1)*dt); }
+   const m=document.getElementById('mg-meta'); if(m&&Math.random()<0.1) m.innerHTML=ETI.meta(D); },
+  result(D,ok){ const out={ok,mins:2+0.8*Math.max(0,D.att-1),att:Math.max(1,D.att),spo2:D.spo2,rsi:D.needRSI?{ind:D.ind,rel:D.rel}:null}; if(!ok) out.esoph=true; return out; }
  };
  const GAMES={iv:IV,eti:ETI,cvc:CVC};
-
- function open(kind,s,done){
-  const G=GAMES[kind]; st={kind,d:G.init(s),log:[],viol:[],say:'',tool:null,done,skipLabel:kind==='eti'?'Позвать анестезиолога':kind==='iv'?'Поручить медсестре':'Позвать реаниматолога'};
-  openModal('','mgwrap'); const m=$m();
-  m.onclick=e=>{ if(!st) return;
-   if(e.target.closest('[data-mgskip]')){ cancelAnimationFrame(raf); const cb=st.done; st=null; closeModal(); cb({skip:true}); return; }
-   const pk=e.target.closest('[data-pick]'); if(pk&&G.pick){ G.pick(pk.dataset.pick); st.say=''; render(); return; }
-   const t=e.target.closest('[data-tool]'); if(!t) return; try{ Sfx.tab&&Sfx.tab(); }catch(_){}
-   st.say=''; G.tool(t.dataset.tool); if(st) render(); };
-  m.onpointerdown=e=>{ if(st&&e.target.closest('#mg-holdbtn')){ e.preventDefault(); st.d.holding=true; } };
-  const up=()=>{ if(st&&st.kind==='iv'&&st.d.holding) IV.release(); };
-  m.onpointerup=up; m.onpointercancel=up;
-  m.oncontextmenu=e=>{ if(e.target.closest('.mg2')) e.preventDefault(); };
-  render(); last=0; raf=requestAnimationFrame(loop);
- }
- return {KEYS,open,enabled,setEnabled,_st:()=>st};
+ return {KEYS,open,enabled,setEnabled,_st:()=>st,_g:GAMES};
 })();
 
-// ── Подключение к действиям: перехватываем act() для катетера, интубации и ЦВК
 (function(){
- const st0=()=>!!document.querySelector('#modal .mg2');
+ const st0=()=>!!document.querySelector('#modal .mg3');
  const _act=act;
  function applyResult(key,r){
   const s=G.s; if(!s||s.over) return;
@@ -8005,6 +7961,7 @@ const MG=(()=>{
   spend(Math.max(0,r.mins-0.5));
   if(id==='iv'){ s.ivGauge=r.gauge; s.ivAtt=r.att; } if(id==='cvc') s.cvcSite=r.site;
   s.mgPass=key; _act(key);
+  if(id==='cvc'&&r.cvp!=null){ s.cvpVal=r.cvp; log('ЦВД '+r.cvp+' см вод. ст. (норма 5–12).','res'); record(s,'x:cvp'); }
  }
  act=function(key){
   const s=G.s, id=MG.KEYS[key]; if(s&&!st0()) s.mgPass=null;
