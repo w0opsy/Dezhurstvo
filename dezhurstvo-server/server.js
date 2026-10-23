@@ -8,6 +8,7 @@ const PORT=+process.env.PORT||8080;
 const BOT_TOKEN=process.env.BOT_TOKEN||'';
 // ADMIN_KEY — ключ для просмотра баг-репортов: https://сервер/reports?key=КЛЮЧ
 // ADMIN_CHAT — ваш chat id в Telegram: бот будет присылать туда каждый репорт (узнать: написать боту /myid)
+const AI=require('./ai.js');
 const ADMIN_KEY=process.env.ADMIN_KEY||'', ADMIN_CHAT=process.env.ADMIN_CHAT||'';
 // TG_API — адрес посредника для Bot API (Cloudflare Worker), если api.telegram.org с сервера недоступен      // токен бота от @BotFather — нужен для входа через Telegram и для бота
 const EXT=(process.env.RENDER_EXTERNAL_URL||'').replace(/\/?$/,'/');   // Render задаёт адрес сервиса сам
@@ -94,7 +95,16 @@ const HOOK='/tg/'+crypto.createHash('sha256').update('hook:'+BOT_TOKEN).digest('
 const HOOK_SECRET=crypto.createHash('sha256').update('secret:'+BOT_TOKEN).digest('hex').slice(0,48);
 async function apiRoute(req,res,p){
  const ip=req.socket.remoteAddress;
- if(p==='/api/ping') return send(res,200,{ok:true,tg:!!BOT_TOKEN,bot:BOT.username||null});
+ if(p==='/api/ping') return send(res,200,{ok:true,tg:!!BOT_TOKEN,bot:BOT.username||null,ai:AI.enabled()});
+ // ИИ-пациент: живой ответ вместо шаблонного; при любой ошибке клиент оставит ответ движка
+ if(p==='/api/talk'&&req.method==='POST'){
+  if(!AI.enabled()) return send(res,501,{error:'ИИ не настроен.'});
+  const u=auth(req); if(!u) return send(res,401,{error:'Нужно войти.'});
+  if(!AI.allowed(u.name)) return send(res,429,{error:'Слишком много вопросов, ИИ отдыхает.'});
+  const b=await body(req);
+  try{ const t=AI.clean(await AI.complete(b)); if(!t) return send(res,502,{error:'Пустой ответ.'}); return send(res,200,{text:t}); }
+  catch(e){ console.warn('AI',e.message); return send(res,502,{error:'ИИ недоступен.'}); }
+ }
  if(p==='/api/register'&&req.method==='POST'){
   if(limited(ip,'reg',5)) return send(res,429,{error:'Слишком много попыток, подождите минуту.'});
   const b=await body(req); const name=String(b.name||'').trim();
@@ -142,9 +152,16 @@ async function apiRoute(req,res,p){
   const b=await body(req); if(!b.prog||typeof b.prog!=='object') return send(res,400,{error:'Нет данных.'});
   u.prog=b.prog; u.seen=Date.now(); save(); return send(res,200,{ok:true});
  }
+ // Публичный профиль игрока: лучшие результаты по кейсам и достижения (без истории вызовов)
+ if(p==='/api/profile'){
+  const q=new URL(req.url,'http://x').searchParams.get('name')||''; const u=Object.values(db.users).find(x=>x.name===q);
+  if(!u) return send(res,404,{error:'Игрок не найден.'});
+  const P=u.prog||{}; const cases={}; for(const [id,c] of Object.entries(P.cases||{})) cases[id]={best:c.best|0,n:c.n|0,locs:c.locs||[]};
+  return send(res,200,{name:u.name,photo:u.photo||null,since:u.created||null,prog:{cases,ach:P.ach||{},total:P.total||{n:0,sum:0},runs:[],stats:{}}});
+ }
  if(p==='/api/board'){
   const me=auth(req);
-  const rows=Object.values(db.users).filter(u=>u.prog||u===me).map(u=>({name:u.name,photo:u.photo||null,me:u===me,...summary(u.prog)})).sort((a,b)=>b.r-a.r).slice(0,100);
+  const rows=Object.values(db.users).filter(u=>u.prog||u===me).map(u=>({name:u.name,photo:u.photo||null,me:u===me,ach:Object.keys((u.prog&&u.prog.ach)||{}).slice(0,80),...summary(u.prog)})).sort((a,b)=>b.r-a.r).slice(0,100);
   return send(res,200,{rows});
  }
  send(res,404,{error:'Нет такого адреса.'});

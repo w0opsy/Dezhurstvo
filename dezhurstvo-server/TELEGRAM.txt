@@ -117,3 +117,37 @@
  Игра на GitHub Pages + ссылка в @BotFather → Bot Settings → Menu Button.
  Вход через Telegram работает, прогресс хранится в облаке Telegram у каждого игрока,
  но общего рейтинга нет, и бот на сообщения не отвечает.
+
+──────────────────────────────────────────────
+ИИ-ПАЦИЕНТ (живые ответы, версия 5.1)
+ Как это устроено: игра сама решает, ЧТО пациент знает и готов сказать (ответ движка,
+ доверие, ложь). Сервер отправляет этот «эталонный ответ» в нейросеть, и она только
+ пересказывает его живым языком с характером пациента. Новых симптомов она не добавит:
+ ответы с чужими цифрами или диагнозами игра отбрасывает и показывает ответ движка.
+ Запросы идут С ВАШЕГО СЕРВЕРА, а не из Telegram, поэтому блокировки Telegram не мешают.
+ Если ИИ не настроен или не ответил за 9 секунд — работает обычный движок, как раньше.
+
+ Вариант 1 — YandexGPT (Yandex Cloud):
+  1) console.yandex.cloud → создать каталог → скопировать его ID (folder id).
+  2) Сервисный аккаунт с ролью ai.languageModels.user → создать API-ключ.
+  3) В /etc/dezhurstvo.env добавить:
+       AI_PROVIDER=yandex
+       YANDEX_API_KEY=ваш_ключ
+       YANDEX_FOLDER=ваш_folder_id
+       YANDEX_MODEL=yandexgpt-lite
+  4) systemctl restart dezhurstvo
+
+ Вариант 2 — GigaChat (Сбер, developers.sber.ru → GigaChat API):
+  1) Создать проект, получить «Ключ авторизации» (Authorization key).
+  2) Скачать корневой сертификат Минцифры на сервер:
+       curl -k -o /etc/ssl/russian_trusted_root_ca.pem https://gu-st.ru/content/lending/russian_trusted_root_ca_pem.crt
+  3) В /etc/dezhurstvo.env:
+       AI_PROVIDER=gigachat
+       GIGACHAT_AUTH=ваш_ключ_авторизации
+       NODE_EXTRA_CA_CERTS=/etc/ssl/russian_trusted_root_ca.pem
+  4) systemctl restart dezhurstvo
+
+ Лимиты: AI_PER_USER=40 (вопросов на игрока за 10 минут), AI_DAILY=3000 (в сутки на сервер).
+ Проверка: https://ваш-сервер/api/ping должен показать "ai":true.
+ У игроков появится галочка «Живые ответы пациента» в настройках «Смены».
+ Ключи — только в /etc/dezhurstvo.env, НЕ в репозиторий.
